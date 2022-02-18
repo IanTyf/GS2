@@ -11,7 +11,7 @@ public class MouseOver : MonoBehaviour
     public Color startColor = Color.white;
     public Color mouseOverColor = Color.magenta;
 
-    public GameObject camera;
+    public GameObject camObj;
 
     //GameObject myManager;
 
@@ -24,7 +24,7 @@ public class MouseOver : MonoBehaviour
     {
         //Debug.Log("Wow look at me!");
 
-        camera = GameObject.Find("Main Camera"); //fetches the Main Camera and assings it to the cube as a gameobject.
+        camObj = GameObject.Find("Main Camera"); //fetches the Main Camera and assings it to the cube as a gameobject.
 
         GetComponent<Renderer>().material.SetColor("_Color", mouseOverColor); //changes the color of the cube.
 
