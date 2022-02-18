@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
@@ -25,14 +26,20 @@ public class CameraScript : MonoBehaviour
     }
     public static void Click()
     {
+
         if (Input.GetKey(KeyCode.Mouse0))
         {
             foreach (var Camera in AllCameras)
             {
-                if  (Camera != MouseOverScript.cam)
+                if (Camera != MouseOverScript.cam)
                 {
                     Camera.SetActive(false);
-                } else Camera.SetActive(true);
+                } else 
+                {
+                    Camera.SetActive(true);
+                 Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
+                 uiImage.rectTransform.sizeDelta = new Vector2(150, 150); 
+                } 
             }
         }
     }

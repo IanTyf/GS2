@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraSetup : MonoBehaviour
+public class TimelineScript : MonoBehaviour
 {
-    public bool IsMainCamera = false;
-    public Image tlImage;
+
+    
+
+
     // Start is called before the first frame update
     void Start()
     {
-        CameraScript.GetCamera(gameObject);
         
-        if (IsMainCamera == false)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void EnlargeButton()
+    {
+
     }
 }
