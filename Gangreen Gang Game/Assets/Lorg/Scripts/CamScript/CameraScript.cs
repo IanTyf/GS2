@@ -22,6 +22,7 @@ public class CameraScript : MonoBehaviour
     public static void GetCamera(GameObject camera)
     {
         AllCameras.Add(camera);
+
         //Debug.Log(AllCameras);
     }
     public static void Click()
@@ -33,12 +34,14 @@ public class CameraScript : MonoBehaviour
             {
                 if (Camera != MouseOverScript.cam)
                 {
+                    Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
+                    uiImage.rectTransform.sizeDelta = new Vector2(100, 100);
                     Camera.SetActive(false);
                 } else 
                 {
                     Camera.SetActive(true);
-                 Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
-                 uiImage.rectTransform.sizeDelta = new Vector2(150, 150); 
+                    Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
+                    uiImage.rectTransform.sizeDelta = new Vector2(150, 150); 
                 } 
             }
         }

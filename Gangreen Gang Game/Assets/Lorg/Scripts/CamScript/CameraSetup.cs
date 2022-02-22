@@ -18,9 +18,4 @@ public class CameraSetup : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
