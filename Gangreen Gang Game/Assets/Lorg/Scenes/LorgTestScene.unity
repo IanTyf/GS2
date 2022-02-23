@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 60315994}
   - component: {fileID: 60315993}
+  - component: {fileID: 60315995}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -215,7 +216,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 359.5869, y: 0.00001064451, z: -0.00001155686}
+--- !u!95 &60315995
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60315992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &95074271
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51c1f7e2fff3df4db3f8e77979a6680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlPanel: {fileID: 264529172}
+  controlPanel: {fileID: 1825945470}
 --- !u!4 &450519212
 Transform:
   m_ObjectHideFlags: 0
@@ -525,7 +545,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -534,6 +554,8 @@ PlayableDirector:
     value: {fileID: 510385284}
   - key: {fileID: -712088503996536654, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
     value: {fileID: 510385284}
+  - key: {fileID: -8610661059472815031, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
+    value: {fileID: 1505916721}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &510385276
@@ -658,13 +680,17 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -712088503996536654, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
     value: {fileID: 510385284}
+  - key: {fileID: -8610661059472815031, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
+    value: {fileID: 1505916721}
+  - key: {fileID: 3687936740001570954, guid: 3ab4d266dce87d942b34bec4b3084afe, type: 2}
+    value: {fileID: 60315995}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &510385284
@@ -990,7 +1016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a939f8f79841e8648a8b94126ff98c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMainCamera: 1
+  IsMainCamera: 0
   tlImage: {fileID: 2070050420}
 --- !u!4 &1313087138
 Transform:
@@ -1359,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a939f8f79841e8648a8b94126ff98c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMainCamera: 0
+  IsMainCamera: 1
   tlImage: {fileID: 163417994}
 --- !u!4 &1658389837
 Transform:
