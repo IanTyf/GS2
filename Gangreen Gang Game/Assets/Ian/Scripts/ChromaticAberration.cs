@@ -15,13 +15,19 @@ public class ChromaticAberration : MonoBehaviour
     void Start()
     {
         //material = new Material(Shader.Find("Custom/GlitchEffectShader"));
-        cam = GetComponent<Camera>();
+        //cam = GetComponent<Camera>();
+        //cam.depthTextureMode = DepthTextureMode.DepthNormals;
         //cam.targetTexture.width = Screen.width;
         //cam.targetTexture.height = Screen.height;
     }
 
     private void Update()
     {
+        if (cam == null)
+        {
+            cam = GetComponent<Camera>();
+            cam.depthTextureMode = DepthTextureMode.Depth;
+        }
         /*
         int resWidth = Screen.width;
         int resHeight = Screen.height;

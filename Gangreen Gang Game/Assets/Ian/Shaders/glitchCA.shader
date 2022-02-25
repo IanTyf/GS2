@@ -86,6 +86,7 @@ Shader "Custom/GlitchEffectShader"
                 //Chromatic aberration section
 
                 fixed4 finalCol = fixed4(chromR, chromG, chromB, 1);
+                if (chromR == 1 && chromG == 1 && chromB == 1) finalCol.a = 0;
 
                 return finalCol;
             }

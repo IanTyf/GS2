@@ -5,6 +5,8 @@ Shader "Custom/CameraCombine"
         _MainTex ("Texture", 2D) = "white" {}
         _OverlayTex("OverlayTex", 2D) = "white" {}
         _OverlayTex2("OverlayTex2", 2D) = "white" {}
+        _BGDepthTex("BGDepthTex", 2D) = "white" {}
+        _CADepthTex("CADepthTex", 2D) = "white" {}
     }
     SubShader
     {
@@ -42,6 +44,8 @@ Shader "Custom/CameraCombine"
             sampler2D _MainTex;
             sampler2D _OverlayTex;
             sampler2D _OverlayTex2;
+            sampler2D _BGDepthTex;
+            sampler2D _CADepthTex;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -53,8 +57,14 @@ Shader "Custom/CameraCombine"
                 //col1.rgb = 1 - col1.rgb;
                 //col2.rgb = 1 - col2.rgb;
                 //return col;
-                return col1 * col2;
-                //return col2;
+                float bgDepth = tex2D(_BGDepthTex, i.uv).x;
+                float caDepth = tex2D(_CADepthTex, i.uv).x;
+                //if (bgDepth < caDepth && !(col1.a == 0)) return col1;
+                //col.rgb = bgDepth;
+                //return col;
+                if (bgDepth > caDepth) return col1 * col2;
+                else return col2;
+                //return col1 * col2;
             }
             ENDCG
         }
