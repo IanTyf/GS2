@@ -1072,6 +1072,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num: 0
-  material: {fileID: 2100000, guid: 1a6715078dab04e41a245cddffadad27, type: 2}
+  material: {fileID: 2100000, guid: 7169e59f7f33aff4f94482fa813b2367, type: 2}
   combineMat: {fileID: 2100000, guid: 702d91b79f999404ba013ac211aba441, type: 2}
   _rt: {fileID: 8400000, guid: 430ba321a52e602458cf6446f14fe02e, type: 2}

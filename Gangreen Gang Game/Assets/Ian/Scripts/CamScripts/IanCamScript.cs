@@ -5,11 +5,13 @@ using UnityEngine;
 public class IanCamScript : MonoBehaviour
 {
     public static List<GameObject> AllCameras = new List<GameObject>();
+    public static IanCamScript icm;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
+        icm = GetComponent<IanCamScript>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,18 @@ public class IanCamScript : MonoBehaviour
                 }
                 else Camera.SetActive(true);
             }
+        }
+    }
+
+    public static void SwitchToCam(GameObject cam)
+    {
+        foreach (var Camera in AllCameras)
+        {
+            if (Camera != cam)
+            {
+                Camera.SetActive(false);
+            }
+            else Camera.SetActive(true);
         }
     }
 }

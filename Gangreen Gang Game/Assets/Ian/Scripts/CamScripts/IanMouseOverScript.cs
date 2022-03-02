@@ -8,6 +8,13 @@ public class IanMouseOverScript : MonoBehaviour
     Color BaseColor = Color.white;
     public Color MouseOverColor = Color.magenta;
 
+    private IanCamTransition icm;
+
+    private void Start()
+    {
+        icm = GameObject.Find("CameraManager").GetComponent<IanCamTransition>();
+    }
+
     // Start is called before the first frame update
     private void OnMouseOver()
     {
@@ -18,7 +25,8 @@ public class IanMouseOverScript : MonoBehaviour
             transform.GetChild(i).gameObject.GetComponent<Renderer>().material.SetColor("_Color", MouseOverColor);
         }
         //Debug.Log(cam);
-        IanCamScript.Click();
+        //IanCamScript.Click();
+        checkClick();
     }
     private void OnMouseExit()
     {
@@ -27,5 +35,13 @@ public class IanMouseOverScript : MonoBehaviour
             transform.GetChild(i).gameObject.GetComponent<Renderer>().material.SetColor("_Color", BaseColor);
         }
         cam = null;
+    }
+
+    private void checkClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            icm.zoomIn(IanMouseOverScript.cam);
+        }
     }
 }
