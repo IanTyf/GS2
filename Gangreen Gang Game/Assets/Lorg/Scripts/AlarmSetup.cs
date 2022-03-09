@@ -6,6 +6,8 @@ public class AlarmSetup : MonoBehaviour
 {
      AudioSource audioHandler1;
      AudioSource audioHandler2; 
+    public AudioClip ringingSound1;
+    public AudioClip ringingSound2;
     public AudioManagerScript AuidioManager;
 
     // Start is called before the first frame update
@@ -22,13 +24,13 @@ public class AlarmSetup : MonoBehaviour
          if (Input.GetKey(KeyCode.Q))
          {
              //audioHandler1.Stop();
-             audioHandler1.Play();
+             audioHandler1.PlayOneShot(ringingSound1);
          }
 
          if (Input.GetKey(KeyCode.E))
          {
              //audioHandler2.Stop();
-             audioHandler2.Play();
+             audioHandler2.PlayOneShot(ringingSound2);
          }
     }
 }
