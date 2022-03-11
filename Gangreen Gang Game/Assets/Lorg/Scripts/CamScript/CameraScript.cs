@@ -8,6 +8,11 @@ public class CameraScript : MonoBehaviour
    public static List<GameObject> AllCameras = new List<GameObject>();
    public static GameObject cam;
 
+    private void Awake()
+    {
+        Services.camManager = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +41,14 @@ public class CameraScript : MonoBehaviour
             {
                 if (Camera != cam)
                 {
-                    Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
-                    uiImage.rectTransform.sizeDelta = new Vector2(100, 100);
+                    //Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
+                    //uiImage.rectTransform.sizeDelta = new Vector2(100, 100);
                     Camera.SetActive(false);
                 } else 
                 {
                     Camera.SetActive(true);
-                    Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
-                    uiImage.rectTransform.sizeDelta = new Vector2(150, 150); 
+                    //Image uiImage = Camera.GetComponent<CameraSetup>().tlImage;
+                    //uiImage.rectTransform.sizeDelta = new Vector2(150, 150); 
                 } 
             }
         }

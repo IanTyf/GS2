@@ -13,8 +13,8 @@ public class AlarmSetup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioHandler1 = AuidioManager.ringing1;
-        audioHandler2 = AuidioManager.ringing2;
+        //audioHandler1 = AuidioManager.ringing1;
+        //audioHandler2 = AuidioManager.ringing2;
 
     }
 
