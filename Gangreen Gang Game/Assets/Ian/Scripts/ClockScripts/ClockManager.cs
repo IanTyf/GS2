@@ -41,12 +41,14 @@ public class ClockManager : MonoBehaviour
                 if (timer > highlightTimer)
                 {
                     highlight = false;
+                    timer = 0;
                     revertHighlight(highlightedClock);
                 }
             }
         }
     }
 
+    /*
     public void nextClock()
     {
         int currentInd = clocks.FindIndex((c)=> currentClock.name == c.name);
@@ -58,19 +60,33 @@ public class ClockManager : MonoBehaviour
         int currentInd = clocks.FindIndex((c) => currentClock.name == c.name);
         switchToClock((currentInd - 1 + clocks.Count) % clocks.Count);
     }
+    */
 
-    public void switchToClock(int i)
+    public void GoToHighlightedClock()
     {
-        if (i >= clocks.Count) return;
-        GameObject newClock = clocks[i];
+        if (highlightedClock == null) return;
+        if (!highlight) return;
+
+        switchToClock(highlightedClock);
+    }
+
+    private void switchToClock(GameObject newClock)
+    {
+        //if (i >= clocks.Count) return;
+        //GameObject newClock = clocks[i];
         currentClock.GetComponent<Clock>().possessed = false;
         currentClock.GetComponent<Clock>().showHidden();
         currentClock.transform.GetChild(0).gameObject.SetActive(false);
+        revertHighlight(newClock);
 
         currentClock = newClock;
         currentClock.GetComponent<Clock>().possessed = true;
         currentClock.GetComponent<Clock>().hide();
         currentClock.transform.GetChild(0).gameObject.SetActive(true);
+
+        highlightedClock = null;
+        highlight = false;
+        timer = 0;
 
     }
 
@@ -145,6 +161,7 @@ public class ClockManager : MonoBehaviour
         // if we find a new clock to switch to
         if (targetClock != null)
         {
+            Debug.Log("can't find a valid clock");
             revertHighlight(highlightedClock);
             highlightedClock = targetClock;
             highlightAClock(highlightedClock);
