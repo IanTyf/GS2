@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchClock",
+                    "type": "Value",
+                    "id": "daae2a2b-fdad-432d-9de7-a515f01a3cfd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a77b6b4d-ae50-4ad2-86fc-8c979ea053d0",
+                    "path": "<SwitchProControllerHID>/leftStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.7)",
+                    "groups": "",
+                    "action": "SwitchClock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

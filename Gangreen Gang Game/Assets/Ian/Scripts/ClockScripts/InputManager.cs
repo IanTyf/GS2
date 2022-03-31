@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     private InputAction skipAction;
     private InputAction switchRight;
     private InputAction switchLeft;
+    private InputAction switchClock;
 
     private void Awake()
     {
@@ -42,11 +43,15 @@ public class InputManager : MonoBehaviour
 
         switchLeft = playerInput.actions["SwitchLeft"];
         switchLeft.started += SwitchLeft;
+
+        switchClock = playerInput.actions["SwitchClock"];
+        switchClock.performed += SwitchClock;
+        switchClock.canceled += ResetSwitchDir;
     }
 
     private void Update()
     {
-
+        
     }
 
     private void onTick(InputAction.CallbackContext ctx)
@@ -89,5 +94,17 @@ public class InputManager : MonoBehaviour
     private void SwitchLeft(InputAction.CallbackContext ctx)
     {
         Services.clockManager.prevClock();
+    }
+
+    private void SwitchClock(InputAction.CallbackContext ctx)
+    {
+        //Debug.Log(ctx.ReadValue<Vector2>());
+        Services.clockManager.handleInput(ctx.ReadValue<Vector2>());
+    }
+
+    private void ResetSwitchDir(InputAction.CallbackContext ctx)
+    {
+        // handled this in clockManager.handleInput
+        //Services.clockManager.resetInputDir();
     }
 }

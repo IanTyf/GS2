@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6146769375825672426, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_RootOrder
@@ -400,7 +400,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_audioClip
@@ -487,6 +487,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clocks: []
   currentClock: {fileID: 1863808070}
+  inputDir: {x: 0, y: 0}
+  highlightedClock: {fileID: 0}
+  highlight: 0
+  highlightTimer: 5
 --- !u!4 &537013102
 Transform:
   m_ObjectHideFlags: 0
@@ -649,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6146769375746358923, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_RootOrder
@@ -788,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_audioClip
@@ -865,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6146769375825672426, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_RootOrder
@@ -942,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4197175414275717728, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_audioClip
