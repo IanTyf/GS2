@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922a01139b49dc948af9a9a0db206c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  altControl: 1
   minuteHand: {fileID: 6146769376682373634}
   hourHand: {fileID: 6146769376777015527}
   myMinute: 0

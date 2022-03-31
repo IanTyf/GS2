@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     private InputAction ringLeftAction;
     private InputAction ringRightAction;
     private InputAction tickAction;
+    private InputAction stopAction;
     private InputAction skipAction;
     private InputAction switchRight;
     private InputAction switchLeft;
@@ -32,6 +33,10 @@ public class InputManager : MonoBehaviour
         tickAction = playerInput.actions["Tick"];
         tickAction.started += onTick;
         //tickAction.canceled += _ => Debug.Log("release");
+
+        stopAction = playerInput.actions["Stop"];
+        stopAction.started += onStop;
+        stopAction.canceled += onResume;
 
         skipAction = playerInput.actions["Skip"];
         //skipAction.started += onSkip;
@@ -57,6 +62,16 @@ public class InputManager : MonoBehaviour
     private void onTick(InputAction.CallbackContext ctx)
     {
         Services.clockManager.currentClock.GetComponent<Clock>().RotateMinuteHand(6);
+    }
+
+    private void onStop(InputAction.CallbackContext ctx)
+    {
+        Services.clockManager.currentClock.GetComponent<Clock>().StopMinuteHand();
+    }
+
+    private void onResume(InputAction.CallbackContext ctx)
+    {
+        Services.clockManager.currentClock.GetComponent<Clock>().ResumeMinuteHand();
     }
 
     private void onRingLeft(InputAction.CallbackContext ctx)

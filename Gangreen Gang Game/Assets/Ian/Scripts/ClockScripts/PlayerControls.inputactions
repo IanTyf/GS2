@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Stop",
+                    "type": "Button",
+                    "id": "49174dbe-2b3d-4d0f-857f-2374fd95ec4f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Skip",
                     "type": "Value",
                     "id": "19290e6a-7cd0-4ca4-9f27-dccf26a15f7b",
@@ -83,31 +92,9 @@
                 },
                 {
                     "name": "",
-                    "id": "5b5fd743-c01c-4dcf-a261-d2ec9f3ceab3",
-                    "path": "<SwitchProControllerHID>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "34942f7d-64f7-48c6-8723-daaed4bacc22",
                     "path": "<SwitchProControllerHID>/rightTrigger",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "11b1d2b4-6176-4367-9d1f-c7a49a36e206",
-                    "path": "<SwitchProControllerHID>/buttonEast",
-                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Tick",
@@ -199,6 +186,17 @@
                     "processors": "StickDeadzone(min=0.7)",
                     "groups": "",
                     "action": "SwitchClock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91987e76-4193-4b73-95eb-46f381744366",
+                    "path": "<SwitchProControllerHID>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

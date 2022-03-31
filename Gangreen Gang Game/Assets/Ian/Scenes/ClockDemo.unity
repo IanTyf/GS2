@@ -454,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6146769375825672429, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
+      propertyPath: broken
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
 --- !u!1 &537013100
@@ -918,6 +922,10 @@ PrefabInstance:
     - target: {fileID: 6146769375825672427, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: m_Name
       value: Clock (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146769375825672429, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
+      propertyPath: broken
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6146769376235397221, guid: f35e433cd3a95454cb834645d7710ea2, type: 3}
       propertyPath: IsMainCamera
