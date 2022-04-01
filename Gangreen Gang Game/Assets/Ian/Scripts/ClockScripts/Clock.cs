@@ -6,6 +6,8 @@ public class Clock : MonoBehaviour
 {
     public bool broken;
     private float brokenTimer;
+    public float brokenMinute;
+    public int brokenHour;
     public bool altControl;
 
     public GameObject minuteHand;
@@ -49,30 +51,39 @@ public class Clock : MonoBehaviour
         if (!Services.timeManager.skipping)
         {
             Vector3 tempRot = minuteHand.transform.localEulerAngles;
-            if (!possessed)
+            if (broken)
             {
-                myMinute = (int)(tm.minute + minuteOffset);
-                myHour = tm.hour + hourOffset;
+                myMinute = (int)(brokenMinute + minuteOffset);
+                myHour = brokenHour + hourOffset;
                 // update the minute and hour hands according to current time and offsets
                 float minuteAngle = myMinute * -6;
-                minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
+                minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle * (possessed ? -1 : 1));
 
                 float hourAngle = myHour * -30 + myMinute * -0.5f;
-                hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle);
+                hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle * (possessed ? -1 : 1));
 
-                if (broken)
+                brokenMinute += Time.deltaTime;
+                brokenTimer += Time.deltaTime;
+                if (brokenTimer >= 1f)
                 {
-                    brokenTimer += Time.deltaTime;
-                    if (brokenTimer >= 1f)
-                    {
-                        brokenTimer = 0;
-                        minuteOffset -= 1f;
-                    }
+                    brokenTimer = 0;
+                    minuteOffset -= 1f;
                 }
             }
-            else // possessing
+            else
             {
-                if (!broken)
+                if (!possessed)
+                {
+                    myMinute = (int)(tm.minute + minuteOffset);
+                    myHour = tm.hour + hourOffset;
+                    // update the minute and hour hands according to current time and offsets
+                    float minuteAngle = myMinute * -6;
+                    minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
+
+                    float hourAngle = myHour * -30 + myMinute * -0.5f;
+                    hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle);
+                }
+                else // possessing
                 {
                     if (altControl)
                     {

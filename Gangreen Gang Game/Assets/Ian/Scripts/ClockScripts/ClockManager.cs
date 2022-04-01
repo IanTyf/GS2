@@ -141,7 +141,7 @@ public class ClockManager : MonoBehaviour
         GameObject targetClock = null;
         for (int i=0; i<visibleClocks.Count; i++)
         {
-            newPoint += inputDir * Vector2.Distance(origin, getScreenPos(currentCam, visibleClocks[i].transform.position));
+            newPoint = origin + inputDir * Vector2.Distance(origin, getScreenPos(currentCam, visibleClocks[i].transform.position));
             for (int j=0; j<visibleClocks.Count; j++)
             {
                 if (Vector2.Distance(newPoint, origin) > Vector2.Distance(newPoint, getScreenPos(currentCam, visibleClocks[j].transform.position))) 
