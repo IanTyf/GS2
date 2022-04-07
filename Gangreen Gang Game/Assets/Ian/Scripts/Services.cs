@@ -9,6 +9,7 @@ public class Services : MonoBehaviour
     public static TimeManager timeManager;
     public static CameraScript camManager;
     public static ClockManager clockManager;
+    public static TimeEventManager timeEventManager;
 
     // Start is called before the first frame update
     void Start()

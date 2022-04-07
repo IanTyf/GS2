@@ -17,6 +17,9 @@ public class TimeManager : MonoBehaviour
 
     public GameObject directionalLight;
 
+    //testing
+    private float tempTargetTime;
+
     private void Awake()
     {
         Services.timeManager = this;
@@ -96,12 +99,14 @@ public class TimeManager : MonoBehaviour
         }
 
         float joystickAngle = Vector2.SignedAngle(newDir, storedDir);
-        Debug.Log("angle: " + joystickAngle);
+        //Debug.Log("angle: " + joystickAngle);
         //if (joystickAngle < 0) joystickAngle *= -1;
         //else if (joystickAngle > 0)
         //{
 
         //}
+
+        /*
         int minutePassed = 0;
         skipAccumulator += joystickAngle / 6;
         if (Mathf.Abs(skipAccumulator) > 1)
@@ -111,7 +116,14 @@ public class TimeManager : MonoBehaviour
         }
 
         //int minutePassed = (int)(joystickAngle / 6);
-        minute += minutePassed;
+        */
+
+        float minutePassed = joystickAngle / 6;
+        tempTargetTime += minutePassed;
+
+        minute += tempTargetTime / 2;
+        tempTargetTime /= 2;
+        //minute += minutePassed;
 
         int hourPassed = (int)(minute / 60);
         if (minute < 0)
