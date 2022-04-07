@@ -81,12 +81,14 @@ public class InputManager : MonoBehaviour
     private void onRingLeft(InputAction.CallbackContext ctx)
     {
         // ring left
+        Services.timeEventManager.isRinging = true;
         Services.audioManager.playLeftAudio();
     }
 
     private void onRingRight(InputAction.CallbackContext ctx)
     {
         // ring right
+        Services.timeEventManager.isRinging = true;
         Services.audioManager.playRightAudio();
     }
 
