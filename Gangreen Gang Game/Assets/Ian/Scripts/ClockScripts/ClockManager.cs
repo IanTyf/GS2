@@ -14,6 +14,10 @@ public class ClockManager : MonoBehaviour
     public float highlightTimer;
     private float timer;
 
+    private bool zooming;
+    private float zoomSpeed;
+    private Vector3 tempLocalPos;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,6 +29,9 @@ public class ClockManager : MonoBehaviour
         currentClock.GetComponent<Clock>().hide();
         highlight = false;
         timer = 0;
+
+        zooming = false;
+        zoomSpeed = 20f;
     }
 
     // Update is called once per frame
@@ -32,7 +39,7 @@ public class ClockManager : MonoBehaviour
     {
         if (highlightedClock != null)
         {
-            if (highlight)
+            if (highlight && !zooming)
             {
                 // highlight the highlightedClock here
                 //highlightAClock(highlightedClock);
@@ -44,6 +51,21 @@ public class ClockManager : MonoBehaviour
                     timer = 0;
                     revertHighlight(highlightedClock);
                 }
+            }
+        }
+
+        if (zooming)
+        {
+            GameObject currentCam = currentClock.transform.GetChild(0).gameObject;
+
+            Vector3 zoomDir = (highlightedClock.transform.position - currentCam.transform.position).normalized;
+            currentCam.transform.position = currentCam.transform.position + zoomDir * zoomSpeed * Time.deltaTime;
+            zoomSpeed += 50f * Time.deltaTime;
+            
+            if (Vector3.Distance(currentCam.transform.position, highlightedClock.transform.position) < 6f)
+            {
+                zooming = false;
+                switchToClock(highlightedClock);
             }
         }
     }
@@ -66,8 +88,11 @@ public class ClockManager : MonoBehaviour
     {
         if (highlightedClock == null) return;
         if (!highlight) return;
+        if (zooming) return;
 
-        switchToClock(highlightedClock);
+        zooming = true;
+        tempLocalPos = currentClock.transform.GetChild(0).localPosition;
+        //switchToClock(highlightedClock);
     }
 
     private void switchToClock(GameObject newClock)
@@ -76,6 +101,7 @@ public class ClockManager : MonoBehaviour
         //GameObject newClock = clocks[i];
         currentClock.GetComponent<Clock>().possessed = false;
         currentClock.GetComponent<Clock>().showHidden();
+        currentClock.transform.GetChild(0).localPosition = tempLocalPos;
         currentClock.transform.GetChild(0).gameObject.SetActive(false);
         revertHighlight(newClock);
 
@@ -87,6 +113,9 @@ public class ClockManager : MonoBehaviour
         highlightedClock = null;
         highlight = false;
         timer = 0;
+        zooming = false;
+        zoomSpeed = 20;
+        tempLocalPos = Vector3.zero;
 
     }
 
