@@ -12,8 +12,9 @@ public class TimeEventManager : MonoBehaviour
     public List<TimeEvent> dynamicTimeEvents = new List<TimeEvent>(); // events that are added in real-time based on player decisions; should be removed when rewind past the start time
     public List<TimeEvent> allTimeEvents = new List<TimeEvent>();
 
-    public GameObject testObj;
-    public GameObject testObj2;
+    //public GameObject testObj;
+    //public GameObject testObj2;
+    public GameObject figure;
 
     private TimeManager tm;
     private bool endOfSkipping;
@@ -24,7 +25,11 @@ public class TimeEventManager : MonoBehaviour
     // list of conditionals that trigger different events
     public List<TimedConditional> timeConditionals = new List<TimedConditional>();
 
-    public TimedConditional testEvent2 = new TimedConditional();
+    //public TimedConditional testEvent2 = new TimedConditional();
+    public TimedConditional wakeupOnTime = new TimedConditional();
+    public TimedConditional wakeupEarly = new TimedConditional();
+    public TimedConditional wakeupLate = new TimedConditional();
+    public TimedConditional wakeupNaturally = new TimedConditional();
 
     private void Awake()
     {
@@ -39,10 +44,14 @@ public class TimeEventManager : MonoBehaviour
         // VERY IMPORTANT STEPS BELOW
 
         // add all the initial events that will play no matter what
-        addInitialEvent("Test event", new Vector3(0, 8, 10), testObj, "Test");
+        //addInitialEvent("Test event", new Vector3(0, 8, 10), testObj, "Test");
 
         // add all the time conditionals to the list so that when rewind, can look through the list and remove ones that should be removed
-        timeConditionals.Add(testEvent2);
+        //timeConditionals.Add(testEvent2);
+        timeConditionals.Add(wakeupOnTime);
+        timeConditionals.Add(wakeupEarly);
+        timeConditionals.Add(wakeupLate);
+        timeConditionals.Add(wakeupNaturally);
     }
 
     // Update is called once per frame
@@ -51,10 +60,11 @@ public class TimeEventManager : MonoBehaviour
         Vector3 currentTime = new Vector3(tm.day, tm.hour, tm.minute);
 
         #region dynamicEventCreation
-        if (!tm.skipping)
+        //if (!tm.skipping)
         {
             // test2 event - if ring is pressed during 0,8,10 and 0,8,20, trigger test2 actor anim
             // step one: if statements that set each timeconditional given certain requirements
+            /*
             if (testEvent2.cond == TimeCond.NotSet && isRinging && minutes(currentTime) < minutes(new Vector3(0, 8, 20)) && minutes(currentTime) > minutes(new Vector3(0, 8, 10)))
             {
                 testEvent2.cond = TimeCond.Ready;
@@ -70,6 +80,70 @@ public class TimeEventManager : MonoBehaviour
                 //Debug.Log("new dynamic event <Test2 event> created");
                 //testEvent2.cond = TimeCond.Exausted;
             }
+            */
+
+            #region wakeupEarly Event
+            if (wakeupEarly.cond == TimeCond.NotSet && isRinging && Services.clockManager.currentClock.name == "alarmClock"
+                && minutes(currentTime) < minutes(new Vector3(0, 7, 27)))
+            {
+                wakeupEarly.cond = TimeCond.Ready;
+                wakeupEarly.creationTime = currentTime;
+            }
+
+            if (wakeupEarly.cond == TimeCond.Ready)
+            {
+                TimeEvent evt = addDynamicEvent("WakeupEarly", new Vector3(tm.day, tm.hour, tm.minute + 0.5f), figure, "WakeUp00");
+                if (evt != null) evt.addSubtitle("I still got some time..", new Vector3(tm.day, tm.hour, tm.minute + 0.7f), new Vector3(tm.day, tm.hour, tm.minute + 4.7f));
+            }
+
+            #endregion
+
+            #region wakeupOnTime Event
+            if (wakeupOnTime.cond == TimeCond.NotSet && isRinging && Services.clockManager.currentClock.name == "alarmClock" 
+                && minutes(currentTime) < minutes(new Vector3(0,8,0)) && minutes(currentTime) > minutes(new Vector3(0,7,33)) )
+            {
+                wakeupOnTime.cond = TimeCond.Ready;
+                wakeupOnTime.creationTime = currentTime;
+            }
+
+            if (wakeupOnTime.cond == TimeCond.Ready)
+            {
+                TimeEvent evt = addDynamicEvent("WakeupOnTime", new Vector3(tm.day, tm.hour, tm.minute + 0.5f), figure, "WakeUp01");
+                if (evt != null) evt.addSubtitle("Alright, Wakey Wakey.", new Vector3(tm.day, tm.hour, tm.minute + 2.5f), new Vector3(tm.day, tm.hour, tm.minute + 6.5f));
+            }
+            #endregion
+
+            #region wakeupLate Event
+            if (wakeupLate.cond == TimeCond.NotSet && wakeupOnTime.cond == TimeCond.NotSet && isRinging && Services.clockManager.currentClock.name == "alarmClock"
+                && minutes(currentTime) > minutes(new Vector3(0, 8, 0)) && minutes(currentTime) < minutes(new Vector3(0, 8, 30)))
+            {
+                wakeupLate.cond = TimeCond.Ready;
+                wakeupLate.creationTime = currentTime;
+            }
+
+            if (wakeupLate.cond == TimeCond.Ready)
+            {
+                TimeEvent evt = addDynamicEvent("WakeupLate", new Vector3(tm.day, tm.hour, tm.minute + 0.5f), figure, "WakeUp01");
+                if (evt != null) evt.addSubtitle("Oh No! I'm late!", new Vector3(tm.day, tm.hour, tm.minute + 2.5f), new Vector3(tm.day, tm.hour, tm.minute + 6.5f));
+            }
+
+            #endregion
+
+            #region wakeupNaturally Event
+            if (wakeupNaturally.cond == TimeCond.NotSet && wakeupOnTime.cond == TimeCond.NotSet && wakeupLate.cond == TimeCond.NotSet
+                && minutes(currentTime) > minutes(new Vector3(0, 8, 30)))
+            {
+                wakeupNaturally.cond = TimeCond.Ready;
+                wakeupNaturally.creationTime = currentTime;
+            }
+
+            if (wakeupNaturally.cond == TimeCond.Ready)
+            {
+                TimeEvent evt = addDynamicEvent("wakeupNaturally", new Vector3(tm.day, tm.hour, tm.minute + 0.5f), figure, "WakeUp01");
+                if (evt != null) evt.addSubtitle("Oh No! I'm late!", new Vector3(tm.day, tm.hour, tm.minute + 2.5f), new Vector3(tm.day, tm.hour, tm.minute + 6.5f));
+            }
+
+            #endregion
 
 
             // reset listener variables
@@ -110,6 +184,21 @@ public class TimeEventManager : MonoBehaviour
         // Rewinding/Forwording
         else
         {
+            for (int i = 0; i < allTimeEvents.Count; i++)
+            {
+                TimeEvent evt = allTimeEvents[i];
+                float currentM = minutes(currentTime);
+                float startM = minutes(evt.startTime);
+                float endM = minutes(evt.endTime);
+                float createM = minutes(evt.createTime);
+                if (currentM > endM)
+                {
+                    UI_Text.Write(" ", 0.001f, true);
+                    evt.setAnimToFrame(2);
+                }
+            }
+
+
             for (int i=allTimeEvents.Count-1; i >= 0; i--)
             {
                 TimeEvent evt = allTimeEvents[i];
@@ -124,6 +213,7 @@ public class TimeEventManager : MonoBehaviour
                 }
                 else if (currentM < startM)
                 {
+                    UI_Text.Write(" ", 0.001f, true);
                     evt.setAnimToFrame(0);
                 }
                 else if (currentM < endM)
@@ -136,48 +226,42 @@ public class TimeEventManager : MonoBehaviour
                 }
             }
             
-            for (int i = 0; i < allTimeEvents.Count; i++)
-            {
-                TimeEvent evt = allTimeEvents[i];
-                float currentM = minutes(currentTime);
-                float startM = minutes(evt.startTime);
-                float endM = minutes(evt.endTime);
-                float createM = minutes(evt.createTime);
-                if (currentM > endM)
-                {
-                    evt.setAnimToFrame(2);
-                }
-            }
+            
 
             endOfSkipping = true;
         }
         #endregion
     }
 
-    public void addInitialEvent(string eventName, Vector3 startTime, GameObject actor, string animState)
+    public TimeEvent addInitialEvent(string eventName, Vector3 startTime, GameObject actor, string animState)
     {
-        initialTimeEvents.Add(new TimeEvent(eventName, startTime, actor, animState));
+        TimeEvent newEvt = new TimeEvent(eventName, startTime, actor, animState);
+        initialTimeEvents.Add(newEvt);
         // sort the time events by their startTime
         initialTimeEvents.Sort(compareStartTime);
 
-        allTimeEvents.Add(new TimeEvent(eventName, startTime, actor, animState));
+        allTimeEvents.Add(newEvt);
         allTimeEvents.Sort(compareStartTime);
+
+        return newEvt;
     }
 
-    public void addDynamicEvent(string eventName, Vector3 startTime, GameObject actor, string animState)
+    public TimeEvent addDynamicEvent(string eventName, Vector3 startTime, GameObject actor, string animState)
     {
         if (dynamicTimeEvents.Find(x => x.eventName == eventName) != null)
         {
             Debug.Log("event already exist in list, failed to add");
-            return;
+            return null;
         }
 
         // only add if it doesn't already exist in the list
-        TimeEvent newEvt = new TimeEvent(eventName, startTime, actor, animState, new Vector3(tm.day, tm.hour, tm.minute));
+        /*
         if (dynamicTimeEvents.Contains(newEvt))
         {
             return;
         }
+        */
+        TimeEvent newEvt = new TimeEvent(eventName, startTime, actor, animState, new Vector3(tm.day, tm.hour, tm.minute));
 
         dynamicTimeEvents.Add(newEvt);
         // sort the time events by their startTime
@@ -187,6 +271,7 @@ public class TimeEventManager : MonoBehaviour
         allTimeEvents.Sort(compareStartTime);
 
         Debug.Log("new dynamic event <"+eventName+"> created");
+        return newEvt;
     }
 
     private int compareStartTime(TimeEvent evt1, TimeEvent evt2)
@@ -300,6 +385,8 @@ public class TimeEvent
     public GameObject actor;
     public string animState;
 
+    public List<Subtitle> subtitles;
+
     public Vector3 createTime; //time when this event is created. during rewind, if time < createTime, remove this time event
 
     public TimeEvent(string eventName, Vector3 startTime, GameObject actor, string animState)
@@ -310,6 +397,7 @@ public class TimeEvent
         this.actor = actor;
         this.animState = animState;
         this.createTime = Vector3.zero;
+        this.subtitles = new List<Subtitle>();
 
         AnimationClip[] clips = actor.GetComponent<Actor>().anim.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in clips)
@@ -333,6 +421,7 @@ public class TimeEvent
         this.actor = actor;
         this.animState = animState;
         this.createTime = createTime;
+        this.subtitles = new List<Subtitle>();
 
         AnimationClip[] clips = actor.GetComponent<Actor>().anim.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in clips)
@@ -345,7 +434,22 @@ public class TimeEvent
         Vector3 unformatedEndTime = new Vector3(startTime.x, startTime.y, startTime.z + this.length);
         this.endTime = reformatTime(unformatedEndTime);
 
-        //printInfo();
+        printInfo();
+    }
+
+    public void addSubtitle(string text, Vector3 startTime, Vector3 endTime)
+    {
+        Subtitle newSub = new Subtitle(text, startTime, endTime);
+        subtitles.Add(newSub);
+        subtitles.Sort(compareSubtitle);
+    }
+
+    public int compareSubtitle(Subtitle s1, Subtitle s2)
+    {
+        float s1M = minutes(s1.startTime);
+        float s2M = minutes(s2.startTime);
+        if (s1M == s2M) return 0;
+        else return (s1M < s2M) ? -1 : 1;
     }
 
     public override bool Equals(object obj)
@@ -364,12 +468,85 @@ public class TimeEvent
     public void playAnim(float normalizedTimeScale)
     {
         this.actor.GetComponent<Actor>().PlayAnim(this.animState, normalizedTimeScale);
+
+        for (int i = 0; i < subtitles.Count; i++)
+        {
+            Subtitle sub = subtitles[i];
+            Vector3 currentTime = new Vector3(Services.timeManager.day, Services.timeManager.hour, Services.timeManager.minute);
+            float currentM = minutes(currentTime);
+            float startTimeM = minutes(sub.startTime);
+            float endTimeM = minutes(sub.endTime);
+            Debug.Log("currentM: " + currentM + ", endM: " + endTimeM);
+            if (currentM > endTimeM)
+            {
+                Debug.Log("RESET TO EMPTY");
+                UI_Text.Write(" ", 0.001f, true);
+            }
+        }
+
+        for (int i = subtitles.Count-1; i>=0; i--)
+        {
+            Subtitle sub = subtitles[i];
+            Vector3 currentTime = new Vector3(Services.timeManager.day, Services.timeManager.hour, Services.timeManager.minute);
+            float currentM = minutes(currentTime);
+            float startTimeM = minutes(sub.startTime);
+            float endTimeM = minutes(sub.endTime);
+            if (currentM >= startTimeM && currentM <= startTimeM + 0.1)
+            {
+                UI_Text.Write(sub.text, 0.05f, true);
+            }
+            else if (currentM >= endTimeM - 0.1 && currentM <= endTimeM)
+            {
+                UI_Text.Write(" ", 0.001f, true);
+            }
+            else if (currentM < startTimeM)
+            {
+                UI_Text.Write(" ", 0.001f, true);
+            }
+        }
+
         this.isPlaying = true;
     }
 
     public void setAnimToFrame(float normalizedTimeScale)
     {
         this.actor.GetComponent<Actor>().SetAnimToFrame(this.animState, normalizedTimeScale);
+
+        for (int i = 0; i<subtitles.Count; i++)
+        {
+            Subtitle sub = subtitles[i];
+            Vector3 currentTime = new Vector3(Services.timeManager.day, Services.timeManager.hour, Services.timeManager.minute);
+            float currentM = minutes(currentTime);
+            float startTimeM = minutes(sub.startTime);
+            float endTimeM = minutes(sub.endTime);
+            if (currentM > endTimeM)
+            {
+                UI_Text.Write(" ", 0.001f, true);
+            }
+        }
+
+        for (int i = subtitles.Count - 1; i >= 0; i--)
+        {
+            Subtitle sub = subtitles[i];
+            Vector3 currentTime = new Vector3(Services.timeManager.day, Services.timeManager.hour, Services.timeManager.minute);
+            float currentM = minutes(currentTime);
+            float startTimeM = minutes(sub.startTime);
+            float endTimeM = minutes(sub.endTime);
+            if (currentM >= startTimeM && currentM <= startTimeM + 0.1)
+            {
+                UI_Text.Write(sub.text, 0.05f, true);
+            }
+            else if (currentM >= endTimeM - 0.1 && currentM <= endTimeM)
+            {
+                UI_Text.Write(" ", 0.001f, true);
+            }
+            else if (currentM < startTimeM)
+            {
+                Debug.Log("before start time when skipping");
+                UI_Text.Write(" ", 0.001f, true);
+            }
+        }
+
         this.isPlaying = false;
     }
 
@@ -397,6 +574,27 @@ public class TimeEvent
     private void printInfo()
     {
         Debug.Log("Event info:\n    name: "+this.eventName+", startTime: "+this.startTime+", endTime: "+this.endTime+", length: "+this.length+ "\n  isPlaying: "+this.isPlaying+", actor name: " + this.actor.name + ", animState: " + this.animState + ", createTime: " + this.createTime);
+    }
+
+    private float minutes(Vector3 t)
+    {
+        return t.x * 24 * 60 + t.y * 60 + t.z;
+    }
+}
+
+public class Subtitle
+{
+    public string text;
+    public Vector3 startTime;
+    public Vector3 endTime;
+    public float length;
+
+    public Subtitle(string text, Vector3 startTime, Vector3 endTime)
+    {
+        this.text = text;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.length = minutes(endTime) - minutes(startTime);
     }
 
     private float minutes(Vector3 t)

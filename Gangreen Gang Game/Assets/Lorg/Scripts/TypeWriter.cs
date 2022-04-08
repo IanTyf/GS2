@@ -21,6 +21,7 @@ public class TypeWriter : MonoBehaviour
 
     private void AddWriter(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters)
     {
+        typeWriterSingleList.Clear();
         typeWriterSingleList.Add(new TypeWriterSingle(uiText, textToWrite, timePerCharacter, invisibleCharacters));
     }
 

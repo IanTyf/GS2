@@ -33,6 +33,8 @@ public class Clock : MonoBehaviour
     {
         Services.clockManager.clocks.Add(this.gameObject);
 
+        if (!possessed) transform.GetChild(0).gameObject.SetActive(false);
+
         tm = Services.timeManager;
         myMinute = (int)tm.minute;
         myHour = tm.hour;
@@ -117,8 +119,9 @@ public class Clock : MonoBehaviour
 
 
             // if the rotation of the minute hand changed, play a sound
-            if (tempRot != minuteHand.transform.localEulerAngles)
+            if (tempRot.z != minuteHand.transform.localEulerAngles.z && (minuteHand.transform.localEulerAngles.z + tempRot.z != 360f))
             {
+                //Debug.Log("tempRot: " + tempRot.z + ", new rot: " + minuteHand.transform.localEulerAngles.z);
                 PlayTickSound();
             }
         }
@@ -200,7 +203,7 @@ public class Clock : MonoBehaviour
         RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.position - cam.position, 5f);
         foreach (RaycastHit hit in hits)
         {
-            if (hit.transform.gameObject.tag != "Hand")
+            if (hit.transform.gameObject.tag != "Hand" && hit.transform.gameObject.tag != "Room")
             {
                 hiddenObjs.Add(hit.transform.gameObject);
                 hit.transform.gameObject.SetActive(false);

@@ -115,7 +115,7 @@
                     "id": "5e47104d-2be0-48d5-85e3-4ea914ba4dd8",
                     "path": "<SwitchProControllerHID>/rightStick",
                     "interactions": "",
-                    "processors": "StickDeadzone(min=0.8)",
+                    "processors": "StickDeadzone(min=0.85)",
                     "groups": "",
                     "action": "Skip",
                     "isComposite": false,

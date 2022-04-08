@@ -18,6 +18,9 @@ public class ClockManager : MonoBehaviour
     private float zoomSpeed;
     private Vector3 tempLocalPos;
 
+    public Material normalMat;
+    public Material highlightMat;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,7 +34,7 @@ public class ClockManager : MonoBehaviour
         timer = 0;
 
         zooming = false;
-        zoomSpeed = 20f;
+        zoomSpeed = 10f;
     }
 
     // Update is called once per frame
@@ -47,9 +50,9 @@ public class ClockManager : MonoBehaviour
                 timer += Time.deltaTime;
                 if (timer > highlightTimer)
                 {
-                    highlight = false;
+                    //highlight = false;
                     timer = 0;
-                    revertHighlight(highlightedClock);
+                    //revertHighlight(highlightedClock);
                 }
             }
         }
@@ -60,9 +63,9 @@ public class ClockManager : MonoBehaviour
 
             Vector3 zoomDir = (highlightedClock.transform.position - currentCam.transform.position).normalized;
             currentCam.transform.position = currentCam.transform.position + zoomDir * zoomSpeed * Time.deltaTime;
-            zoomSpeed += 50f * Time.deltaTime;
+            zoomSpeed += 20f * Time.deltaTime;
             
-            if (Vector3.Distance(currentCam.transform.position, highlightedClock.transform.position) < 6f)
+            if (Vector3.Distance(currentCam.transform.position, highlightedClock.transform.position) < 2f)
             {
                 zooming = false;
                 switchToClock(highlightedClock);
@@ -114,7 +117,7 @@ public class ClockManager : MonoBehaviour
         highlight = false;
         timer = 0;
         zooming = false;
-        zoomSpeed = 20;
+        zoomSpeed = 10;
         tempLocalPos = Vector3.zero;
 
     }
@@ -262,13 +265,17 @@ public class ClockManager : MonoBehaviour
     {
         if (clock == null) return;
 
-        clock.transform.localScale = Vector3.one * 2;
+        //clock.transform.localScale = Vector3.one * 2;
+        //clock.transform.localScale = clock.transform.localScale * 2;
+        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = highlightMat;
     }
 
     private void revertHighlight(GameObject clock)
     {
         if (clock == null) return;
 
-        clock.transform.localScale = Vector3.one * 1;
+        //clock.transform.localScale = Vector3.one * 1;
+        //clock.transform.localScale = clock.transform.localScale / 2;
+        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = normalMat;
     }
 }
