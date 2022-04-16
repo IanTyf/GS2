@@ -644,6 +644,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: playChildAnim
+    data: Cube, moveDown, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.2833333
     functionName: showSubtitle
     data: 
@@ -654,6 +661,13 @@ AnimationClip:
   - time: 11
     functionName: setListeningActions
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 11
+    functionName: playChildAnim
+    data: Cube, moveDown, 0
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

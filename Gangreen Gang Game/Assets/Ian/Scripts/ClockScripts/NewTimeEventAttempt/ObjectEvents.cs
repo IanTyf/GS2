@@ -151,6 +151,28 @@ public class ObjectEvents : MonoBehaviour
         if (tm.skipping)
         {
             actionState = ActionState.Playing;
+
+            //restore what it was listening
+            if (listeningHistory.Count > 0)
+            {
+                string endOfStack = listeningHistory[listeningHistory.Count - 1];
+                string[] st = endOfStack.Split(',');
+
+                listeningActions.Clear();
+                Debug.Log("cleared listening actions in setActionState");
+                //Debug.Log(listeningHistory[0]);
+                foreach (TimeAction ta in allActions)
+                {
+                    foreach (string a in st)
+                    {
+                        if (ta.name == a.Trim())
+                        {
+                            listeningActions.Add(ta);
+                            Debug.Log("added new listening action from history: " + ta.name);
+                        }
+                    }
+                }
+            }
             return;
         }
 
@@ -198,27 +220,7 @@ public class ObjectEvents : MonoBehaviour
         if (tm.skipping)
         {
             actionState = ActionState.Listening;
-            if (listeningHistory.Count > 0) // not 0 because init will always add a " " in
-            {
-                string endOfStack = listeningHistory[listeningHistory.Count - 1];
-                string[] strs = endOfStack.Split(',');
-
-                listeningActions.Clear();
-                Debug.Log("cleared listening actions in setActionState");
-                //Debug.Log(listeningHistory[0]);
-                foreach (TimeAction ta in allActions)
-                {
-                    foreach (string a in strs)
-                    {
-                        if (ta.name == a.Trim())
-                        {
-                            listeningActions.Add(ta);
-                            Debug.Log("added new listening action from history: " + ta.name);
-                        }
-                    }
-                }
-            }
-            //restore what it was listening
+            
         }
         else actionState = ActionState.Playing;
     }
@@ -238,7 +240,7 @@ public class ObjectEvents : MonoBehaviour
         bool value = p[2].Trim().Equals("1");
 
         //Debug.Log(p[2].Trim());
-        if (Services.timeManager != null && Services.timeManager.skipping) value = !value;
+        if (tm.skipping) value = !value;
         GameObject child = findChild(transform, objName);
         if (child == null) Debug.Log("Error: no child named " + objName + " is found");
         else
