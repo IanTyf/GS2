@@ -11,6 +11,7 @@ public class Services : MonoBehaviour
     public static ClockManager clockManager;
     public static TimeEventManager timeEventManager;
     public static ActionConditionsManager actionConditionsManager;
+    public static TaskMenuManager taskMenuManager;
 
     // Start is called before the first frame update
     void Start()

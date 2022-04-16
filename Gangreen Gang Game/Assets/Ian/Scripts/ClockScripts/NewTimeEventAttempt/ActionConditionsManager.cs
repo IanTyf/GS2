@@ -19,6 +19,7 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P1goToAlarmClock;
     public ActionCondition P1ringAlarmClockEarly;
     public ActionCondition P1ringAlarmClockOnTime;
+    public ActionCondition P1ringAlarmClockLate;
 
 
     void Awake()
@@ -30,10 +31,12 @@ public class ActionConditionsManager : MonoBehaviour
         P1goToAlarmClock = new ActionCondition("P1goToAlarmClock", new Vector3(0, 6, 0), new Vector3(0, 8, 30));
         P1ringAlarmClockEarly = new ActionCondition("P1ringAlarmClockEarly", new Vector3(0, 6, 0), new Vector3(0, 7, 29));
         P1ringAlarmClockOnTime = new ActionCondition("P1ringAlarmClockOnTime", new Vector3(0, 7, 33), new Vector3(0, 8, 0));
+        P1ringAlarmClockLate = new ActionCondition("P1ringAlarmClockLate", new Vector3(0, 8, 0), new Vector3(0, 8, 30));
 
         allActionConditions.Add(P1goToAlarmClock);
         allActionConditions.Add(P1ringAlarmClockEarly);
         allActionConditions.Add(P1ringAlarmClockOnTime);
+        allActionConditions.Add(P1ringAlarmClockLate);
 
     }
 
@@ -55,28 +58,30 @@ public class ActionConditionsManager : MonoBehaviour
             if (cm.currentClock.name == "alarmClock" && P1goToAlarmClock.withinTimeWindow(currentM)
                 && P1goToAlarmClock.state != CondState.Ready)
             {
-                P1goToAlarmClock.state = CondState.Ready;
-                P1goToAlarmClock.SetCreateTime(tm.day, tm.hour, tm.minute);
-                Debug.Log("Action cond: P1goToAlarmClock set to Ready");
+                setReady(P1goToAlarmClock);
             }
 
             // P1ringAlarmClockEarly
             if (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockEarly.withinTimeWindow(currentM)
                 && P1ringAlarmClockEarly.state != CondState.Ready)
             {
-                P1ringAlarmClockEarly.state = CondState.Ready;
-                P1ringAlarmClockEarly.SetCreateTime(tm.day, tm.hour, tm.minute);
-                Debug.Log("Action cond: P1ringAlarmClockEarly set to Ready");
+                setReady(P1ringAlarmClockEarly);
             }
 
             // P1ringAlarmClockOnTime
             if (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockOnTime.withinTimeWindow(currentM)
                 && P1ringAlarmClockOnTime.state != CondState.Ready)
             {
-                P1ringAlarmClockOnTime.state = CondState.Ready;
-                P1ringAlarmClockOnTime.SetCreateTime(tm.day, tm.hour, tm.minute);
-                Debug.Log("Action cond: P1ringAlarmClockOnTime set to Ready");
+                setReady(P1ringAlarmClockOnTime);
             }
+
+            // P1ringAlarmClockLate
+            if (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockLate.withinTimeWindow(currentM) 
+                && P1ringAlarmClockLate.state != CondState.Ready)
+            {
+                setReady(P1ringAlarmClockLate);
+            }
+
 
             isRinging = false;
         }
@@ -98,6 +103,28 @@ public class ActionConditionsManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public ActionCondition getActionConditionByName(string name)
+    {
+        ActionCondition ret = null;
+        foreach (ActionCondition ac in allActionConditions)
+        {
+            if (ac.name.Equals(name))
+            {
+                ret = ac;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    private void setReady(ActionCondition ac)
+    {
+        float currentM = minutes(new Vector3(tm.day, tm.hour, tm.minute));
+        ac.state = CondState.Ready;
+        ac.SetCreateTime(tm.day, tm.hour, tm.minute);
+        Debug.Log("Action cond: " + ac.name + " set to Ready");
     }
 
     private float minutes(Vector3 t)

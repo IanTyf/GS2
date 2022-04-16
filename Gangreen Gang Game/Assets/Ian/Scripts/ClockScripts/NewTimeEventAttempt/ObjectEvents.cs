@@ -49,7 +49,9 @@ public class ObjectEvents : MonoBehaviour
         TimeAction wakeUpOnTime = new TimeAction("wakeUpOnTime", "WakeUp01", wakeUpOnTimeConds);
         allActions.Add(wakeUpOnTime);
 
-
+        ActionCondition[] wakeUpLateConds = { acm.P1goToAlarmClock, acm.P1ringAlarmClockLate };
+        TimeAction wakeUpLate = new TimeAction("wakeUpLate", "WakeUp02", wakeUpLateConds);
+        allActions.Add(wakeUpLate);
 
         // initial listening actions
         currentTimeAction = initialTA;

@@ -176,7 +176,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.016666668
     functionName: setListeningActions
-    data: wakeUpEarly, wakeUpOnTime
+    data: wakeUpEarly, wakeUpOnTime, wakeUpLate
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

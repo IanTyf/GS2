@@ -112,14 +112,12 @@ public class InputManager : MonoBehaviour
     
     private void Skip(InputAction.CallbackContext ctx)
     {
-        if (Services.timeManager.skipping) return;
-        Services.timeManager.Skip(ctx.ReadValue<Vector2>());
+        //Services.timeManager.Skip(ctx.ReadValue<Vector2>());
     }
 
     private void onSkipExit(InputAction.CallbackContext ctx)
     {
-        if (Services.timeManager.skipping) return;
-        Services.timeManager.skipping = false;
+        //Services.timeManager.skipping = false;
     }
 
     private void SwitchRight(InputAction.CallbackContext ctx)
