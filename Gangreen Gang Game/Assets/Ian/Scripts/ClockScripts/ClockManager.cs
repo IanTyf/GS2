@@ -134,7 +134,7 @@ public class ClockManager : MonoBehaviour
         if (inputDir != Vector2.zero) return;
 
         inputDir = dir.normalized;
-        Debug.Log("Input direction: " + inputDir.x + ", " + inputDir.y);
+        //Debug.Log("Input direction: " + inputDir.x + ", " + inputDir.y);
 
         List<GameObject> visibleClocks = new List<GameObject>();
         Camera currentCam = currentClock.transform.GetChild(0).GetComponent<Camera>();
@@ -146,7 +146,7 @@ public class ClockManager : MonoBehaviour
                 if (clock != currentClock)
                 {
                     visibleClocks.Add(clock);
-                    Debug.Log("visible clock: " + clock.name);
+                    //Debug.Log("visible clock: " + clock.name);
                 }
             }
         }
@@ -166,7 +166,7 @@ public class ClockManager : MonoBehaviour
         for (int i = 0; i < visibleClocks.Count; i++) {
             temp += visibleClocks[i].name + ", ";
         }
-        Debug.Log("Sorted list :" + temp);
+        //Debug.Log("Sorted list :" + temp);
 
         //do the raymarching-ish algorithm
         Vector2 newPoint = origin;
@@ -193,7 +193,7 @@ public class ClockManager : MonoBehaviour
         // if we find a new clock to switch to
         if (targetClock != null)
         {
-            Debug.Log("can't find a valid clock");
+            //Debug.Log("can't find a valid clock");
             revertHighlight(highlightedClock);
             highlightedClock = targetClock;
             highlightAClock(highlightedClock);
@@ -205,7 +205,7 @@ public class ClockManager : MonoBehaviour
     public void resetInputDir()
     {
         inputDir = Vector2.zero;
-        Debug.Log("reset");
+        //Debug.Log("reset");
     }
 
     private bool IsInView(GameObject toCheck, Camera cam)
@@ -215,7 +215,7 @@ public class ClockManager : MonoBehaviour
         //Is in front
         if (pointOnScreen.z < 0)
         {
-            Debug.Log("Behind: " + toCheck.name);
+            //Debug.Log("Behind: " + toCheck.name);
             return false;
         }
 
@@ -223,7 +223,7 @@ public class ClockManager : MonoBehaviour
         if ((pointOnScreen.x < 0) || (pointOnScreen.x > Screen.width) ||
                 (pointOnScreen.y < 0) || (pointOnScreen.y > Screen.height))
         {
-            Debug.Log("OutOfBounds: " + toCheck.name);
+            //Debug.Log("OutOfBounds: " + toCheck.name);
             return false;
         }
 
@@ -241,7 +241,7 @@ public class ClockManager : MonoBehaviour
                 Debug.DrawLine(cam.transform.position, toCheck.GetComponentInChildren<Renderer>().bounds.center, Color.red);
                 Debug.LogError(toCheck.name + " occluded by " + hit.transform.name);
                 */
-                Debug.Log(toCheck.name + " occluded by " + hit.transform.name);
+                //Debug.Log(toCheck.name + " occluded by " + hit.transform.name);
                 return false;
             }
         }

@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     private InputAction switchLeft;
     private InputAction switchClock;
     private InputAction goToClock;
+    private InputAction rewind;
 
     private void Awake()
     {
@@ -56,6 +57,10 @@ public class InputManager : MonoBehaviour
 
         goToClock = playerInput.actions["GoToClock"];
         goToClock.started += GoToClock;
+
+        rewind = playerInput.actions["Rewind"];
+        rewind.started += onRewind;
+        rewind.canceled += onStopRewind;
     }
 
     private void Update()
@@ -65,45 +70,55 @@ public class InputManager : MonoBehaviour
 
     private void onTick(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.clockManager.currentClock.GetComponent<Clock>().RotateMinuteHand(6);
     }
 
     private void onStop(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.clockManager.currentClock.GetComponent<Clock>().StopMinuteHand();
     }
 
     private void onResume(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.clockManager.currentClock.GetComponent<Clock>().ResumeMinuteHand();
     }
 
     private void onRingLeft(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         // ring left
-        Services.timeEventManager.isRinging = true;
+        //Services.timeEventManager.isRinging = true;
+        Services.actionConditionsManager.isRinging = true;
         Services.audioManager.playLeftAudio();
     }
 
     private void onRingRight(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         // ring right
-        Services.timeEventManager.isRinging = true;
+        //Services.timeEventManager.isRinging = true;
+        Services.actionConditionsManager.isRinging = true;
         Services.audioManager.playRightAudio();
     }
 
     private void onSkip(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.timeManager.skipping = true;
     }
     
     private void Skip(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.timeManager.Skip(ctx.ReadValue<Vector2>());
     }
 
     private void onSkipExit(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.timeManager.skipping = false;
     }
 
@@ -120,6 +135,7 @@ public class InputManager : MonoBehaviour
     private void SwitchClock(InputAction.CallbackContext ctx)
     {
         //Debug.Log(ctx.ReadValue<Vector2>());
+        if (Services.timeManager.skipping) return;
         Services.clockManager.handleInput(ctx.ReadValue<Vector2>());
     }
 
@@ -131,6 +147,17 @@ public class InputManager : MonoBehaviour
 
     private void GoToClock(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.skipping) return;
         Services.clockManager.GoToHighlightedClock();
+    }
+
+    private void onRewind(InputAction.CallbackContext ctx)
+    {
+        Services.timeManager.skipping = true;
+    }
+
+    private void onStopRewind(InputAction.CallbackContext ctx)
+    {
+        Services.timeManager.skipping = false;
     }
 }

@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Rewind",
+                    "type": "Button",
+                    "id": "f168dd6d-1ff3-4973-9176-36b9d624da09",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -112,8 +121,30 @@
                 },
                 {
                     "name": "",
+                    "id": "5b4d5535-d69b-4770-b73d-73e2a6074b7f",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5e47104d-2be0-48d5-85e3-4ea914ba4dd8",
                     "path": "<SwitchProControllerHID>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.85)",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34b8dbea-9a3c-4b52-9053-eab76d6fead3",
+                    "path": "<XInputController>/rightStick",
                     "interactions": "",
                     "processors": "StickDeadzone(min=0.85)",
                     "groups": "",
@@ -145,6 +176,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9716cae0-acf0-4bfe-a6c9-e4188e82f74f",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RingLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6fce2ed1-21f5-4aff-a430-f77789b64f0a",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -158,6 +200,17 @@
                     "name": "",
                     "id": "4b23e154-e27e-4cfc-8e13-d58d3965c708",
                     "path": "<SwitchProControllerHID>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RingRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "234269f0-a50c-4d71-8ae6-79dc41d7ec58",
+                    "path": "<XInputController>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -200,6 +253,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3ba37ea1-37cd-461c-9793-2b0ba0dfc14e",
+                    "path": "<XInputController>/leftStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.7)",
+                    "groups": "",
+                    "action": "SwitchClock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "91987e76-4193-4b73-95eb-46f381744366",
                     "path": "<SwitchProControllerHID>/leftTrigger",
                     "interactions": "",
@@ -222,12 +286,45 @@
                 },
                 {
                     "name": "",
+                    "id": "c5ac981c-bd8c-47d1-83c7-ce3e2c7cd4d5",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7982bacb-c6c6-4846-aa6d-520f4e685517",
                     "path": "<SwitchProControllerHID>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "GoToClock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbd7b0a2-7da5-4810-bb37-3d9df7ff10d5",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoToClock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a62fa51c-8cd2-4c95-bc1e-f12bc0245b3e",
+                    "path": "<SwitchProControllerHID>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rewind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
