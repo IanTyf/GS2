@@ -12,6 +12,8 @@ public class TimeEventManager : MonoBehaviour
     public List<TimeEvent> dynamicTimeEvents = new List<TimeEvent>(); // events that are added in real-time based on player decisions; should be removed when rewind past the start time
     public List<TimeEvent> allTimeEvents = new List<TimeEvent>();
 
+    public TimeEventDB timeEventDB;
+
     //public GameObject testObj;
     //public GameObject testObj2;
     public GameObject figure;
@@ -40,6 +42,18 @@ public class TimeEventManager : MonoBehaviour
     void Start()
     {
         tm = Services.timeManager;
+
+        if (timeEventDB != null)
+        {
+            InitialTimeEventSetup[] initialEvents = timeEventDB.initialEvents;
+            TimeEventSetup[] dynamicEvents = timeEventDB.dynamicEvents;
+
+            foreach (InitialTimeEventSetup initialEvent in initialEvents)
+            {
+                addInitialEvent(initialEvent.nameOfEvent, new Vector3(initialEvent.day, initialEvent.hour, initialEvent.minute),
+                    initialEvent.actor, initialEvent.nameOfAnimationClip);
+            }
+        }
 
         // VERY IMPORTANT STEPS BELOW
 
@@ -128,7 +142,7 @@ public class TimeEventManager : MonoBehaviour
             }
 
             #endregion
-
+            
             #region wakeupNaturally Event
             if (wakeupNaturally.cond == TimeCond.NotSet && wakeupOnTime.cond == TimeCond.NotSet && wakeupLate.cond == TimeCond.NotSet
                 && minutes(currentTime) > minutes(new Vector3(0, 8, 30)))
