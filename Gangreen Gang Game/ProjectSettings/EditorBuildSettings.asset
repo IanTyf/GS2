@@ -8,5 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ian/Scenes/ClockDemo.unity
     guid: b3b7900e4e403724db49bb06470053fd
+  - enabled: 1
+    path: Assets/Lorg/Scenes/GameScene.unity
+    guid: b9c4259f0cb72144484291e349d4f768
+  - enabled: 1
+    path: Assets/Lorg/Scenes/MainMenu.unity
+    guid: 58239e43ec1ea394da0799a7e8290039
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e2a1329a42a25ed4c820e639bd1e02f9, type: 2}
