@@ -10,7 +10,7 @@ public class ButtonSelecter : MonoBehaviour, ISelectHandler, IDeselectHandler
     RectTransform buttonRect;
     float YAxis;
     RectTransform selectorRect;
-    float Speed = 0.1f;
+    float Speed = 0.2f;
     public GameObject QuitButton;
     RectTransform QuitRect;
     public RectTransform optionsMenu;
