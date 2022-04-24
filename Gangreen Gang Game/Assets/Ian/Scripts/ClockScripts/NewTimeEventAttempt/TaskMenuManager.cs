@@ -8,12 +8,18 @@ public enum MainObjectiveState { Hidden, Visible, Completed, Greyed }
 public class TaskMenuManager : MonoBehaviour
 {
     public List<MainObjective> allMainObjectives = new List<MainObjective>();
+    public List<SubTask> allSubTasks = new List<SubTask>();
 
     // declare all main objectives and their subtasks
     // puzzle #1
     public MainObjective p1;
     public SubTask p1GoToAlarmClock;
-    public SubTask p1RingAlarmClock;
+    public SubTask p1RingAlarmClockOnTime;
+    public SubTask p1RingAlarmClockLate;
+
+    public GameObject Puzzle1Main;
+    public GameObject Puzzle1Sub1;
+    public GameObject Puzzle1Sub2;
 
     private ActionConditionsManager acm;
 
@@ -31,14 +37,25 @@ public class TaskMenuManager : MonoBehaviour
         // puzzle #1
         p1GoToAlarmClock = new SubTask("p1GoToAlarmClock", "Enter Alarm Clock");
         p1GoToAlarmClock.addRequiredActionCondition(acm.P1goToAlarmClock);
-        p1RingAlarmClock = new SubTask("p1RingAlarmClock", "Ring Alarm Clock At Proper Time");
+        p1GoToAlarmClock.displayBtn = Puzzle1Sub1;
+        allSubTasks.Add(p1GoToAlarmClock);
+
+        p1RingAlarmClockOnTime = new SubTask("p1RingAlarmClock", "Make sure she's on time");
+        p1RingAlarmClockOnTime.displayBtn = Puzzle1Sub2;
         //p1RingAlarmClock.addSelectiveActionCondition(acm.P1ringAlarmClockEarly);
-        p1RingAlarmClock.addSelectiveActionCondition(acm.P1ringAlarmClockOnTime);
-        p1RingAlarmClock.addSelectiveActionCondition(acm.P1ringAlarmClockLate);
+        p1RingAlarmClockOnTime.addRequiredActionCondition(acm.P1ringAlarmClockOnTime);
+        //p1RingAlarmClock.addSelectiveActionCondition(acm.P1ringAlarmClockLate);
+        allSubTasks.Add(p1RingAlarmClockOnTime);
+
+        p1RingAlarmClockLate = new SubTask("p1RingAlarmClockLate", "not showing");
+        p1RingAlarmClockLate.addRequiredActionCondition(acm.P1ringAlarmClockLate);
+        allSubTasks.Add(p1RingAlarmClockLate);
 
         p1 = new MainObjective("p1", "WAKE UP NIECE");
         p1.addRequiredSubTask(p1GoToAlarmClock);
-        p1.addRequiredSubTask(p1RingAlarmClock);
+        p1.addSelectiveSubTask(p1RingAlarmClockOnTime);
+        p1.addSelectiveSubTask(p1RingAlarmClockLate);
+        p1.displayBtn = Puzzle1Main;
         allMainObjectives.Add(p1);
 
 
@@ -68,16 +85,29 @@ public class TaskMenuManager : MonoBehaviour
 
         Debug.Log(debugMsg);
     }
+
+    public SubTask getSubTaskByName(string name)
+    {
+        foreach (SubTask st in allSubTasks)
+        {
+            if (st.name == name) return st;
+        }
+        return null;
+    }
 }
 
 public class MainObjective
 {
     public List<SubTask> requiredSubTasks; // need to complete all
     public List<SubTask> optionalSubTasks; // need to complete NONE
+    public List<SubTask> selectiveSubTasks; // need to complete at least one
 
     public string name;
     public string displayText;
     public MainObjectiveState state;
+    public GameObject displayBtn;
+
+    public string ActiveSelectiveSubTask;
 
     public MainObjective(string name, string displayText)
     {
@@ -87,6 +117,7 @@ public class MainObjective
 
         requiredSubTasks = new List<SubTask>();
         optionalSubTasks = new List<SubTask>();
+        selectiveSubTasks = new List<SubTask>();
     }
 
     public void addRequiredSubTask(SubTask st)
@@ -99,6 +130,11 @@ public class MainObjective
         optionalSubTasks.Add(st);
     }
 
+    public void addSelectiveSubTask(SubTask st)
+    {
+        selectiveSubTasks.Add(st);
+    }
+
     public void updateState()
     {
         foreach (SubTask st in requiredSubTasks)
@@ -106,6 +142,10 @@ public class MainObjective
             st.updateState();
         }
         foreach (SubTask st in optionalSubTasks)
+        {
+            st.updateState();
+        }
+        foreach (SubTask st in selectiveSubTasks)
         {
             st.updateState();
         }
@@ -118,7 +158,23 @@ public class MainObjective
                 if (st.state != SubTaskState.Completed) b = false;
             }
 
-            if (b) this.state = MainObjectiveState.Completed;
+            bool bb = false;
+            foreach (SubTask st in selectiveSubTasks)
+            {
+                if (st.state == SubTaskState.Completed)
+                {
+                    bb = true;
+                    ActiveSelectiveSubTask = st.name;
+                }
+            }
+            if (selectiveSubTasks.Count == 0) bb = true;
+
+            if (b && bb)
+            {
+                this.state = MainObjectiveState.Completed;
+                if (this.displayBtn != null)
+                    Services.taskUIManager.TurnGreen(this.displayBtn, 0.8f);
+            }
         }
         else if (this.state == MainObjectiveState.Completed)
         {
@@ -128,7 +184,22 @@ public class MainObjective
                 if (st.state == SubTaskState.Greyed) b = true;
             }
 
-            if (b) this.state = MainObjectiveState.Greyed;
+            bool bb = false;
+            SubTask activeST = Services.taskMenuManager.getSubTaskByName(ActiveSelectiveSubTask);
+            if (activeST != null)
+            {
+                if (activeST.state == SubTaskState.Greyed)
+                {
+                    bb = true;
+                }
+            }
+
+            if (b || bb)
+            {
+                this.state = MainObjectiveState.Greyed;
+                if (this.displayBtn != null)
+                    Services.taskUIManager.GreyOut(this.displayBtn);
+            }
         }
         else if (this.state == MainObjectiveState.Greyed)
         {
@@ -138,7 +209,23 @@ public class MainObjective
                 if (st.state != SubTaskState.Completed) b = false;
             }
 
-            if (b) this.state = MainObjectiveState.Completed;
+            bool bb = false;
+            foreach (SubTask st in selectiveSubTasks)
+            {
+                if (st.state == SubTaskState.Completed)
+                {
+                    bb = true;
+                    ActiveSelectiveSubTask = st.name;
+                }
+            }
+            if (selectiveSubTasks.Count == 0) bb = true;
+
+            if (b && bb)
+            {
+                this.state = MainObjectiveState.Completed;
+                if (this.displayBtn != null)
+                    Services.taskUIManager.TurnGreen(this.displayBtn, 0.8f);
+            }
         }
     }
 }
@@ -151,14 +238,15 @@ public class SubTask
     public string name;
     public string displayText;
     public SubTaskState state;
-    public string ActiveOptionalCondition;
+    public string ActiveSelectiveCondition;
+    public GameObject displayBtn;
 
     public SubTask(string name, string displayText)
     {
         this.name = name;
         this.displayText = displayText;
         this.state = SubTaskState.Hidden;
-        this.ActiveOptionalCondition = null;
+        this.ActiveSelectiveCondition = null;
 
         requiredActionConditions = new List<ActionCondition>();
         selectiveActionConditions = new List<ActionCondition>();
@@ -190,7 +278,7 @@ public class SubTask
                 if (ac.state == CondState.Ready)
                 {
                     bb = true;
-                    ActiveOptionalCondition = ac.name;
+                    ActiveSelectiveCondition = ac.name;
                 }
             }
             if (selectiveActionConditions.Count == 0) bb = true;
@@ -198,6 +286,8 @@ public class SubTask
             if (b && bb)
             {
                 this.state = SubTaskState.Completed;
+                if (this.displayBtn != null)
+                    Services.taskUIManager.Appear(this.displayBtn, this.displayText);
             }
         }
         else if (this.state == SubTaskState.Completed)
@@ -209,7 +299,7 @@ public class SubTask
             }
 
             bool bb = false;
-            ActionCondition activeAC = Services.actionConditionsManager.getActionConditionByName(this.ActiveOptionalCondition);
+            ActionCondition activeAC = Services.actionConditionsManager.getActionConditionByName(this.ActiveSelectiveCondition);
             if (activeAC != null)
             {
                 if (activeAC.state == CondState.Greyed)
@@ -221,6 +311,8 @@ public class SubTask
             if (b || bb)
             {
                 this.state = SubTaskState.Greyed;
+                if (this.displayBtn != null)
+                    Services.taskUIManager.GreyOut(this.displayBtn);
             }
         }
         else if (this.state == SubTaskState.Greyed)
@@ -237,7 +329,7 @@ public class SubTask
                 if (ac.state == CondState.Ready)
                 {
                     bb = true;
-                    ActiveOptionalCondition = ac.name;
+                    ActiveSelectiveCondition = ac.name;
                 }
             }
             if (selectiveActionConditions.Count == 0) bb = true;
@@ -245,6 +337,8 @@ public class SubTask
             if (b && bb)
             {
                 this.state = SubTaskState.Completed;
+                if (this.displayBtn != null)
+                    Services.taskUIManager.TurnGreen(this.displayBtn);
             }
         }
     }

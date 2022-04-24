@@ -234,6 +234,7 @@ public class ObjectEvents : MonoBehaviour
         Subtitles.playSubtitles(id);
     }
 
+    /*
     public void playChildAnim(string str)
     {
         string[] p = str.Split(',');
@@ -267,6 +268,7 @@ public class ObjectEvents : MonoBehaviour
             return null;
         }
     }
+    */
 
     private float minutes(Vector3 t)
     {

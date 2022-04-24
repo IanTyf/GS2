@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private InputAction switchClock;
     private InputAction goToClock;
     private InputAction rewind;
+    private InputAction toggleUI;
 
     private void Awake()
     {
@@ -61,6 +62,9 @@ public class InputManager : MonoBehaviour
         rewind = playerInput.actions["Rewind"];
         rewind.started += onRewind;
         rewind.canceled += onStopRewind;
+
+        toggleUI = playerInput.actions["ToggleUI"];
+        toggleUI.started += onToggleUI;
     }
 
     private void Update()
@@ -157,5 +161,10 @@ public class InputManager : MonoBehaviour
     private void onStopRewind(InputAction.CallbackContext ctx)
     {
         Services.timeManager.skipping = false;
+    }
+
+    private void onToggleUI(InputAction.CallbackContext ctx)
+    {
+        Services.taskUIManager.ToggleUI();
     }
 }
