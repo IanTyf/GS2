@@ -57,9 +57,7 @@ Shader "Custom/GlitchEffectShader"
                 float _WavyDisplFreq;
 
                 float rand(float2 co) {
-                    return frac(sin(dot(co ,float2(12.9
-                        
-                        98,78.233))) * 43758.5453);
+                    return frac(sin(dot(co ,float2(12.998,78.233))) * 43758.5453);
                 }
 
                 fixed4 frag(v2f i) : SV_Target {
