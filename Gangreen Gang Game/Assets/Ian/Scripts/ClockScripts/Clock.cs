@@ -143,6 +143,7 @@ public class Clock : MonoBehaviour
         }
 
         //if (Services.inputManager.currentClock == this) possessed = true;
+        //Debug.DrawRay(transform.GetChild(0).position, transform.forward, Color.red, 5f);
     }
 
     /*
@@ -200,7 +201,11 @@ public class Clock : MonoBehaviour
     public void hide()
     {
         Transform cam = transform.GetChild(0);
-        RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.position - cam.position, 5f);
+        RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.forward, 5f);
+        
+        //Debug.Log("hit.count: " + hits.Length);
+        //Debug.Log(cam.position);
+        //Debug.Log(transform.forward);
         foreach (RaycastHit hit in hits)
         {
             if (hit.transform.gameObject.tag != "Hand" && hit.transform.gameObject.tag != "Room")
