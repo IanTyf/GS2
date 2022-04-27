@@ -62,10 +62,11 @@ public class ClockManager : MonoBehaviour
             GameObject currentCam = currentClock.transform.GetChild(0).gameObject;
 
             Vector3 zoomDir = (highlightedClock.transform.position - currentCam.transform.position).normalized;
+            
             currentCam.transform.position = currentCam.transform.position + zoomDir * zoomSpeed * Time.deltaTime;
             zoomSpeed += 20f * Time.deltaTime;
             
-            if (Vector3.Distance(currentCam.transform.position, highlightedClock.transform.position) < 2f)
+            if (Vector3.Distance(currentCam.transform.position, highlightedClock.transform.position) < 1.7f)
             {
                 zooming = false;
                 switchToClock(highlightedClock);
@@ -92,6 +93,10 @@ public class ClockManager : MonoBehaviour
         if (highlightedClock == null) return;
         if (!highlight) return;
         if (zooming) return;
+
+        float zoomDist = (highlightedClock.transform.position - currentClock.transform.position).magnitude;
+        Debug.Log(zoomDist);
+        zoomSpeed = 10f * zoomDist / 5f;
 
         zooming = true;
         tempLocalPos = currentClock.transform.GetChild(0).localPosition;
