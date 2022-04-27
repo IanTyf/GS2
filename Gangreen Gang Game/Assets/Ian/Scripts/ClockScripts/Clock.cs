@@ -201,7 +201,7 @@ public class Clock : MonoBehaviour
     public void hide()
     {
         Transform cam = transform.GetChild(0);
-        RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.forward, 5f);
+        RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.forward, 1f);
         
         //Debug.Log("hit.count: " + hits.Length);
         //Debug.Log(cam.position);

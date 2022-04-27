@@ -21,6 +21,8 @@ public class ClockManager : MonoBehaviour
     public Material normalMat;
     public Material highlightMat;
 
+    //public LayerMask switchRayLM;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -95,7 +97,7 @@ public class ClockManager : MonoBehaviour
         if (zooming) return;
 
         float zoomDist = (highlightedClock.transform.position - currentClock.transform.position).magnitude;
-        Debug.Log(zoomDist);
+        //Debug.Log(zoomDist);
         zoomSpeed = 10f * zoomDist / 5f;
 
         zooming = true;
