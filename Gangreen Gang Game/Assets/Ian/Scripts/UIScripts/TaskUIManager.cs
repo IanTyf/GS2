@@ -16,6 +16,9 @@ public class TaskUIManager : MonoBehaviour
 
     private bool switchingTask;
 
+    public TMP_Text ClockTimeText;
+    public TMP_Text RealTimeText;
+
     private void Awake()
     {
         Services.taskUIManager = this;
@@ -28,7 +31,8 @@ public class TaskUIManager : MonoBehaviour
         currentPuzzleIndex = 0;
         currentHighlightedPuzzle = 0;
 
-        for (int i = 0; i < mainPanel.transform.childCount; i++)
+        //for (int i = 0; i < mainPanel.transform.childCount; i++)
+        for (int i = 0; i < 4; i++)
         {
             TaskGroups.Add(mainPanel.transform.GetChild(i).gameObject);
         }
@@ -37,7 +41,18 @@ public class TaskUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // update the clock time
+        ClockManager cm = Services.clockManager;
+        Clock currentClock = cm.currentClock.GetComponent<Clock>();
+        int hour = currentClock.myHour;
+        int minute = currentClock.myMinute;
+        ClockTimeText.text = "Clock time: " + hour.ToString() + ":" + ((minute > 9) ? minute.ToString() : ("0" + minute.ToString()));
 
+        // update the real time
+        TimeManager tm = Services.timeManager;
+        int rHour = tm.hour;
+        int rMinute = (int)tm.minute;
+        RealTimeText.text = "Real time: " + rHour.ToString() + ":" + ((rMinute > 9) ? rMinute.ToString() : ("0" + rMinute.ToString()));
     }
 
     public void NextTask()
@@ -122,6 +137,8 @@ public class TaskUIManager : MonoBehaviour
         if (Expanded)
         {
             LeanTween.moveLocalY(mainPanel, 467f, 0.4f);
+            LeanTween.moveLocalY(ClockTimeText.transform.parent.gameObject, 269.4f, 0.4f);
+            LeanTween.moveLocalY(RealTimeText.transform.parent.gameObject, 269.4f, 0.4f);
             Expanded = false;
 
             for (int i = 0; i < TaskGroups.Count; i++)
@@ -136,6 +153,8 @@ public class TaskUIManager : MonoBehaviour
         else
         {
             LeanTween.moveLocalY(mainPanel, 279f, 0.4f);
+            LeanTween.moveLocalY(ClockTimeText.transform.parent.gameObject, 81.4f, 0.4f);
+            LeanTween.moveLocalY(RealTimeText.transform.parent.gameObject, 81.4f, 0.4f);
             Expanded = true;
 
             UpdateExpandedPos();

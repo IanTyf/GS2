@@ -91,6 +91,17 @@ public class Clock : MonoBehaviour
                     {
                         myMinute = (int)(tm.minute + minuteOffset);
                         myHour = tm.hour + hourOffset;
+
+                        if (myMinute >= 60)
+                        {
+                            myHour += myMinute / 60;
+                            myMinute %= 60;
+                        }
+                        if (myHour >= 24)
+                        {
+                            myHour %= 24;
+                        }
+
                         // update the minute and hour hands according to current time and offsets
                         float minuteAngle = myMinute * -6;
                         minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
@@ -131,6 +142,17 @@ public class Clock : MonoBehaviour
             {
                 myMinute = (int)(tm.minute + minuteOffset);
                 myHour = tm.hour + hourOffset;
+
+                if (myMinute >= 60)
+                {
+                    myHour += myMinute / 60;
+                    myMinute %= 60;
+                }
+                if (myHour >= 24)
+                {
+                    myHour %= 24;
+                }
+
                 // update the minute and hour hands according to current time and offsets
                 float minuteAngle = myMinute * -6;
                // if (possessed) minuteAngle *= -1;
