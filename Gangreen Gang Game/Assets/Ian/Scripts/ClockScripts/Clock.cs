@@ -93,10 +93,10 @@ public class Clock : MonoBehaviour
                         myHour = tm.hour + hourOffset;
                         // update the minute and hour hands according to current time and offsets
                         float minuteAngle = myMinute * -6;
-                        minuteHand.transform.localEulerAngles = new Vector3(0, 0, minuteAngle);
+                        minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
 
                         float hourAngle = myHour * -30 + myMinute * -0.5f;
-                        hourHand.transform.localEulerAngles = new Vector3(0, 0, hourAngle);
+                        hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle);
 
                         if (stopped)
                         {
@@ -133,11 +133,11 @@ public class Clock : MonoBehaviour
                 myHour = tm.hour + hourOffset;
                 // update the minute and hour hands according to current time and offsets
                 float minuteAngle = myMinute * -6;
-                if (possessed) minuteAngle *= -1;
+               // if (possessed) minuteAngle *= -1;
                 minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
 
                 float hourAngle = myHour * -30 + myMinute * -0.5f;
-                if (possessed) hourAngle *= -1;
+               // if (possessed) hourAngle *= -1;
                 hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle);
             }
         }
