@@ -13366,7 +13366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   day: 0
   hour: 7
-  minute: 55
+  minute: 0
   deltaMinute: 0
   skipping: 0
   rewindSpeed: 10
@@ -21735,7 +21735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6840121047158536523}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.6608465, y: 0.12670374, z: 6.105029}
+  m_LocalPosition: {x: 3.6608465, y: 0.12670374, z: 6.196}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 7049976080240998548}
