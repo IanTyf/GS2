@@ -95,6 +95,7 @@ public class ClockManager : MonoBehaviour
     public void GoToHighlightedClock()
     {
         if (highlightedClock == null) return;
+        if (!highlightedClock.activeSelf) return;
         if (!highlight) return;
         if (zooming) return;
 
@@ -254,6 +255,8 @@ public class ClockManager : MonoBehaviour
                 return false;
             }
         }
+
+        if (!toCheck.activeSelf) return false;
         return true;
     }
 
@@ -281,7 +284,7 @@ public class ClockManager : MonoBehaviour
 
         Material mat = clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material;
         savedColor = mat.color;
-        Color newCol = new Color(mat.color.r - 0.2f, mat.color.g - 0.2f, mat.color.b - 0.2f);
+        Color newCol = new Color(mat.color.r - 0.4f, mat.color.g - 0.4f, mat.color.b - 0.4f);
         clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material.color = newCol;
     }
 
