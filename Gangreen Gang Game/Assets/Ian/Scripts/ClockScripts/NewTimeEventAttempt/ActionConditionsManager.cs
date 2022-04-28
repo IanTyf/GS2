@@ -218,17 +218,23 @@ public class ActionConditionsManager : MonoBehaviour
         return ret;
     }
 
-    public void setActionConditionByName(string name)
+    public void setActionConditionByName(string name, bool b = true)
     {
         foreach(ActionCondition ac in allActionConditions)
         {
             if (ac.name.Equals(name))
             {
-                setReady(ac);
+                if (b) setReady(ac);
+                else setGreyed(ac);
                 return;
             }
         }
         Debug.LogWarning("Action condition " + name + " not found");
+    }
+
+    private void setGreyed(ActionCondition ac)
+    {
+        ac.state = CondState.Greyed;
     }
 
     private void setReady(ActionCondition ac)

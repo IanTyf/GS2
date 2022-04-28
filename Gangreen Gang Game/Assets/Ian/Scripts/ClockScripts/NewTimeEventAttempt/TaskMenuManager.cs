@@ -88,6 +88,7 @@ public class TaskMenuManager : MonoBehaviour
         p2 = new MainObjective("p2", "SELL A CLOCK TO CUSTOMER");
         p2.addSelectiveSubTask(p2SellRightClock);
         p2.addSelectiveSubTask(p2SellWrongClock);
+        p2.addOptionalSubTask(p2KeepPocketWatch);
         p2.displayBtn = Puzzle2Main;
         allMainObjectives.Add(p2);
 
@@ -109,6 +110,10 @@ public class TaskMenuManager : MonoBehaviour
                 debugMsg += "        " + st.displayText + " -- " + st.state + "\n";
             }
             foreach (SubTask st in m.optionalSubTasks)
+            {
+                debugMsg += "        " + st.displayText + " -- " + st.state + "\n";
+            }
+            foreach (SubTask st in m.selectiveSubTasks)
             {
                 debugMsg += "        " + st.displayText + " -- " + st.state + "\n";
             }

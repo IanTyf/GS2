@@ -87,7 +87,8 @@ public class SetAnim : MonoBehaviour
 
     public void setAC(string name)
     {
-        Services.actionConditionsManager.setActionConditionByName(name.Trim());
+        if (Services.timeManager.skipping) Services.actionConditionsManager.setActionConditionByName(name.Trim(), false);
+        else Services.actionConditionsManager.setActionConditionByName(name.Trim());
     }
 
     public void playChildAnim(string str)
