@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectEventNiece : MonoBehaviour
+public class ObjectEventCustomer : MonoBehaviour
 {
     public List<TimeAction> allActions = new List<TimeAction>();
 
@@ -35,24 +35,16 @@ public class ObjectEventNiece : MonoBehaviour
 
         // add all the action events of this object, one action event per anim clip
         // initial idle state
-        TimeAction initialTA = new TimeAction("init", "WakeUpIdle");
+        TimeAction initialTA = new TimeAction("init", "CustomerOutsideIdle");
 
-        // puzzle #1
-        ActionCondition[] wakeUpEarlyConds = { acm.P1goToAlarmClock, acm.P1ringAlarmClockEarly };
-        TimeAction wakeUpEarly = new TimeAction("wakeUpEarly", "WakeUpEarly", wakeUpEarlyConds);
-        allActions.Add(wakeUpEarly);
+        // puzzle #2
+        ActionCondition[] walkInConds = { acm.P2customerWalksIn };
+        TimeAction walkIn = new TimeAction("walkIn", "WalkIn", walkInConds);
+        allActions.Add(walkIn);
 
-        ActionCondition[] wakeUpOnTimeConds = { acm.P1goToAlarmClock, acm.P1ringAlarmClockOnTime };
-        TimeAction wakeUpOnTime = new TimeAction("wakeUpOnTime", "WakeUpOnTime", wakeUpOnTimeConds);
-        allActions.Add(wakeUpOnTime);
-
-        ActionCondition[] wakeUpLateConds = { acm.P1goToAlarmClock, acm.P1ringAlarmClockLate };
-        TimeAction wakeUpLate = new TimeAction("wakeUpLate", "WakeUpLate", wakeUpLateConds);
-        allActions.Add(wakeUpLate);
-
-        ActionCondition[] wakeUpNaturallyConds = { acm.P1wakeUpNaturally };
-        TimeAction wakeUpNaturally = new TimeAction("wakeUpNaturally", "WakeUpLate", wakeUpNaturallyConds);
-        allActions.Add(wakeUpNaturally);
+        ActionCondition[] askForClockConds = { acm.P2customerAskForClock };
+        TimeAction askForClock = new TimeAction("askForClock", "Talk", askForClockConds);
+        allActions.Add(askForClock);
 
         // initial listening actions
         currentTimeAction = initialTA;

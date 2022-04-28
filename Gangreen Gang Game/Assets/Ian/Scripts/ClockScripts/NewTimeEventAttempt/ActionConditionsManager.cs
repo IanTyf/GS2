@@ -20,6 +20,13 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P1ringAlarmClockEarly;
     public ActionCondition P1ringAlarmClockOnTime;
     public ActionCondition P1ringAlarmClockLate;
+    public ActionCondition P1wakeUpNaturally;
+
+    // puzzle #2
+    public ActionCondition P2customerWalksIn;
+    public ActionCondition P2customerAskForClock;
+    public ActionCondition P2nieceReady;
+    public ActionCondition P2customerReady;
 
 
     void Awake()
@@ -32,12 +39,25 @@ public class ActionConditionsManager : MonoBehaviour
         P1ringAlarmClockEarly = new ActionCondition("P1ringAlarmClockEarly", new Vector3(0, 6, 0), new Vector3(0, 7, 29));
         P1ringAlarmClockOnTime = new ActionCondition("P1ringAlarmClockOnTime", new Vector3(0, 7, 33), new Vector3(0, 8, 0));
         P1ringAlarmClockLate = new ActionCondition("P1ringAlarmClockLate", new Vector3(0, 8, 0), new Vector3(0, 8, 30));
+        P1wakeUpNaturally = new ActionCondition("P1wakeUpNaturally", new Vector3(0, 8, 30), new Vector3(1, 0, 0));
+
+        // puzzle #2
+        P2customerWalksIn = new ActionCondition("P2customerWalksIn", new Vector3(0, 8, 0), new Vector3(1, 0, 0));
+        P2customerAskForClock = new ActionCondition("P2customerAskForClock", new Vector3(0, 8, 0), new Vector3(1, 0, 0));
+        P2nieceReady = new ActionCondition("P2nieceReady", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2customerReady = new ActionCondition("P2customerReady", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+
 
         allActionConditions.Add(P1goToAlarmClock);
         allActionConditions.Add(P1ringAlarmClockEarly);
         allActionConditions.Add(P1ringAlarmClockOnTime);
         allActionConditions.Add(P1ringAlarmClockLate);
+        allActionConditions.Add(P1wakeUpNaturally);
 
+        allActionConditions.Add(P2customerWalksIn);
+        allActionConditions.Add(P2customerAskForClock);
+        allActionConditions.Add(P2nieceReady);
+        allActionConditions.Add(P2customerReady);
     }
 
     void Start()
@@ -76,14 +96,30 @@ public class ActionConditionsManager : MonoBehaviour
             }
 
             // P1ringAlarmClockLate
-            if (
-                (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockLate.withinTimeWindow(currentM) && P1ringAlarmClockLate.state != CondState.Ready) ||
-                (P1ringAlarmClockLate.afterTimeWindow(currentM) && P1ringAlarmClockLate.state != CondState.Ready)
-                )
+            if (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockLate.withinTimeWindow(currentM) && P1ringAlarmClockLate.state != CondState.Ready)
             {
                 setReady(P1ringAlarmClockLate);
             }
 
+            // P1wakeUpNaturally
+            if (P1wakeUpNaturally.withinTimeWindow(currentM) && P1wakeUpNaturally.state != CondState.Ready)
+            {
+                setReady(P1wakeUpNaturally);
+            }
+
+            // Puzzle #2
+            // P2customerWalksIn
+            if (P2customerWalksIn.withinTimeWindow(currentM) && P2customerWalksIn.state != CondState.Ready)
+            {
+                setReady(P2customerWalksIn);
+            }
+
+            // P2customerAskForClock
+            if (P2customerAskForClock.withinTimeWindow(currentM) && P2customerAskForClock.state != CondState.Ready 
+                && P2nieceReady.state == CondState.Ready && P2customerReady.state == CondState.Ready)
+            {
+                setReady(P2customerAskForClock);
+            }
 
             isRinging = false;
         }
@@ -124,6 +160,19 @@ public class ActionConditionsManager : MonoBehaviour
             }
         }
         return ret;
+    }
+
+    public void setActionConditionByName(string name)
+    {
+        foreach(ActionCondition ac in allActionConditions)
+        {
+            if (ac.name.Equals(name))
+            {
+                setReady(ac);
+                return;
+            }
+        }
+        Debug.LogWarning("Action condition " + name + " not found");
     }
 
     private void setReady(ActionCondition ac)

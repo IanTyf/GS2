@@ -64,6 +64,11 @@ public class SetAnim : MonoBehaviour
         }
     }
 
+    public void setAC(string name)
+    {
+        Services.actionConditionsManager.setActionConditionByName(name.Trim());
+    }
+
     public void playChildAnim(string str)
     {
         string[] p = str.Split(',');
