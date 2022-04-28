@@ -58,8 +58,12 @@ public class TaskUIManager : MonoBehaviour
     public void NextTask()
     {
         if (switchingTask) return;
-        if (!Expanded) return;
         if (currentPuzzleIndex == TaskGroups.Count - 1) return;
+        if (!Expanded)
+        {
+            ToggleUI();
+            return;
+        }
         Debug.Log("next task");
         currentPuzzleIndex++;
 
@@ -74,8 +78,12 @@ public class TaskUIManager : MonoBehaviour
     public void PrevTask()
     {
         if (switchingTask) return;
-        if (!Expanded) return;
         if (currentPuzzleIndex == 0) return;
+        if (!Expanded)
+        {
+            ToggleUI();
+            return;
+        }
         Debug.Log("previous task");
         currentPuzzleIndex--;
 
@@ -115,7 +123,7 @@ public class TaskUIManager : MonoBehaviour
         }
     }
 
-    private void UpdateExpandedPos()
+    private void UpdateExpandedPos(float delay = 0f)
     {
         for (int i = 0; i < TaskGroups.Count; i++)
         {
@@ -123,7 +131,7 @@ public class TaskUIManager : MonoBehaviour
             float targetPos = 260;
             if (i <= currentPuzzleIndex) targetPos += -50f * i;
             else if (i > currentPuzzleIndex) targetPos += -50f * i - 16f - 42f * (TaskGroups[currentPuzzleIndex].transform.childCount - 1);
-            LeanTween.moveLocalY(group, targetPos, 0.4f);
+            LeanTween.moveLocalY(group, targetPos, 0.4f).setDelay(delay);
         }
     }
 
@@ -132,13 +140,13 @@ public class TaskUIManager : MonoBehaviour
         switchingTask = false;
     }
 
-    public void ToggleUI()
+    public void ToggleUI(float delay = 0f)
     {
         if (Expanded)
         {
-            LeanTween.moveLocalY(mainPanel, 467f, 0.4f);
-            LeanTween.moveLocalY(ClockTimeText.transform.parent.gameObject, 269.4f, 0.4f);
-            LeanTween.moveLocalY(RealTimeText.transform.parent.gameObject, 269.4f, 0.4f);
+            LeanTween.moveLocalY(mainPanel, 467f, 0.4f).setDelay(delay);
+            LeanTween.moveLocalY(ClockTimeText.transform.parent.gameObject, 269.4f, 0.4f).setDelay(delay);
+            LeanTween.moveLocalY(RealTimeText.transform.parent.gameObject, 269.4f, 0.4f).setDelay(delay);
             Expanded = false;
 
             for (int i = 0; i < TaskGroups.Count; i++)
@@ -147,17 +155,17 @@ public class TaskUIManager : MonoBehaviour
                 float targetPos = 72;
                 if (i < currentPuzzleIndex) targetPos += 10 + 50f * (currentPuzzleIndex - i);
                 else if (i > currentPuzzleIndex) targetPos += -100 - 50f * (i - currentPuzzleIndex);
-                LeanTween.moveLocalY(group, targetPos, 0.4f);
+                LeanTween.moveLocalY(group, targetPos, 0.4f).setDelay(delay);
             }
         }
         else
         {
-            LeanTween.moveLocalY(mainPanel, 279f, 0.4f);
-            LeanTween.moveLocalY(ClockTimeText.transform.parent.gameObject, 81.4f, 0.4f);
-            LeanTween.moveLocalY(RealTimeText.transform.parent.gameObject, 81.4f, 0.4f);
+            LeanTween.moveLocalY(mainPanel, 279f, 0.4f).setDelay(delay);
+            LeanTween.moveLocalY(ClockTimeText.transform.parent.gameObject, 81.4f, 0.4f).setDelay(delay);
+            LeanTween.moveLocalY(RealTimeText.transform.parent.gameObject, 81.4f, 0.4f).setDelay(delay);
             Expanded = true;
 
-            UpdateExpandedPos();
+            UpdateExpandedPos(delay);
         }
     }
 
