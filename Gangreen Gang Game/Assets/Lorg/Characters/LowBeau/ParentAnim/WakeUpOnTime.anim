@@ -1077,8 +1077,29 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
+    functionName: setActionState
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.2833333
     functionName: playChildAnim
-    data: Niece_Child, OnTime?, 1
+    data: Niece_Child, SitToStand, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6.4333334
+    functionName: playChildAnim
+    data: Niece_Child, Yawn, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 10.066667
+    functionName: playChildAnim
+    data: Niece_Child, YawnFinished, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -1093,6 +1114,13 @@ AnimationClip:
   - time: 21.6
     functionName: playChildAnim
     data: Niece_Child, Walk, 0
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 22.433332
+    functionName: setListeningActions
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

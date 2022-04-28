@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SetAnim : MonoBehaviour
 {
+    public string lastPlayedChildClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,52 @@ public class SetAnim : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void playBackCheck(string clipName)
+    {
+        /*
+        string[] p = str.Split(',');
+        string objName = p[0].Trim();
+        string clipName = p[1].Trim();
+        */
+        clipName = clipName.Trim();
+
+        if (!Services.timeManager.skipping)
+        {
+            lastPlayedChildClip = clipName;
+            return;
+        }
+
+        if (lastPlayedChildClip == clipName) return;
+        else
+        {
+            lastPlayedChildClip = clipName;
+            /*
+            GameObject child = findChild(transform, objName);
+            if (child == null) Debug.Log("Error: no child named " + objName + " is found");
+            else
+            {
+            */
+            GetComponent<Animator>().Play(clipName, 0, 1);
+            //}
+        }
+    }
+
+    public void playBackReset(string str)
+    {
+        if (!Services.timeManager.skipping) return;
+
+        string[] p = str.Split(',');
+        string objName = p[0].Trim();
+        string boolName = p[1].Trim();
+
+        GameObject child = findChild(transform, objName);
+        if (child == null) Debug.Log("Error: no child named " + objName + " is found");
+        else
+        {
+            child.GetComponent<Animator>().SetBool(boolName, false);
+        }
     }
 
     public void playChildAnim(string str)
