@@ -339,8 +339,30 @@
                 },
                 {
                     "name": "",
+                    "id": "4e3d6779-2d52-4d89-86b2-10706f120798",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rewind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7d4eb646-6171-448f-8e08-d9e6c6bd9eb7",
                     "path": "<SwitchProControllerHID>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "571e1aa3-475a-4ce0-ac72-0d827bee682b",
+                    "path": "<XInputController>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

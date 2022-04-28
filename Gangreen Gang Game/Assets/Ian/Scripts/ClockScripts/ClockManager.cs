@@ -21,6 +21,8 @@ public class ClockManager : MonoBehaviour
     public Material normalMat;
     public Material highlightMat;
 
+    public Color savedColor;
+
     //public LayerMask switchRayLM;
 
     // Start is called before the first frame update
@@ -274,7 +276,13 @@ public class ClockManager : MonoBehaviour
 
         //clock.transform.localScale = Vector3.one * 2;
         //clock.transform.localScale = clock.transform.localScale * 2;
-        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = highlightMat;
+
+        //clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = highlightMat;
+
+        Material mat = clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material;
+        savedColor = mat.color;
+        Color newCol = new Color(mat.color.r - 0.2f, mat.color.g - 0.2f, mat.color.b - 0.2f);
+        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material.color = newCol;
     }
 
     private void revertHighlight(GameObject clock)
@@ -283,6 +291,8 @@ public class ClockManager : MonoBehaviour
 
         //clock.transform.localScale = Vector3.one * 1;
         //clock.transform.localScale = clock.transform.localScale / 2;
-        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = normalMat;
+
+        //clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = normalMat;
+        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material.color = savedColor;
     }
 }
