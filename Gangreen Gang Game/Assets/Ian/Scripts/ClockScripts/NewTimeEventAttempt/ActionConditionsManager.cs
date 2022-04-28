@@ -37,6 +37,9 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2customerDecided;
     public ActionCondition P2customerLeave;
 
+    public ActionCondition P2soldRightClock;
+    public ActionCondition P2soldWrongClock;
+
 
     void Awake()
     {
@@ -62,6 +65,8 @@ public class ActionConditionsManager : MonoBehaviour
         P2failed = new ActionCondition("P2failed", new Vector3(0, 10, 0), new Vector3(1, 0, 0));
         P2customerDecided = new ActionCondition("P2customerDecided", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2customerLeave = new ActionCondition("P2customerLeave", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2soldRightClock = new ActionCondition("P2soldRightClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2soldWrongClock = new ActionCondition("P2soldWrongClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -81,6 +86,8 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2failed);
         allActionConditions.Add(P2customerDecided);
         allActionConditions.Add(P2customerLeave);
+        allActionConditions.Add(P2soldRightClock);
+        allActionConditions.Add(P2soldWrongClock);
     }
 
     void Start()

@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     private InputAction goToClock;
     private InputAction rewind;
     private InputAction toggleUI;
+    private InputAction switchTask;
 
     private void Awake()
     {
@@ -65,6 +66,9 @@ public class InputManager : MonoBehaviour
 
         toggleUI = playerInput.actions["ToggleUI"];
         toggleUI.started += onToggleUI;
+
+        switchTask = playerInput.actions["SwitchTask"];
+        switchTask.performed += onSwitchTask;
     }
 
     private void Update()
@@ -166,5 +170,12 @@ public class InputManager : MonoBehaviour
     private void onToggleUI(InputAction.CallbackContext ctx)
     {
         Services.taskUIManager.ToggleUI();
+    }
+
+    private void onSwitchTask(InputAction.CallbackContext ctx)
+    {
+        Vector2 dir = ctx.ReadValue<Vector2>();
+        if (dir.y < -0.5) Services.taskUIManager.NextTask();
+        if (dir.y > 0.5) Services.taskUIManager.PrevTask();
     }
 }

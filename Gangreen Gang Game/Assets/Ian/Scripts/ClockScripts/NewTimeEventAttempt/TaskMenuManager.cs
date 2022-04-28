@@ -17,9 +17,19 @@ public class TaskMenuManager : MonoBehaviour
     public SubTask p1RingAlarmClockOnTime;
     public SubTask p1RingAlarmClockLate;
 
+    //puzzle #2
+    public MainObjective p2;
+    public SubTask p2SellRightClock;
+    public SubTask p2SellWrongClock;
+    public SubTask p2KeepPocketWatch;
+
     public GameObject Puzzle1Main;
     public GameObject Puzzle1Sub1;
     public GameObject Puzzle1Sub2;
+
+    public GameObject Puzzle2Main;
+    public GameObject Puzzle2Sub1;
+    public GameObject Puzzle2Sub2;
 
     private ActionConditionsManager acm;
 
@@ -59,11 +69,31 @@ public class TaskMenuManager : MonoBehaviour
         allMainObjectives.Add(p1);
 
 
+        // puzzle #2
+        p2SellRightClock = new SubTask("p2SellRightClock", "Sell the right clock");
+        p2SellRightClock.displayBtn = Puzzle2Sub1;
+        p2SellRightClock.addRequiredActionCondition(acm.P2soldRightClock);
+        allSubTasks.Add(p2SellRightClock);
 
+        p2SellWrongClock = new SubTask("p2SellWrongClock", "not showing");
+        p2SellWrongClock.addRequiredActionCondition(acm.P2soldWrongClock);
+        allSubTasks.Add(p2SellWrongClock);
 
+        p2KeepPocketWatch = new SubTask("p2KeepPocketWatch", "Keep Pocket Watch in the shop");
+        p2KeepPocketWatch.displayBtn = Puzzle2Sub2;
+        p2KeepPocketWatch.addRequiredActionCondition(acm.P2soldRightClock);
+        p2KeepPocketWatch.addRequiredActionCondition(acm.P2customerLeave);
+        allSubTasks.Add(p2KeepPocketWatch);
+
+        p2 = new MainObjective("p2", "SELL A CLOCK TO CUSTOMER");
+        p2.addSelectiveSubTask(p2SellRightClock);
+        p2.addSelectiveSubTask(p2SellWrongClock);
+        p2.displayBtn = Puzzle2Main;
+        allMainObjectives.Add(p2);
 
 
         p1.state = MainObjectiveState.Visible;
+        p2.state = MainObjectiveState.Visible;
     }
 
     // Update is called once per frame
@@ -74,7 +104,8 @@ public class TaskMenuManager : MonoBehaviour
         {
             m.updateState();
             debugMsg += "    " + m.displayText + " -- " + m.state + "\n";
-            foreach (SubTask st in m.requiredSubTasks) {
+            foreach (SubTask st in m.requiredSubTasks)
+            {
                 debugMsg += "        " + st.displayText + " -- " + st.state + "\n";
             }
             foreach (SubTask st in m.optionalSubTasks)
@@ -150,7 +181,7 @@ public class MainObjective
             st.updateState();
         }
 
-        if (this.state == MainObjectiveState.Visible) 
+        if (this.state == MainObjectiveState.Visible)
         {
             bool b = true;
             foreach (SubTask st in requiredSubTasks)

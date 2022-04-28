@@ -492,6 +492,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.81666666
+    functionName: setAC
+    data: P2soldWrongClock
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.85
     functionName: disableGameObject
     data: pocketWatch
