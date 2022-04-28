@@ -1065,30 +1065,51 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.11666667
+  - time: 3.7
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 3
+    messageOptions: 0
+  - time: 4.233333
     functionName: playChildAnim
-    data: Niece_Child, OnTime?, 0
+    data: Niece_Child, SitToStand, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.21666667
+  - time: 5.8333335
     functionName: playChildAnim
-    data: Niece_Child, Run, 1
+    data: Niece_Child, startRun, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 13.233334
+  - time: 14.2
+    functionName: playChildAnim
+    data: Niece_Child, YawnFinished, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 14.2
+    functionName: playChildAnim
+    data: Niece_Child, Walk, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 14.4
+    functionName: playChildAnim
+    data: Niece_Child, stopRun, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 15.133333
     functionName: playChildAnim
     data: Niece_Child, Walk, 0
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 13.716666
-    functionName: playChildAnim
-    data: Niece_Child, Run, 0
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

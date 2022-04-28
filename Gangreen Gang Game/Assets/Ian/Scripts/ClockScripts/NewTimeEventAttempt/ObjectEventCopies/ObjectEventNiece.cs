@@ -39,7 +39,7 @@ public class ObjectEventNiece : MonoBehaviour
 
         // puzzle #1
         ActionCondition[] wakeUpEarlyConds = { acm.P1goToAlarmClock, acm.P1ringAlarmClockEarly };
-        TimeAction wakeUpEarly = new TimeAction("wakeUpEarly", "WakeUp00", wakeUpEarlyConds);
+        TimeAction wakeUpEarly = new TimeAction("wakeUpEarly", "WakeUpEarly", wakeUpEarlyConds);
         allActions.Add(wakeUpEarly);
 
         ActionCondition[] wakeUpOnTimeConds = { acm.P1goToAlarmClock, acm.P1ringAlarmClockOnTime };

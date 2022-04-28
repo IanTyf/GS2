@@ -76,8 +76,10 @@ public class ActionConditionsManager : MonoBehaviour
             }
 
             // P1ringAlarmClockLate
-            if (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockLate.withinTimeWindow(currentM) 
-                && P1ringAlarmClockLate.state != CondState.Ready)
+            if (
+                (cm.currentClock.name == "alarmClock" && isRinging && P1ringAlarmClockLate.withinTimeWindow(currentM) && P1ringAlarmClockLate.state != CondState.Ready) ||
+                (P1ringAlarmClockLate.afterTimeWindow(currentM) && P1ringAlarmClockLate.state != CondState.Ready)
+                )
             {
                 setReady(P1ringAlarmClockLate);
             }
@@ -103,6 +105,11 @@ public class ActionConditionsManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void LateUpdate()
+    {
+        P1ringAlarmClockEarly.state = CondState.NotSet;
     }
 
     public ActionCondition getActionConditionByName(string name)
@@ -165,6 +172,13 @@ public class ActionCondition
         float sm = minutes(triggerWindowStart);
         float em = minutes(triggerWindowEnd);
         if (m > sm && m < em) return true;
+        else return false;
+    }
+
+    public bool afterTimeWindow(float m)
+    {
+        float em = minutes(triggerWindowEnd);
+        if (m > em) return true;
         else return false;
     }
 

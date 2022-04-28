@@ -1104,6 +1104,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 10.283334
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
   - time: 10.45
     functionName: playChildAnim
     data: Niece_Child, Walk, 1

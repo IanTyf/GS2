@@ -6,9 +6,9 @@ public class Subtitles : MonoBehaviour
 {
     public static float textSpeed = 0.06f;
 
-    public static string p1Early = "I still have some time, back to sleep";
-    public static string p1OnTime = "Wakey Wakey";
-    public static string p1Late = "Oh No! I'm late!";
+    public static string p1Early = "Niece: *Yawn* Stupid clock, I still have some time to sleep.";
+    public static string p1OnTime = "Niece: Time to get to Work.";
+    public static string p1Late = "Niece: Oh shoot I'm late! I gotta get down stairs!";
 
 
     // Start is called before the first frame update
