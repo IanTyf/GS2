@@ -31,6 +31,11 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2customerAsked;
 
     public ActionCondition P2wrongClock;
+    public ActionCondition P2ringClocksUpstair;
+    
+    public ActionCondition P2failed;
+    public ActionCondition P2customerDecided;
+    public ActionCondition P2customerLeave;
 
 
     void Awake()
@@ -52,7 +57,11 @@ public class ActionConditionsManager : MonoBehaviour
         P2customerReady = new ActionCondition("P2customerReady", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2nieceGreeted = new ActionCondition("P2nieceGreeted", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2customerAsked = new ActionCondition("P2customerAsked", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
-        P2wrongClock = new ActionCondition("P2wrongClock", new Vector3(0, 8, 15), new Vector3(0, 10, 0));
+        P2wrongClock = new ActionCondition("P2wrongClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+        P2ringClocksUpstair = new ActionCondition("P2ringClocksUpstair", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+        P2failed = new ActionCondition("P2failed", new Vector3(0, 10, 0), new Vector3(1, 0, 0));
+        P2customerDecided = new ActionCondition("P2customerDecided", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2customerLeave = new ActionCondition("P2customerLeave", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -68,6 +77,10 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2nieceGreeted);
         allActionConditions.Add(P2customerAsked);
         allActionConditions.Add(P2wrongClock);
+        allActionConditions.Add(P2ringClocksUpstair);
+        allActionConditions.Add(P2failed);
+        allActionConditions.Add(P2customerDecided);
+        allActionConditions.Add(P2customerLeave);
     }
 
     void Start()
@@ -139,9 +152,22 @@ public class ActionConditionsManager : MonoBehaviour
 
             // P2wrongClock
             if (P2wrongClock.withinTimeWindow(currentM) && P2wrongClock.state != CondState.Ready
-                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name != "customerWants" && cm.currentClock.name != "pocketWatch")
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name != "wristWatch" && cm.currentClock.name != "pocketWatch")
             {
                 setReady(P2wrongClock);
+            }
+
+            // P2ringClocksUpstair
+            if (P2ringClocksUpstair.withinTimeWindow(currentM) && P2ringClocksUpstair.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && (cm.currentClock.name == "wristWatch" || cm.currentClock.name == "wallClock" || cm.currentClock.name == "alarmClock"))
+            {
+                setReady(P2ringClocksUpstair);
+            }
+
+            // P2failed
+            if (P2failed.withinTimeWindow(currentM) && P2failed.state != CondState.Ready && P2ringClocksUpstair.state != CondState.Ready)
+            {
+                setReady(P2failed);
             }
 
             isRinging = false;

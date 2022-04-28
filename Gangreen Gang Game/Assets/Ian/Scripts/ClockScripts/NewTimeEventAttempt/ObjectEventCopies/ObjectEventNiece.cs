@@ -60,6 +60,10 @@ public class ObjectEventNiece : MonoBehaviour
         TimeAction greetCustomer = new TimeAction("greetCustomer", "Talking", greetCustomerConds);
         allActions.Add(greetCustomer);
 
+        ActionCondition[] byeCustomerConds = { acm.P2customerDecided };
+        TimeAction byeCustomer = new TimeAction("byeCustomer", "ByeCustomer", byeCustomerConds);
+        allActions.Add(byeCustomer);
+
 
 
         // initial listening actions

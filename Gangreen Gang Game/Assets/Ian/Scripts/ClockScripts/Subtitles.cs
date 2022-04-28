@@ -15,6 +15,11 @@ public class Subtitles : MonoBehaviour
 
     public static string p2NotTheRightClock = "That's.. not what I want.";
 
+    public static string p2MoreClockUpstairs = "Niece: There are also clocks upstairs.";
+    public static string p2decideToBuy = "This one! I love it!";
+    public static string p2failedBuy = "I think I'm just going to go with this one.";
+    public static string p2NieceSayBye = "Alright sounds good. Thank you for coming!";
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +54,18 @@ public class Subtitles : MonoBehaviour
                 break;
             case 6:
                 UI_Text.Write(p2NotTheRightClock, textSpeed, true);
+                break;
+            case 7:
+                UI_Text.Write(p2MoreClockUpstairs, textSpeed, true);
+                break;
+            case 8:
+                UI_Text.Write(p2decideToBuy, textSpeed, true);
+                break;
+            case 9:
+                UI_Text.Write(p2failedBuy, textSpeed, true);
+                break;
+            case 10:
+                UI_Text.Write(p2NieceSayBye, textSpeed, true);
                 break;
         }
     }

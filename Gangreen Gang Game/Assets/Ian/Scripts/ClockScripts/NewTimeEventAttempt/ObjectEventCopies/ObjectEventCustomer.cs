@@ -50,6 +50,19 @@ public class ObjectEventCustomer : MonoBehaviour
         TimeAction wrongClock = new TimeAction("wrongClock", "NotWhatIWant", wrongClockConds);
         allActions.Add(wrongClock);
 
+        ActionCondition[] failedToBuyConds = { acm.P2failed };
+        TimeAction failedToBuy = new TimeAction("failedToBuy", "FailPuzzle", failedToBuyConds);
+        allActions.Add(failedToBuy);
+
+        ActionCondition[] goUpstairsConds = { acm.P2ringClocksUpstair };
+        TimeAction goUpstairs = new TimeAction("goUpstairs", "GoUpstairs", goUpstairsConds);
+        allActions.Add(goUpstairs);
+
+        ActionCondition[] leaveShopConds = { acm.P2customerLeave };
+        TimeAction leaveShop = new TimeAction("leaveShop", "Leave", leaveShopConds);
+        allActions.Add(leaveShop);
+
+
         // initial listening actions
         currentTimeAction = initialTA;
     }

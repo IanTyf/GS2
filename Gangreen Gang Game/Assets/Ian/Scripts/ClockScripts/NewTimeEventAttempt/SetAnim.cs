@@ -6,6 +6,8 @@ public class SetAnim : MonoBehaviour
 {
     public string lastPlayedChildClip;
 
+    public List<GameObject> disabledObjects = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,25 @@ public class SetAnim : MonoBehaviour
         else
         {
             child.GetComponent<Animator>().SetBool(boolName, false);
+        }
+    }
+
+    public void disableGameObject(string str)
+    {
+        if (!Services.timeManager.skipping)
+        {
+            GameObject go = GameObject.Find(str);
+            disabledObjects.Add(go);
+            go.SetActive(false);
+        }
+        else
+        {
+            foreach (GameObject go in disabledObjects)
+            {
+                go.SetActive(true);
+                disabledObjects.Remove(go);
+                break;
+            }
         }
     }
 

@@ -19935,7 +19935,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: playBackCheck
-    data: LeftTurn_Customer
+    data: LeftTurn
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

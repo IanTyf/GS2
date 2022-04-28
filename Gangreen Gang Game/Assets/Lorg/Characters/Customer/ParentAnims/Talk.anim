@@ -88,7 +88,7 @@ AnimationClip:
     messageOptions: 0
   - time: 1.8333334
     functionName: setListeningActions
-    data: wrongClock
+    data: wrongClock, goUpstairs, failedToBuy
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
