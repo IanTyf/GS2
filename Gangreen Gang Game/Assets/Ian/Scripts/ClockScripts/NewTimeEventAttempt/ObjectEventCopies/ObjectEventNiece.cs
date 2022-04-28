@@ -54,6 +54,14 @@ public class ObjectEventNiece : MonoBehaviour
         TimeAction wakeUpNaturally = new TimeAction("wakeUpNaturally", "WakeUpLate", wakeUpNaturallyConds);
         allActions.Add(wakeUpNaturally);
 
+
+        // puzzle #2
+        ActionCondition[] greetCustomerConds = { acm.P2nieceReady, acm.P2customerReady };
+        TimeAction greetCustomer = new TimeAction("greetCustomer", "Talking", greetCustomerConds);
+        allActions.Add(greetCustomer);
+
+
+
         // initial listening actions
         currentTimeAction = initialTA;
     }
@@ -175,6 +183,7 @@ public class ObjectEventNiece : MonoBehaviour
                         }
                     }
                 }
+                listeningHistory.RemoveAt(listeningHistory.Count - 1);
             }
             return;
         }

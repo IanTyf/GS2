@@ -27,6 +27,10 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2customerAskForClock;
     public ActionCondition P2nieceReady;
     public ActionCondition P2customerReady;
+    public ActionCondition P2nieceGreeted;
+    public ActionCondition P2customerAsked;
+
+    public ActionCondition P2wrongClock;
 
 
     void Awake()
@@ -46,6 +50,9 @@ public class ActionConditionsManager : MonoBehaviour
         P2customerAskForClock = new ActionCondition("P2customerAskForClock", new Vector3(0, 8, 0), new Vector3(1, 0, 0));
         P2nieceReady = new ActionCondition("P2nieceReady", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2customerReady = new ActionCondition("P2customerReady", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2nieceGreeted = new ActionCondition("P2nieceGreeted", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2customerAsked = new ActionCondition("P2customerAsked", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P2wrongClock = new ActionCondition("P2wrongClock", new Vector3(0, 8, 15), new Vector3(0, 10, 0));
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -58,6 +65,9 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2customerAskForClock);
         allActionConditions.Add(P2nieceReady);
         allActionConditions.Add(P2customerReady);
+        allActionConditions.Add(P2nieceGreeted);
+        allActionConditions.Add(P2customerAsked);
+        allActionConditions.Add(P2wrongClock);
     }
 
     void Start()
@@ -69,6 +79,11 @@ public class ActionConditionsManager : MonoBehaviour
     void Update()
     {
         float currentM = minutes(new Vector3(tm.day, tm.hour, tm.minute));
+
+        // reset some repeatable action conditions
+        P1ringAlarmClockEarly.state = CondState.NotSet;
+        P2wrongClock.state = CondState.NotSet;
+
 
         // when forwarding, check and set all the action conditions
         if (!tm.skipping)
@@ -102,7 +117,8 @@ public class ActionConditionsManager : MonoBehaviour
             }
 
             // P1wakeUpNaturally
-            if (P1wakeUpNaturally.withinTimeWindow(currentM) && P1wakeUpNaturally.state != CondState.Ready)
+            if (P1wakeUpNaturally.withinTimeWindow(currentM) && P1wakeUpNaturally.state != CondState.Ready 
+                && P1ringAlarmClockOnTime.state != CondState.Ready && P1ringAlarmClockLate.state != CondState.Ready)
             {
                 setReady(P1wakeUpNaturally);
             }
@@ -116,9 +132,16 @@ public class ActionConditionsManager : MonoBehaviour
 
             // P2customerAskForClock
             if (P2customerAskForClock.withinTimeWindow(currentM) && P2customerAskForClock.state != CondState.Ready 
-                && P2nieceReady.state == CondState.Ready && P2customerReady.state == CondState.Ready)
+                && P2nieceGreeted.state == CondState.Ready && P2customerReady.state == CondState.Ready)
             {
                 setReady(P2customerAskForClock);
+            }
+
+            // P2wrongClock
+            if (P2wrongClock.withinTimeWindow(currentM) && P2wrongClock.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name != "customerWants" && cm.currentClock.name != "pocketWatch")
+            {
+                setReady(P2wrongClock);
             }
 
             isRinging = false;
@@ -145,7 +168,7 @@ public class ActionConditionsManager : MonoBehaviour
 
     public void LateUpdate()
     {
-        P1ringAlarmClockEarly.state = CondState.NotSet;
+        
     }
 
     public ActionCondition getActionConditionByName(string name)

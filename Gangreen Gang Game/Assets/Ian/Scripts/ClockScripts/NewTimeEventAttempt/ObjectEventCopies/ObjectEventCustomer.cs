@@ -46,12 +46,16 @@ public class ObjectEventCustomer : MonoBehaviour
         TimeAction askForClock = new TimeAction("askForClock", "Talk", askForClockConds);
         allActions.Add(askForClock);
 
+        ActionCondition[] wrongClockConds = { acm.P2wrongClock };
+        TimeAction wrongClock = new TimeAction("wrongClock", "NotWhatIWant", wrongClockConds);
+        allActions.Add(wrongClock);
+
         // initial listening actions
         currentTimeAction = initialTA;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // when rewinding
         if (tm.skipping)
@@ -167,6 +171,7 @@ public class ObjectEventCustomer : MonoBehaviour
                         }
                     }
                 }
+                listeningHistory.RemoveAt(listeningHistory.Count - 1);
             }
             return;
         }

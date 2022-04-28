@@ -1111,6 +1111,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 2
     messageOptions: 0
+  - time: 10.383333
+    functionName: playChildAnim
+    data: Niece_Child, stopRun, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 10.45
     functionName: playChildAnim
     data: Niece_Child, Walk, 1
@@ -1127,7 +1134,7 @@ AnimationClip:
     messageOptions: 0
   - time: 22.433332
     functionName: setListeningActions
-    data: 
+    data: greetCustomer
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

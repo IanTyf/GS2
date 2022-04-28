@@ -24281,7 +24281,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: playBackCheck
-    data: Idle_Customer
+    data: Idle
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
