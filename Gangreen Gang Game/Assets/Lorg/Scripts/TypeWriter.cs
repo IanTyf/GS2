@@ -21,7 +21,13 @@ public class TypeWriter : MonoBehaviour
 
     private void AddWriter(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters)
     {
-        typeWriterSingleList.Add(new TypeWriterSingle(uiText, textToWrite, timePerCharacter, invisibleCharacters));
+        // only add a new subtitle if the previous one is finished
+        if ((typeWriterSingleList.Count == 0) || (typeWriterSingleList.Count == 1 && typeWriterSingleList[0].finished))
+        {
+            typeWriterSingleList.Clear();
+            typeWriterSingleList.Add(new TypeWriterSingle(uiText, textToWrite, timePerCharacter, invisibleCharacters));
+        }
+
     }
 
     private void Update()
@@ -35,16 +41,27 @@ public class TypeWriter : MonoBehaviour
                 i--;
             }
         }
+
+        if (Services.timeManager.skipping)
+        {
+            // force remove the current subtitle
+            if (typeWriterSingleList.Count > 0) {
+                typeWriterSingleList[0].uiText.text = "";
+                typeWriterSingleList.Clear();
+            }
+        }
     }
 
     public class TypeWriterSingle
     {
-        private Text uiText;
+        public Text uiText;
         private string textToWrite;
         private int characterIndex;
         private float timePerCharacter;
         private float timer;
         private bool invisibleCharacters;
+
+        public bool finished;
 
         public TypeWriterSingle(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters)
         {
@@ -53,6 +70,8 @@ public class TypeWriter : MonoBehaviour
             this.timePerCharacter = timePerCharacter;
             this.invisibleCharacters = invisibleCharacters;
             characterIndex = 0;
+
+            this.finished = false;
         }
         //returns true when complete
         public bool Update() 
@@ -70,10 +89,34 @@ public class TypeWriter : MonoBehaviour
                     }
                     uiText.text = text; 
 
-                    if (characterIndex >= textToWrite.Length)
+
+                    // when writing ends, keeps writing empty space
+                    if (characterIndex == textToWrite.Length)
+                    {
+                        timer += 1f;
+                        textToWrite = " ";
+                        characterIndex = 0;
+                        this.finished = true;
+                    }
+
+                    // this should never get called
+                    if (characterIndex > textToWrite.Length)
                     {
                         //Entire string displayed
                         return true;
+                    }
+
+                    // pause a bit for every comma and period
+                    if (characterIndex > 0)
+                    {
+                        if (textToWrite[characterIndex - 1].Equals(','))
+                        {
+                            timer += timePerCharacter * 4;
+                        }
+                        if (textToWrite[characterIndex - 1].Equals('.'))
+                        {
+                            timer += timePerCharacter * 6;
+                        }
                     }
                 }
                 return false;

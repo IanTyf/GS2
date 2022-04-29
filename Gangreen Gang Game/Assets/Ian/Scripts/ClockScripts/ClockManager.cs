@@ -14,6 +14,17 @@ public class ClockManager : MonoBehaviour
     public float highlightTimer;
     private float timer;
 
+    private bool zooming;
+    private float zoomSpeed;
+    private Vector3 tempLocalPos;
+
+    public Material normalMat;
+    public Material highlightMat;
+
+    public Color savedColor;
+
+    //public LayerMask switchRayLM;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,6 +36,9 @@ public class ClockManager : MonoBehaviour
         currentClock.GetComponent<Clock>().hide();
         highlight = false;
         timer = 0;
+
+        zooming = false;
+        zoomSpeed = 10f;
     }
 
     // Update is called once per frame
@@ -32,7 +46,7 @@ public class ClockManager : MonoBehaviour
     {
         if (highlightedClock != null)
         {
-            if (highlight)
+            if (highlight && !zooming)
             {
                 // highlight the highlightedClock here
                 //highlightAClock(highlightedClock);
@@ -40,10 +54,26 @@ public class ClockManager : MonoBehaviour
                 timer += Time.deltaTime;
                 if (timer > highlightTimer)
                 {
-                    highlight = false;
+                    //highlight = false;
                     timer = 0;
-                    revertHighlight(highlightedClock);
+                    //revertHighlight(highlightedClock);
                 }
+            }
+        }
+
+        if (zooming)
+        {
+            GameObject currentCam = currentClock.transform.GetChild(0).gameObject;
+
+            Vector3 zoomDir = (highlightedClock.transform.position - currentCam.transform.position).normalized;
+            
+            currentCam.transform.position = currentCam.transform.position + zoomDir * zoomSpeed * Time.deltaTime;
+            zoomSpeed += 20f * Time.deltaTime;
+            
+            if (Vector3.Distance(currentCam.transform.position, highlightedClock.transform.position) < 1.7f)
+            {
+                zooming = false;
+                switchToClock(highlightedClock);
             }
         }
     }
@@ -65,9 +95,17 @@ public class ClockManager : MonoBehaviour
     public void GoToHighlightedClock()
     {
         if (highlightedClock == null) return;
+        if (!highlightedClock.activeSelf) return;
         if (!highlight) return;
+        if (zooming) return;
 
-        switchToClock(highlightedClock);
+        float zoomDist = (highlightedClock.transform.position - currentClock.transform.position).magnitude;
+        //Debug.Log(zoomDist);
+        zoomSpeed = 10f * zoomDist / 5f;
+
+        zooming = true;
+        tempLocalPos = currentClock.transform.GetChild(0).localPosition;
+        //switchToClock(highlightedClock);
     }
 
     private void switchToClock(GameObject newClock)
@@ -76,6 +114,7 @@ public class ClockManager : MonoBehaviour
         //GameObject newClock = clocks[i];
         currentClock.GetComponent<Clock>().possessed = false;
         currentClock.GetComponent<Clock>().showHidden();
+        currentClock.transform.GetChild(0).localPosition = tempLocalPos;
         currentClock.transform.GetChild(0).gameObject.SetActive(false);
         revertHighlight(newClock);
 
@@ -87,6 +126,9 @@ public class ClockManager : MonoBehaviour
         highlightedClock = null;
         highlight = false;
         timer = 0;
+        zooming = false;
+        zoomSpeed = 10;
+        tempLocalPos = Vector3.zero;
 
     }
 
@@ -102,7 +144,7 @@ public class ClockManager : MonoBehaviour
         if (inputDir != Vector2.zero) return;
 
         inputDir = dir.normalized;
-        Debug.Log("Input direction: " + inputDir.x + ", " + inputDir.y);
+        //Debug.Log("Input direction: " + inputDir.x + ", " + inputDir.y);
 
         List<GameObject> visibleClocks = new List<GameObject>();
         Camera currentCam = currentClock.transform.GetChild(0).GetComponent<Camera>();
@@ -114,7 +156,7 @@ public class ClockManager : MonoBehaviour
                 if (clock != currentClock)
                 {
                     visibleClocks.Add(clock);
-                    Debug.Log("visible clock: " + clock.name);
+                    //Debug.Log("visible clock: " + clock.name);
                 }
             }
         }
@@ -134,7 +176,7 @@ public class ClockManager : MonoBehaviour
         for (int i = 0; i < visibleClocks.Count; i++) {
             temp += visibleClocks[i].name + ", ";
         }
-        Debug.Log("Sorted list :" + temp);
+        //Debug.Log("Sorted list :" + temp);
 
         //do the raymarching-ish algorithm
         Vector2 newPoint = origin;
@@ -161,7 +203,7 @@ public class ClockManager : MonoBehaviour
         // if we find a new clock to switch to
         if (targetClock != null)
         {
-            Debug.Log("can't find a valid clock");
+            //Debug.Log("can't find a valid clock");
             revertHighlight(highlightedClock);
             highlightedClock = targetClock;
             highlightAClock(highlightedClock);
@@ -173,7 +215,7 @@ public class ClockManager : MonoBehaviour
     public void resetInputDir()
     {
         inputDir = Vector2.zero;
-        Debug.Log("reset");
+        //Debug.Log("reset");
     }
 
     private bool IsInView(GameObject toCheck, Camera cam)
@@ -183,7 +225,7 @@ public class ClockManager : MonoBehaviour
         //Is in front
         if (pointOnScreen.z < 0)
         {
-            Debug.Log("Behind: " + toCheck.name);
+            //Debug.Log("Behind: " + toCheck.name);
             return false;
         }
 
@@ -191,7 +233,7 @@ public class ClockManager : MonoBehaviour
         if ((pointOnScreen.x < 0) || (pointOnScreen.x > Screen.width) ||
                 (pointOnScreen.y < 0) || (pointOnScreen.y > Screen.height))
         {
-            Debug.Log("OutOfBounds: " + toCheck.name);
+            //Debug.Log("OutOfBounds: " + toCheck.name);
             return false;
         }
 
@@ -209,10 +251,12 @@ public class ClockManager : MonoBehaviour
                 Debug.DrawLine(cam.transform.position, toCheck.GetComponentInChildren<Renderer>().bounds.center, Color.red);
                 Debug.LogError(toCheck.name + " occluded by " + hit.transform.name);
                 */
-                Debug.Log(toCheck.name + " occluded by " + hit.transform.name);
+                //Debug.Log(toCheck.name + " occluded by " + hit.transform.name);
                 return false;
             }
         }
+
+        if (!toCheck.activeSelf) return false;
         return true;
     }
 
@@ -233,13 +277,25 @@ public class ClockManager : MonoBehaviour
     {
         if (clock == null) return;
 
-        clock.transform.localScale = Vector3.one * 2;
+        //clock.transform.localScale = Vector3.one * 2;
+        //clock.transform.localScale = clock.transform.localScale * 2;
+
+        //clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = highlightMat;
+
+        Material mat = clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material;
+        savedColor = mat.color;
+        Color newCol = new Color(mat.color.r - 0.4f, mat.color.g - 0.4f, mat.color.b - 0.4f);
+        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material.color = newCol;
     }
 
     private void revertHighlight(GameObject clock)
     {
         if (clock == null) return;
 
-        clock.transform.localScale = Vector3.one * 1;
+        //clock.transform.localScale = Vector3.one * 1;
+        //clock.transform.localScale = clock.transform.localScale / 2;
+
+        //clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material = normalMat;
+        clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material.color = savedColor;
     }
 }

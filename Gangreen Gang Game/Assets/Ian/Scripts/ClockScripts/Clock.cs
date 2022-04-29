@@ -33,6 +33,8 @@ public class Clock : MonoBehaviour
     {
         Services.clockManager.clocks.Add(this.gameObject);
 
+        if (!possessed) transform.GetChild(0).gameObject.SetActive(false);
+
         tm = Services.timeManager;
         myMinute = (int)tm.minute;
         myHour = tm.hour;
@@ -89,12 +91,23 @@ public class Clock : MonoBehaviour
                     {
                         myMinute = (int)(tm.minute + minuteOffset);
                         myHour = tm.hour + hourOffset;
+
+                        if (myMinute >= 60)
+                        {
+                            myHour += myMinute / 60;
+                            myMinute %= 60;
+                        }
+                        if (myHour >= 24)
+                        {
+                            myHour %= 24;
+                        }
+
                         // update the minute and hour hands according to current time and offsets
                         float minuteAngle = myMinute * -6;
-                        minuteHand.transform.localEulerAngles = new Vector3(0, 0, minuteAngle);
+                        minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
 
                         float hourAngle = myHour * -30 + myMinute * -0.5f;
-                        hourHand.transform.localEulerAngles = new Vector3(0, 0, hourAngle);
+                        hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle);
 
                         if (stopped)
                         {
@@ -117,8 +130,9 @@ public class Clock : MonoBehaviour
 
 
             // if the rotation of the minute hand changed, play a sound
-            if (tempRot != minuteHand.transform.localEulerAngles)
+            if (tempRot.z != minuteHand.transform.localEulerAngles.z && (minuteHand.transform.localEulerAngles.z + tempRot.z != 360f))
             {
+                //Debug.Log("tempRot: " + tempRot.z + ", new rot: " + minuteHand.transform.localEulerAngles.z);
                 PlayTickSound();
             }
         }
@@ -128,18 +142,30 @@ public class Clock : MonoBehaviour
             {
                 myMinute = (int)(tm.minute + minuteOffset);
                 myHour = tm.hour + hourOffset;
+
+                if (myMinute >= 60)
+                {
+                    myHour += myMinute / 60;
+                    myMinute %= 60;
+                }
+                if (myHour >= 24)
+                {
+                    myHour %= 24;
+                }
+
                 // update the minute and hour hands according to current time and offsets
                 float minuteAngle = myMinute * -6;
-                if (possessed) minuteAngle *= -1;
+               // if (possessed) minuteAngle *= -1;
                 minuteHand.transform.localEulerAngles = new Vector3(0, 0, -minuteAngle);
 
                 float hourAngle = myHour * -30 + myMinute * -0.5f;
-                if (possessed) hourAngle *= -1;
+               // if (possessed) hourAngle *= -1;
                 hourHand.transform.localEulerAngles = new Vector3(0, 0, -hourAngle);
             }
         }
 
         //if (Services.inputManager.currentClock == this) possessed = true;
+        //Debug.DrawRay(transform.GetChild(0).position, transform.forward, Color.red, 5f);
     }
 
     /*
@@ -197,10 +223,14 @@ public class Clock : MonoBehaviour
     public void hide()
     {
         Transform cam = transform.GetChild(0);
-        RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.position - cam.position, 5f);
+        RaycastHit[] hits = Physics.RaycastAll(cam.position, transform.forward, 1f);
+        
+        //Debug.Log("hit.count: " + hits.Length);
+        //Debug.Log(cam.position);
+        //Debug.Log(transform.forward);
         foreach (RaycastHit hit in hits)
         {
-            if (hit.transform.gameObject.tag != "Hand")
+            if (hit.transform.gameObject.tag != "Hand" && hit.transform.gameObject.tag != "Room")
             {
                 hiddenObjs.Add(hit.transform.gameObject);
                 hit.transform.gameObject.SetActive(false);

@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
     public float deltaMinute;
 
     public bool skipping;
+    public float rewindSpeed = 10f;
     private Vector2 storedDir;
 
     private float skipAccumulator;
@@ -35,14 +36,15 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         directionalLight.transform.eulerAngles = new Vector3(hour * 15 + minute * 0.25f - 110, -30, 0);
-        if (skipping) return;
+        //if (skipping) return;
 
         //deltaMinute += Time.deltaTime;
         //if (deltaMinute > 1 || deltaMinute < 0) // <0 for when time gets rewinded
         {
             // do this so that when hour hand gets changed, we can just add to the deltaMinute variable to change time
             //int minutePassed = (int)deltaMinute;
-            minute += Time.deltaTime;
+            if (!skipping) minute += Time.deltaTime;
+            else minute -= Time.deltaTime * rewindSpeed;
 
             // do the conversion between day, hour, and minute
             int hourPassed = (int)(minute / 60);
@@ -68,6 +70,13 @@ public class TimeManager : MonoBehaviour
                 hour %= 24;
             }
             day += dayPassed;
+
+            // time limit
+            if (day == 0 && hour < 6)
+            {
+                hour = 6;
+                minute = 0f;
+            }
 
 
             // reset the deltaMinute variable

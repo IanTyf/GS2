@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI_Text : MonoBehaviour
 {
-    private Text speechText;
+    private static Text speechText;
 
     private void Awake()
     {
@@ -15,6 +15,11 @@ public class UI_Text : MonoBehaviour
     private void Start()
     {
         //speechText.text = "гавно";
-        TypeWriter.AddWriter_Static(speechText,"Hello World!", 0.1f, true);
+        //TypeWriter.AddWriter_Static(speechText,"Hello World!", 0.1f, true);
+    }
+
+    public static void Write(string txt, float timePerChar, bool invisibleChars)
+    {
+        TypeWriter.AddWriter_Static(UI_Text.speechText, txt, timePerChar, invisibleChars);
     }
 }
