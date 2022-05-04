@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Fastforward",
+                    "type": "Button",
+                    "id": "353657ca-4631-41ef-828b-0d6a6f13cfd3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,8 +137,8 @@
                 },
                 {
                     "name": "",
-                    "id": "34942f7d-64f7-48c6-8723-daaed4bacc22",
-                    "path": "<SwitchProControllerHID>/rightTrigger",
+                    "id": "c1e0e863-ab7c-4f4e-bf32-5ed338207d00",
+                    "path": "<XInputController>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -139,8 +148,8 @@
                 },
                 {
                     "name": "",
-                    "id": "5b4d5535-d69b-4770-b73d-73e2a6074b7f",
-                    "path": "<XInputController>/rightTrigger",
+                    "id": "629e84ab-065a-4b1a-bbf1-3089922b3f86",
+                    "path": "<SwitchProControllerHID>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -282,17 +291,6 @@
                 },
                 {
                     "name": "",
-                    "id": "91987e76-4193-4b73-95eb-46f381744366",
-                    "path": "<SwitchProControllerHID>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Stop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3cc8708e-2d00-4430-b5e5-68b12ecec0b2",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -304,8 +302,19 @@
                 },
                 {
                     "name": "",
-                    "id": "c5ac981c-bd8c-47d1-83c7-ce3e2c7cd4d5",
-                    "path": "<XInputController>/leftTrigger",
+                    "id": "6a99a04c-5eba-4139-b4f3-317551ee2a3a",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3b3a055-e028-408d-b116-960151cb7f83",
+                    "path": "<SwitchProControllerHID>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -337,8 +346,8 @@
                 },
                 {
                     "name": "",
-                    "id": "a62fa51c-8cd2-4c95-bc1e-f12bc0245b3e",
-                    "path": "<SwitchProControllerHID>/buttonWest",
+                    "id": "9f6b53c3-fedd-4be3-8e23-eed61cb8a19a",
+                    "path": "<SwitchProControllerHID>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -348,8 +357,19 @@
                 },
                 {
                     "name": "",
-                    "id": "4e3d6779-2d52-4d89-86b2-10706f120798",
-                    "path": "<XInputController>/buttonWest",
+                    "id": "72ca0792-c441-4252-927a-66110205f459",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rewind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55e7130c-0977-414b-851c-cece59372f2d",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -398,6 +418,39 @@
                     "processors": "StickDeadzone(min=0.7)",
                     "groups": "",
                     "action": "SwitchTask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0873f001-77ca-483a-b351-32da777d12cb",
+                    "path": "<SwitchProControllerHID>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fastforward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e543f431-fa24-4b65-94b9-7c40d9077132",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fastforward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4ef1d7e-5ca5-422b-b3ef-385d6c9adaab",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fastforward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

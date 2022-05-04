@@ -106,8 +106,16 @@ public class ObjectEventCustomer : MonoBehaviour
         if (!tm.skipping)
         {
             // set all animator including children's speedMult float to 1
-            anim.SetFloat("speedMult", 1);
-            setChildrenAnimatorSpeed(1);
+            if (tm.fastForwarding)
+            {
+                anim.SetFloat("speedMult", tm.fastForwardSpeed);
+                setChildrenAnimatorSpeed(tm.fastForwardSpeed);
+            }
+            else
+            {
+                anim.SetFloat("speedMult", 1);
+                setChildrenAnimatorSpeed(1);
+            }
 
             // when we're at the end of a clip, action state will be set to listening by the setListeningActions function, and we start listening for the next action
             if (actionState == ActionState.Listening)

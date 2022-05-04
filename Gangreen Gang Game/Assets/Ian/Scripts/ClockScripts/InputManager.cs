@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     private InputAction switchClock;
     private InputAction goToClock;
     private InputAction rewind;
+    private InputAction fastforward;
     private InputAction toggleUI;
     private InputAction switchTask;
 
@@ -63,6 +64,10 @@ public class InputManager : MonoBehaviour
         rewind = playerInput.actions["Rewind"];
         rewind.started += onRewind;
         rewind.canceled += onStopRewind;
+
+        fastforward = playerInput.actions["Fastforward"];
+        fastforward.started += onFastforward;
+        fastforward.canceled += onStopFastforward;
 
         toggleUI = playerInput.actions["ToggleUI"];
         toggleUI.started += onToggleUI;
@@ -159,12 +164,26 @@ public class InputManager : MonoBehaviour
 
     private void onRewind(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.fastForwarding) return;
         Services.timeManager.skipping = true;
     }
 
     private void onStopRewind(InputAction.CallbackContext ctx)
     {
+        if (Services.timeManager.fastForwarding) return;
         Services.timeManager.skipping = false;
+    }
+
+    private void onFastforward(InputAction.CallbackContext ctx)
+    {
+        if (Services.timeManager.skipping) return;
+        Services.timeManager.fastForwarding = true;
+    }
+
+    private void onStopFastforward(InputAction.CallbackContext ctx)
+    {
+        if (Services.timeManager.skipping) return;
+        Services.timeManager.fastForwarding = false;
     }
 
     private void onToggleUI(InputAction.CallbackContext ctx)

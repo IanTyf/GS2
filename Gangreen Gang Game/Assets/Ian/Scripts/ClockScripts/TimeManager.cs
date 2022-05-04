@@ -12,6 +12,10 @@ public class TimeManager : MonoBehaviour
 
     public bool skipping;
     public float rewindSpeed = 10f;
+
+    public bool fastForwarding;
+    public float fastForwardSpeed = 10f;
+
     private Vector2 storedDir;
 
     private float skipAccumulator;
@@ -43,7 +47,13 @@ public class TimeManager : MonoBehaviour
         {
             // do this so that when hour hand gets changed, we can just add to the deltaMinute variable to change time
             //int minutePassed = (int)deltaMinute;
-            if (!skipping) minute += Time.deltaTime;
+            if (!skipping)
+            {
+                if (fastForwarding)
+                    minute += Time.deltaTime * fastForwardSpeed;
+                else
+                    minute += Time.deltaTime;
+            }
             else minute -= Time.deltaTime * rewindSpeed;
 
             // do the conversion between day, hour, and minute
