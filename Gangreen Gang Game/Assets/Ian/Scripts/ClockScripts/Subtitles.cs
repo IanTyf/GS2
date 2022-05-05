@@ -35,7 +35,7 @@ public class Subtitles : MonoBehaviour
     public static string p3Beau8 = "Beauregard: There wasn't money to be made in the store after he died. No one wanted a crusty, old shop.";
     public static string p3Beau9 = "Beauregard: And now the value of the property has gone up recently.";
     public static string p3Niece6 = "Niece: You're sick. Doesn't matter though, The store belongs to me.";
-    public static string p3Beau10 = "Don't worry I'll make sure you get an offer you can't refuse.";
+    public static string p3Beau10 = "Beauregard: Don't worry I'll make sure you get an offer you can't refuse.";
 
     public static string p3Beau11 = "Oh! Looks like I have some time before my meeting.";
     public static string p3Beau12 = "You'll have to excuse me.";

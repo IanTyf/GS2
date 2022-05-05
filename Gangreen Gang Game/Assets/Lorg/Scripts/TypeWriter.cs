@@ -80,7 +80,8 @@ public class TypeWriter : MonoBehaviour
                 timer -= Time.deltaTime;
                 while (timer <= 0f)
                 {
-                    timer += timePerCharacter;
+                    if (!Services.timeManager.fastForwarding) timer += timePerCharacter;
+                    else timer += timePerCharacter / Services.timeManager.fastForwardSpeed;
                     characterIndex++;
                         string text = textToWrite.Substring(0, characterIndex);
                     if (invisibleCharacters)
@@ -93,7 +94,8 @@ public class TypeWriter : MonoBehaviour
                     // when writing ends, keeps writing empty space
                     if (characterIndex == textToWrite.Length)
                     {
-                        timer += 1f;
+                        if (Services.timeManager.fastForwarding) timer += 1 / Services.timeManager.fastForwardSpeed;
+                        else timer += 1f;
                         textToWrite = " ";
                         characterIndex = 0;
                         this.finished = true;
@@ -111,11 +113,13 @@ public class TypeWriter : MonoBehaviour
                     {
                         if (textToWrite[characterIndex - 1].Equals(','))
                         {
-                            timer += timePerCharacter * 4;
+                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 4 / Services.timeManager.fastForwardSpeed;
+                            else timer += timePerCharacter * 4;
                         }
                         if (textToWrite[characterIndex - 1].Equals('.'))
                         {
-                            timer += timePerCharacter * 6;
+                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 6 / Services.timeManager.fastForwardSpeed;
+                            else timer += timePerCharacter * 6;
                         }
                     }
                 }

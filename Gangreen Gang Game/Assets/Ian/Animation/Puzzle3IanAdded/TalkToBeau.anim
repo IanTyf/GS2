@@ -31,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 7.5
+    m_StopTime: 72.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -52,25 +52,32 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: playChildAnim
-    data: Niece_Child, Talk, 1
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: setActionState
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.5
+  - time: 0
+    functionName: playChildAnim
+    data: Niece_Child, Talk, 1
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4166666
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 12
+    messageOptions: 0
+  - time: 5.45
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 13
     messageOptions: 0
   - time: 7.233333
     functionName: playChildAnim
@@ -79,7 +86,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 7.5
+  - time: 19.2
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 17
+    messageOptions: 0
+  - time: 24.5
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 18
+    messageOptions: 0
+  - time: 48.383335
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 22
+    messageOptions: 0
+  - time: 68.55
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 25
+    messageOptions: 0
+  - time: 72.5
     functionName: setListeningActions
     data: 
     objectReferenceParameter: {fileID: 0}
