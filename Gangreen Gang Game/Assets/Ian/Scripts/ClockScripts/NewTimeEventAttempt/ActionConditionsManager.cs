@@ -40,6 +40,9 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2soldRightClock;
     public ActionCondition P2soldWrongClock;
 
+    // puzzle #3
+    public ActionCondition P3beauWalksIn;
+
 
     void Awake()
     {
@@ -68,6 +71,9 @@ public class ActionConditionsManager : MonoBehaviour
         P2soldRightClock = new ActionCondition("P2soldRightClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2soldWrongClock = new ActionCondition("P2soldWrongClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
+        // puzzle #3
+        P3beauWalksIn = new ActionCondition("P3beauWalksIn", new Vector3(0, 10, 30), new Vector3(1, 0, 0));
+
 
         allActionConditions.Add(P1goToAlarmClock);
         allActionConditions.Add(P1ringAlarmClockEarly);
@@ -88,6 +94,8 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2customerLeave);
         allActionConditions.Add(P2soldRightClock);
         allActionConditions.Add(P2soldWrongClock);
+
+        allActionConditions.Add(P3beauWalksIn);
     }
 
     void Start()
@@ -176,6 +184,14 @@ public class ActionConditionsManager : MonoBehaviour
             {
                 setReady(P2failed);
             }
+
+            // P3beauWalksIn
+            if (P3beauWalksIn.withinTimeWindow(currentM) && P3beauWalksIn.state != CondState.Ready)
+            {
+                setReady(P3beauWalksIn);
+            }
+
+
 
             isRinging = false;
         }

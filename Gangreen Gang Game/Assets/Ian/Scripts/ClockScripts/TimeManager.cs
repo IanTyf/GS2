@@ -39,7 +39,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        directionalLight.transform.eulerAngles = new Vector3(hour * 15 + minute * 0.25f - 110, -30, 0);
+        //directionalLight.transform.eulerAngles = new Vector3(hour * 15 + minute * 0.25f - 110, -30, 0);
         //if (skipping) return;
 
         //deltaMinute += Time.deltaTime;
