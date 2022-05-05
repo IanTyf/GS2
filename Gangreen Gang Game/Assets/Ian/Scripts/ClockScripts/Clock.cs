@@ -29,6 +29,10 @@ public class Clock : MonoBehaviour
 
     public List<GameObject> hiddenObjs = new List<GameObject>();
 
+    public float rumbleTime;
+    public float rumbleLowFreq;
+    public float rumbleHighFreq;
+
     private void Start()
     {
         Services.clockManager.clocks.Add(this.gameObject);

@@ -45,6 +45,8 @@ public class AudioManagerScript : MonoBehaviour
 
     public void updateRingAudios()
     {
+        leftRingAudios.Clear();
+        rightRingAudios.Clear();
         updateRingAudios("left");
         updateRingAudios("right");
     }
@@ -55,7 +57,8 @@ public class AudioManagerScript : MonoBehaviour
             return;
         }
 
-        Transform sounds = CameraScript.cam.transform.parent.Find(side+"Sounds");
+        //Transform sounds = CameraScript.cam.transform.parent.Find(side+"Sounds");
+        Transform sounds = Services.clockManager.currentClock.transform.Find(side + "Sounds");
         for (int i = 0; i<sounds.childCount; i++) {
             GameObject audio = sounds.GetChild(i).gameObject;
             if (side == "left") leftRingAudios.Add(audio);

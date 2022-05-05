@@ -123,6 +123,9 @@ public class ClockManager : MonoBehaviour
         currentClock.GetComponent<Clock>().hide();
         currentClock.transform.GetChild(0).gameObject.SetActive(true);
 
+        // update the ring sounds in audio manager
+        Services.audioManager.updateRingAudios();
+
         highlightedClock = null;
         highlight = false;
         timer = 0;
