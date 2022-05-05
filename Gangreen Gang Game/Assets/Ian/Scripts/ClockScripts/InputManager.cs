@@ -202,8 +202,14 @@ public class InputManager : MonoBehaviour
         if (dir.y > 0.5) Services.taskUIManager.PrevTask();
     }
 
-    private void getGamepad()
+    public void rumble(float low, float high)
     {
-        Debug.Log(Gamepad.current.name);
+        Gamepad.current.SetMotorSpeeds(low, high);
+    }
+
+    public void stopRumble()
+    {
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
+        Gamepad.current.ResetHaptics();
     }
 }

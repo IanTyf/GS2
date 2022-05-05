@@ -7298,6 +7298,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1009903369
 GameObject:
   m_ObjectHideFlags: 0
@@ -8013,6 +8016,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1060083615
 GameObject:
   m_ObjectHideFlags: 0
@@ -9897,6 +9903,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1232514975
 GameObject:
   m_ObjectHideFlags: 0
@@ -10848,6 +10857,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!43 &1439655927
 Mesh:
   m_ObjectHideFlags: 0
@@ -11525,6 +11537,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1479060073
 GameObject:
   m_ObjectHideFlags: 0
@@ -13370,6 +13385,8 @@ MonoBehaviour:
   deltaMinute: 0
   skipping: 0
   rewindSpeed: 10
+  fastForwarding: 0
+  fastForwardSpeed: 10
   directionalLight: {fileID: 649216705}
 --- !u!1 &1776262037
 GameObject:
@@ -14456,6 +14473,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &2002600003
 GameObject:
   m_ObjectHideFlags: 0
@@ -20922,6 +20942,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!4 &5278464838838090816
 Transform:
   m_ObjectHideFlags: 0
@@ -22448,6 +22471,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!4 &7188144233864353716
 Transform:
   m_ObjectHideFlags: 0

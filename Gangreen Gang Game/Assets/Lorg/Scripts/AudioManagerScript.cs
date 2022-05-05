@@ -13,6 +13,8 @@ public class AudioManagerScript : MonoBehaviour
     public List<GameObject> leftRingAudios = new List<GameObject>();
     public List<GameObject> rightRingAudios = new List<GameObject>();
 
+    private bool rumbling;
+
     private void Awake()
     {
         Services.audioManager = this;
@@ -71,6 +73,7 @@ public class AudioManagerScript : MonoBehaviour
         int randomNum = Random.Range(0, leftRingAudios.Count);
         AudioSource randomAudioSource = leftRingAudios[randomNum].GetComponent<AudioSource>();
         randomAudioSource.PlayOneShot(randomAudioSource.clip, randomAudioSource.volume);
+        rumble();
     }
 
     public void playRightAudio()
@@ -78,5 +81,25 @@ public class AudioManagerScript : MonoBehaviour
         int randomNum = Random.Range(0, rightRingAudios.Count);
         AudioSource randomAudioSource = rightRingAudios[randomNum].GetComponent<AudioSource>();
         randomAudioSource.PlayOneShot(randomAudioSource.clip, randomAudioSource.volume);
+        rumble();
+    }
+
+    public void rumble()
+    {
+        Clock clock = Services.clockManager.currentClock.GetComponent<Clock>();
+        float time = clock.rumbleTime;
+        float lowFreq = clock.rumbleLowFreq;
+        float highFreq = clock.rumbleHighFreq;
+        if (!rumbling)
+            StartCoroutine(rumbleForSeconds(time, lowFreq, highFreq));
+    }
+
+    IEnumerator rumbleForSeconds(float time, float low, float high)
+    {
+        Services.inputManager.rumble(low, high);
+        rumbling = true;
+        yield return new WaitForSeconds(time);
+        Services.inputManager.stopRumble();
+        rumbling = false;
     }
 }
