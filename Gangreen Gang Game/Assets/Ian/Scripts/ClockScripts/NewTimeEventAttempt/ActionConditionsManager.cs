@@ -42,6 +42,8 @@ public class ActionConditionsManager : MonoBehaviour
 
     // puzzle #3
     public ActionCondition P3beauWalksIn;
+    public ActionCondition P3beauStartTalking;
+    public ActionCondition P3NieceStartTalking;
 
 
     void Awake()
@@ -73,6 +75,8 @@ public class ActionConditionsManager : MonoBehaviour
 
         // puzzle #3
         P3beauWalksIn = new ActionCondition("P3beauWalksIn", new Vector3(0, 10, 30), new Vector3(1, 0, 0));
+        P3beauStartTalking = new ActionCondition("P3beauStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P3NieceStartTalking = new ActionCondition("P3nieceStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -96,6 +100,8 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2soldWrongClock);
 
         allActionConditions.Add(P3beauWalksIn);
+        allActionConditions.Add(P3beauStartTalking);
+        allActionConditions.Add(P3NieceStartTalking);
     }
 
     void Start()

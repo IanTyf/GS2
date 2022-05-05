@@ -64,7 +64,10 @@ public class ObjectEventNiece : MonoBehaviour
         TimeAction byeCustomer = new TimeAction("byeCustomer", "ByeCustomer", byeCustomerConds);
         allActions.Add(byeCustomer);
 
-
+        // puzzle #3
+        ActionCondition[] startTalkingConds = { acm.P3NieceStartTalking };
+        TimeAction talkToBeau = new TimeAction("talkToBeau", "TalkToBeau", startTalkingConds);
+        allActions.Add(talkToBeau);
 
         // initial listening actions
         currentTimeAction = initialTA;

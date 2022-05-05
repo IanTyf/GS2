@@ -622,9 +622,16 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 4.85
+    functionName: setAC
+    data: P3beauStartTalking
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 4.883333
     functionName: setListeningActions
-    data: 
+    data: startTalking
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

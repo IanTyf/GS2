@@ -47,6 +47,10 @@ public class ObjectEventBeau : MonoBehaviour
         TimeAction walkIn = new TimeAction("walkIn", "WalkIn1", walkInConds);
         allActions.Add(walkIn);
 
+        ActionCondition[] startTalkingConds = { acm.P3beauStartTalking };
+        TimeAction startTalking = new TimeAction("startTalking", "TalkToNiece1", startTalkingConds);
+        allActions.Add(startTalking);
+
         // initial listening actions
         currentTimeAction = initialTA;
     }
