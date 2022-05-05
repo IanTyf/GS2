@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18256
+  m_Name: pb_Mesh26252
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5743,7 +5743,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18774
+  m_Name: pb_Mesh26964
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7298,6 +7298,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1009903369
 GameObject:
   m_ObjectHideFlags: 0
@@ -8013,6 +8016,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1060083615
 GameObject:
   m_ObjectHideFlags: 0
@@ -9897,6 +9903,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1232514975
 GameObject:
   m_ObjectHideFlags: 0
@@ -10848,13 +10857,16 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!43 &1439655927
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18958
+  m_Name: pb_Mesh27204
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11525,6 +11537,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &1479060073
 GameObject:
   m_ObjectHideFlags: 0
@@ -11982,7 +11997,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18740
+  m_Name: pb_Mesh26900
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12569,7 +12584,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18402
+  m_Name: pb_Mesh26472
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13370,6 +13385,8 @@ MonoBehaviour:
   deltaMinute: 0
   skipping: 0
   rewindSpeed: 10
+  fastForwarding: 0
+  fastForwardSpeed: 10
   directionalLight: {fileID: 649216705}
 --- !u!1 &1776262037
 GameObject:
@@ -14456,6 +14473,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!1 &2002600003
 GameObject:
   m_ObjectHideFlags: 0
@@ -17472,6 +17492,7 @@ GameObject:
   - component: {fileID: 2021388234058705858}
   - component: {fileID: 2021388234058705859}
   - component: {fileID: 2021388234058705868}
+  - component: {fileID: 2021388234058705871}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -17479,6 +17500,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2021388234058705871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021388234058705870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.30111146, g: 1, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!33 &2054326626728441741
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20922,6 +20961,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!4 &5278464838838090816
 Transform:
   m_ObjectHideFlags: 0
@@ -22448,6 +22490,9 @@ MonoBehaviour:
   stopped: 0
   tickSounds: []
   hiddenObjs: []
+  rumbleTime: 0.5
+  rumbleLowFreq: 0.3
+  rumbleHighFreq: 0.5
 --- !u!4 &7188144233864353716
 Transform:
   m_ObjectHideFlags: 0

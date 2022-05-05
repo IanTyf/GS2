@@ -180,8 +180,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: playChildAnim
-    data: Customer_Child, RightTurn, 1
+    functionName: playBackCheck
+    data: LeftTurn
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

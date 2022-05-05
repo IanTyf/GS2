@@ -325,7 +325,7 @@
                 {
                     "name": "",
                     "id": "7982bacb-c6c6-4846-aa6d-520f4e685517",
-                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "path": "<SwitchProControllerHID>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -336,7 +336,7 @@
                 {
                     "name": "",
                     "id": "bbd7b0a2-7da5-4810-bb37-3d9df7ff10d5",
-                    "path": "<XInputController>/buttonEast",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

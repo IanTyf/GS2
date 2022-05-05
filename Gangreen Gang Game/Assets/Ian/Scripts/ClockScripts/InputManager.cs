@@ -74,6 +74,10 @@ public class InputManager : MonoBehaviour
 
         switchTask = playerInput.actions["SwitchTask"];
         switchTask.performed += onSwitchTask;
+
+        //getGamepad();
+        //Gamepad gp = getGamepad();
+        //Debug.Log(gp.name);
     }
 
     private void Update()
@@ -196,5 +200,16 @@ public class InputManager : MonoBehaviour
         Vector2 dir = ctx.ReadValue<Vector2>();
         if (dir.y < -0.5) Services.taskUIManager.NextTask();
         if (dir.y > 0.5) Services.taskUIManager.PrevTask();
+    }
+
+    public void rumble(float low, float high)
+    {
+        Gamepad.current.SetMotorSpeeds(low, high);
+    }
+
+    public void stopRumble()
+    {
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
+        Gamepad.current.ResetHaptics();
     }
 }
