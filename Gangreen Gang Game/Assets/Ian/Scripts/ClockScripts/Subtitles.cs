@@ -66,6 +66,21 @@ public class Subtitles : MonoBehaviour
     public static string p4Beau4 = "Beauregard: I lost buyers because of you.";
     public static string p4Beau5 = "Beauregard: Anyway, I'll be back down with them soon.";
 
+    public static string p4Buyer11 = "Buyer1: I must say Mr. Clockenspiel, this lot has potential.";
+    public static string p4Buyer21 = "Buyer2: I agree. Lots of light and location is great.";
+    public static string p4Buyer22 = "Buyer2: All we need is to clear up all these old clocks and it's perfect.";
+
+    public static string p4Buyer12 = "Buyer1: My papa used to have a clock like this.";
+    public static string p4Buyer23 = "This is the type of clock I had in my room.";
+
+    public static string p4Buyer13 = "Buyer1: Mr. Clockenspiel, we all feel that it wouldn't be right tearing this place down.";
+    public static string p4BeauSad = "But gentleman! Think of the potential!";
+    public static string p4Buyer14 = "Our mind is decided, Good day Mr. Clockenspiel.";
+
+    public static string p4Buyer15 = "Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
+    public static string p4BeauHappy = "Absolutely, gentlemen! We can do that right now.";
+    public static string p4NieceEnd = "Alright, Lets hear your price.";
+
 
     // Start is called before the first frame update
     void Start()
@@ -226,6 +241,39 @@ public class Subtitles : MonoBehaviour
                 break;
             case 48:
                 UI_Text.Write(p4Beau5, textSpeed, true);
+                break;
+            case 49:
+                UI_Text.Write(p4Buyer11, textSpeed, true);
+                break;
+            case 50:
+                UI_Text.Write(p4Buyer21, textSpeed, true);
+                break;
+            case 51:
+                UI_Text.Write(p4Buyer22, textSpeed, true);
+                break;
+            case 52:
+                UI_Text.Write(p4Buyer12, textSpeed, true);
+                break;
+            case 53:
+                UI_Text.Write(p4Buyer23, textSpeed, true);
+                break;
+            case 54:
+                UI_Text.Write(p4Buyer13, textSpeed, true);
+                break;
+            case 55:
+                UI_Text.Write(p4BeauSad, textSpeed, true);
+                break;
+            case 56:
+                UI_Text.Write(p4Buyer14, textSpeed, true);
+                break;
+            case 57:
+                UI_Text.Write(p4Buyer15, textSpeed, true);
+                break;
+            case 58:
+                UI_Text.Write(p4BeauHappy, textSpeed, true);
+                break;
+            case 59:
+                UI_Text.Write(p4NieceEnd, textSpeed, true);
                 break;
         }
     }

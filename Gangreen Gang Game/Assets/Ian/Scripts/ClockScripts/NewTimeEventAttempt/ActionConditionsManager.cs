@@ -56,7 +56,13 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P4beauCallNormal;
     public ActionCondition P4beauCallMad;
 
+    public ActionCondition P4beauWalksIn;
     public ActionCondition P4BuyerOneWalksIn;
+    public ActionCondition P4BuyerTwoWalksIn;
+
+    public ActionCondition P4BuyerOneFinished;
+    public ActionCondition P4BuyerTwoFinished;
+    public ActionCondition P4BeauGreets;
 
 
     void Awake()
@@ -99,7 +105,13 @@ public class ActionConditionsManager : MonoBehaviour
         // puzzle #4
         P4beauCallNormal = new ActionCondition("P4beauCallNormal", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
         P4beauCallMad = new ActionCondition("P4beauCallMad", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
+        P4beauWalksIn = new ActionCondition("P4beauWalksIn", new Vector3(0, 14, 19), new Vector3(0, 14, 24));
         P4BuyerOneWalksIn = new ActionCondition("P4buyerOneWalksIn", new Vector3(0, 14, 20), new Vector3(0, 14, 25));
+        //P4BuyerTwoWalksIn
+
+        P4BuyerOneFinished = new ActionCondition("P4buyerOneFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BuyerTwoFinished = new ActionCondition("P4buyerTwoFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BeauGreets = new ActionCondition("P4beauGreets", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
 
 
@@ -134,7 +146,12 @@ public class ActionConditionsManager : MonoBehaviour
 
         allActionConditions.Add(P4beauCallNormal);
         allActionConditions.Add(P4beauCallMad);
+        allActionConditions.Add(P4beauWalksIn);
         allActionConditions.Add(P4BuyerOneWalksIn);
+        //allActionConditions.Add(P4BuyerTwoWalksIn);
+        allActionConditions.Add(P4BuyerOneFinished);
+        allActionConditions.Add(P4BuyerTwoFinished);
+        allActionConditions.Add(P4BeauGreets);
     }
 
     void Start()
@@ -272,10 +289,30 @@ public class ActionConditionsManager : MonoBehaviour
                 setReady(P4beauCallMad);
             }
 
+            // P4beauWalksIn
+            if (P4beauWalksIn.withinTimeWindow(currentM) && P4beauWalksIn.state != CondState.Ready)
+            {
+                setReady(P4beauWalksIn);
+            }
+
             // P4buyerOneWalksIn
             if (P4BuyerOneWalksIn.withinTimeWindow(currentM) && P4BuyerOneWalksIn.state != CondState.Ready)
             {
                 setReady(P4BuyerOneWalksIn);
+            }
+
+            // P4buyerTwoWalksIn
+
+            // P4beauGreets
+            if (P4BeauGreets.withinTimeWindow(currentM) && P4BeauGreets.state != CondState.Ready)
+            {
+                if (P4BuyerOneFinished.state == CondState.Ready)
+                {
+                    if (P3beauCheckWatchLate.state == CondState.Ready || P4BuyerTwoFinished.state == CondState.Ready)
+                    {
+                        setReady(P4BeauGreets);
+                    }
+                }
             }
 
 

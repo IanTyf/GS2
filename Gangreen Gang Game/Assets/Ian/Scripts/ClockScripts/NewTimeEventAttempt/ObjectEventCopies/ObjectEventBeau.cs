@@ -62,6 +62,17 @@ public class ObjectEventBeau : MonoBehaviour
         TimeAction leave = new TimeAction("leave", "Leave1", leaveConds);
         allActions.Add(leave);
 
+
+        // puzzle #4
+        ActionCondition[] walkInWithBuyersConds = { acm.P4beauWalksIn };
+        TimeAction walkInWithBuyers = new TimeAction("walkInWithBuyers", "WalkIn2", walkInWithBuyersConds);
+        allActions.Add(walkInWithBuyers);
+
+        ActionCondition[] greetBuyersConds = { acm.P4BeauGreets };
+        TimeAction greetBuyers = new TimeAction("greetBuyers", "BeauToBuyer1", greetBuyersConds);
+        allActions.Add(greetBuyers);
+
+
         // initial listening actions
         currentTimeAction = initialTA;
     }
