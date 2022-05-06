@@ -716,6 +716,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: setActionState
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 5.1
     functionName: playChildAnim
     data: Buyer1_Child, Walk, 0
@@ -732,7 +739,7 @@ AnimationClip:
     messageOptions: 0
   - time: 5.516667
     functionName: playChildAnim
-    data: Buyer1_Child, LeftTurn, 1
+    data: Buyer1_Child, LeftTurn, 0
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -761,6 +768,13 @@ AnimationClip:
   - time: 8.183333
     functionName: playChildAnim
     data: Buyer1_Child, RightTurn, 0
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 8.4
+    functionName: setListeningActions
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

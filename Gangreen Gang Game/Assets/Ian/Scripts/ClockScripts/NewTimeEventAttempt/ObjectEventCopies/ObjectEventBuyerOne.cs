@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectEventBeau : MonoBehaviour
+public class ObjectEventBuyerOne : MonoBehaviour
 {
     public List<TimeAction> allActions = new List<TimeAction>();
 
@@ -35,32 +35,13 @@ public class ObjectEventBeau : MonoBehaviour
 
         // add all the action events of this object, one action event per anim clip
         // initial idle state
-        TimeAction initialTA = new TimeAction("init", "BeauOutsideIdle");
+        TimeAction initialTA = new TimeAction("init", "BuyerInit");
 
-        // puzzle #3
-        ActionCondition[] walkInConds = { acm.P3beauWalksIn };
-        TimeAction walkIn = new TimeAction("walkIn", "WalkIn1", walkInConds);
-        allActions.Add(walkIn);
-
-        ActionCondition[] startTalkingConds = { acm.P3beauStartTalking };
-        TimeAction startTalking = new TimeAction("startTalking", "TalkToNiece1", startTalkingConds);
-        allActions.Add(startTalking);
-
-        ActionCondition[] checkWatchConds = { acm.P3beauCheckWatchNormal };
-        TimeAction checkWatch = new TimeAction("checkWatch", "CheckWatch", checkWatchConds);
-        allActions.Add(checkWatch);
-
-        ActionCondition[] checkWatchLateConds = { acm.P3beauCheckWatchLate };
-        TimeAction checkWatchLate = new TimeAction("checkWatchLate", "CheckWatchLate", checkWatchLateConds);
-        allActions.Add(checkWatchLate);
-
-        ActionCondition[] checkWatchWrongConds = { acm.P3beauCheckWatchWrong };
-        TimeAction checkWatchWrong = new TimeAction("checkWatchWrong", "CheckWatchWrong", checkWatchWrongConds);
-        allActions.Add(checkWatchWrong);
-
-        ActionCondition[] leaveConds = { acm.P3beauLeave };
-        TimeAction leave = new TimeAction("leave", "Leave1", leaveConds);
-        allActions.Add(leave);
+        // puzzle #4
+        ActionCondition[] walksInConds = { acm.P4BuyerOneWalksIn };
+        TimeAction walksIn = new TimeAction("walksIn", "Walkin", walksInConds);
+        allActions.Add(walksIn);
+        
 
         // initial listening actions
         currentTimeAction = initialTA;

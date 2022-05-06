@@ -56,6 +56,8 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P4beauCallNormal;
     public ActionCondition P4beauCallMad;
 
+    public ActionCondition P4BuyerOneWalksIn;
+
 
     void Awake()
     {
@@ -97,6 +99,7 @@ public class ActionConditionsManager : MonoBehaviour
         // puzzle #4
         P4beauCallNormal = new ActionCondition("P4beauCallNormal", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
         P4beauCallMad = new ActionCondition("P4beauCallMad", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
+        P4BuyerOneWalksIn = new ActionCondition("P4buyerOneWalksIn", new Vector3(0, 14, 20), new Vector3(0, 14, 25));
 
 
 
@@ -131,6 +134,7 @@ public class ActionConditionsManager : MonoBehaviour
 
         allActionConditions.Add(P4beauCallNormal);
         allActionConditions.Add(P4beauCallMad);
+        allActionConditions.Add(P4BuyerOneWalksIn);
     }
 
     void Start()
@@ -267,6 +271,13 @@ public class ActionConditionsManager : MonoBehaviour
             {
                 setReady(P4beauCallMad);
             }
+
+            // P4buyerOneWalksIn
+            if (P4BuyerOneWalksIn.withinTimeWindow(currentM) && P4BuyerOneWalksIn.state != CondState.Ready)
+            {
+                setReady(P4BuyerOneWalksIn);
+            }
+
 
             isRinging = false;
         }
