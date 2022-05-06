@@ -6,6 +6,8 @@ public enum CondState { NotSet, Ready, Greyed };
 
 public class ActionConditionsManager : MonoBehaviour
 {
+    public Clock beauWatch;
+
     private TimeManager tm;
     private ClockManager cm;
 
@@ -44,6 +46,9 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P3beauWalksIn;
     public ActionCondition P3beauStartTalking;
     public ActionCondition P3NieceStartTalking;
+    public ActionCondition P3beauCheckWatchNormal;
+    public ActionCondition P3beauCheckWatchLate;
+    public ActionCondition P3beauCheckWatchWrong;
 
 
     void Awake()
@@ -77,6 +82,10 @@ public class ActionConditionsManager : MonoBehaviour
         P3beauWalksIn = new ActionCondition("P3beauWalksIn", new Vector3(0, 10, 30), new Vector3(1, 0, 0));
         P3beauStartTalking = new ActionCondition("P3beauStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P3NieceStartTalking = new ActionCondition("P3nieceStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P3beauCheckWatchNormal = new ActionCondition("P3beauCheckWatchNormal", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
+        P3beauCheckWatchLate = new ActionCondition("P3beauCheckWatchLate", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
+        P3beauCheckWatchWrong = new ActionCondition("P3beauCheckWatchWrong", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
+
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -102,6 +111,9 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P3beauWalksIn);
         allActionConditions.Add(P3beauStartTalking);
         allActionConditions.Add(P3NieceStartTalking);
+        allActionConditions.Add(P3beauCheckWatchNormal);
+        allActionConditions.Add(P3beauCheckWatchLate);
+        allActionConditions.Add(P3beauCheckWatchWrong);
     }
 
     void Start()
@@ -197,6 +209,35 @@ public class ActionConditionsManager : MonoBehaviour
                 setReady(P3beauWalksIn);
             }
 
+            // P3beauCheckWatchNormal
+            if (P3beauCheckWatchNormal.withinTimeWindow(currentM) && P3beauCheckWatchNormal.state != CondState.Ready)
+            {
+                int mDiff = minutesFromRealTime();
+                if (mDiff > -31 && mDiff < 1) 
+                {
+                    setReady(P3beauCheckWatchNormal);
+                }
+            }
+
+            // P3beauCheckWatchLate
+            if (P3beauCheckWatchLate.withinTimeWindow(currentM) && P3beauCheckWatchLate.state != CondState.Ready)
+            {
+                int mDiff = minutesFromRealTime();
+                if (mDiff > 0 && mDiff < 31)
+                {
+                    setReady(P3beauCheckWatchLate);
+                }
+            }
+
+            // P3beauCheckWatchWrong
+            if (P3beauCheckWatchWrong.withinTimeWindow(currentM) && P3beauCheckWatchWrong.state != CondState.Ready)
+            {
+                int mDiff = minutesFromRealTime();
+                if (mDiff > 30 || mDiff < -30)
+                {
+                    setReady(P3beauCheckWatchWrong);
+                }
+            }
 
 
             isRinging = false;
@@ -270,6 +311,20 @@ public class ActionConditionsManager : MonoBehaviour
     private float minutes(Vector3 t)
     {
         return t.x * 24 * 60 + t.y * 60 + t.z;
+    }
+
+    // if positive, watch is late; if negative, watch is early
+    private int minutesFromRealTime()
+    {
+        if (beauWatch == null) return 0;
+        int hr = beauWatch.myHour;
+        int mi = beauWatch.myMinute;
+        int realHr = Services.timeManager.hour;
+        int realMinute = (int)Services.timeManager.minute;
+        int mDiff = realMinute - mi;
+        mDiff += (realHr - hr) * 60;
+        Debug.Log("watch is " + mDiff + " minutes late");
+        return mDiff;
     }
 }
 

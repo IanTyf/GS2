@@ -7299,6 +7299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f7c6fa40e8e7345a61129694fa8c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beauWatch: {fileID: 7188144233864353715}
   isRinging: 0
 --- !u!1 &991112861
 GameObject:

@@ -51,6 +51,18 @@ public class ObjectEventBeau : MonoBehaviour
         TimeAction startTalking = new TimeAction("startTalking", "TalkToNiece1", startTalkingConds);
         allActions.Add(startTalking);
 
+        ActionCondition[] checkWatchConds = { acm.P3beauCheckWatchNormal };
+        TimeAction checkWatch = new TimeAction("checkWatch", "CheckWatch", checkWatchConds);
+        allActions.Add(checkWatch);
+
+        ActionCondition[] checkWatchLateConds = { acm.P3beauCheckWatchLate };
+        TimeAction checkWatchLate = new TimeAction("checkWatchLate", "CheckWatchLate", checkWatchLateConds);
+        allActions.Add(checkWatchLate);
+
+        ActionCondition[] checkWatchWrongConds = { acm.P3beauCheckWatchWrong };
+        TimeAction checkWatchWrong = new TimeAction("checkWatchWrong", "CheckWatchWrong", checkWatchWrongConds);
+        allActions.Add(checkWatchWrong);
+
         // initial listening actions
         currentTimeAction = initialTA;
     }

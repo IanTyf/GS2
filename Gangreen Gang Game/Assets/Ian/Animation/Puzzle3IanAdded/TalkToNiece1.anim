@@ -413,7 +413,7 @@ AnimationClip:
     messageOptions: 0
   - time: 84.166664
     functionName: setListeningActions
-    data: 
+    data: checkWatch, checkWatchLate, checkWatchWrong
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

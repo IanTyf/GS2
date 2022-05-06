@@ -37,10 +37,15 @@ public class Subtitles : MonoBehaviour
     public static string p3Niece6 = "Niece: You're sick. Doesn't matter though, The store belongs to me.";
     public static string p3Beau10 = "Beauregard: Don't worry I'll make sure you get an offer you can't refuse.";
 
-    public static string p3Beau11 = "Oh! Looks like I have some time before my meeting.";
-    public static string p3Beau12 = "You'll have to excuse me.";
-    public static string p3Beau13 = "Well, it's been swell I'm going out to my meeting.";
-    public static string p3Beau14 = "I'll see you with the buyers next time.";
+    public static string p3Beau11 = "Beauregard: Oh! Looks like I have some time before my meeting. You'll have to excuse me.";
+    public static string p3Beau12 = "Beauregard: You'll have to excuse me."; // not used
+    
+    public static string p3Beau13 = "Beauregard: Well, it's been swell I'm going out to my meeting.";
+
+    public static string p3Beau15 = "Beauregard: Hmm, this can't be right. My watch seems to be broken.";
+    public static string p3Beau16 = "Beauregard: Anyways, it's been swell I'm going out to my meeting.";
+
+    public static string p3Beau14 = "Beauregard: I'll see you with the buyers next time.";
 
 
     // Start is called before the first frame update
@@ -148,6 +153,12 @@ public class Subtitles : MonoBehaviour
                 break;
             case 30:
                 UI_Text.Write(p3Beau14, textSpeed, true);
+                break;
+            case 31:
+                UI_Text.Write(p3Beau15, textSpeed, true);
+                break;
+            case 32:
+                UI_Text.Write(p3Beau16, textSpeed, true);
                 break;
         }
     }
