@@ -41,7 +41,10 @@ public class ObjectEventBuyerOne : MonoBehaviour
         ActionCondition[] walksInConds = { acm.P4BuyerOneWalksIn };
         TimeAction walksIn = new TimeAction("walksIn", "Walkin", walksInConds);
         allActions.Add(walksIn);
-        
+
+        ActionCondition[] likeConds = { acm.P4BuyerOneWants };
+        TimeAction like = new TimeAction("like", "Buyer1Likes", likeConds);
+        allActions.Add(like);
 
         // initial listening actions
         currentTimeAction = initialTA;

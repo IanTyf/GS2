@@ -796,7 +796,7 @@ AnimationClip:
     messageOptions: 0
   - time: 17.25
     functionName: setListeningActions
-    data: 
+    data: like
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

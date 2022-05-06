@@ -64,6 +64,10 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P4BuyerTwoFinished;
     public ActionCondition P4BeauGreets;
 
+    public ActionCondition P4BeauFinishes;
+    public ActionCondition P4BuyerOneWants;
+    public ActionCondition P4BuyerTwoWants;
+
 
     void Awake()
     {
@@ -113,6 +117,11 @@ public class ActionConditionsManager : MonoBehaviour
         P4BuyerTwoFinished = new ActionCondition("P4buyerTwoFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P4BeauGreets = new ActionCondition("P4beauGreets", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
+        P4BeauFinishes = new ActionCondition("P4beauFinishes", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+
+
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -152,6 +161,9 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P4BuyerOneFinished);
         allActionConditions.Add(P4BuyerTwoFinished);
         allActionConditions.Add(P4BeauGreets);
+        allActionConditions.Add(P4BeauFinishes);
+        allActionConditions.Add(P4BuyerOneWants);
+        allActionConditions.Add(P4BuyerTwoWants);
     }
 
     void Start()
@@ -319,6 +331,24 @@ public class ActionConditionsManager : MonoBehaviour
                     {
                         setReady(P4BeauGreets);
                     }
+                }
+            }
+
+            // P4buyerOneWants
+            if (P4BuyerOneWants.withinTimeWindow(currentM) && P4BuyerOneWants.state != CondState.Ready)
+            {
+                if (isRinging && Services.clockManager.currentClock.name == "grandfatherClock")
+                {
+                    setReady(P4BuyerOneWants);
+                }
+            }
+
+            // P4buyerTwoWants
+            if (P4BuyerTwoWants.withinTimeWindow(currentM) && P4BuyerTwoWants.state != CondState.Ready && P4BuyerTwoWalksIn.state == CondState.Ready)
+            {
+                if (isRinging && Services.clockManager.currentClock.name == "deskClock")
+                {
+                    setReady(P4BuyerTwoWants);
                 }
             }
 
