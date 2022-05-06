@@ -183,7 +183,7 @@ AnimationClip:
     messageOptions: 0
   - time: 4.866667
     functionName: setListeningActions
-    data: 
+    data: noBuy
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

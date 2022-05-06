@@ -75,7 +75,7 @@ public class Subtitles : MonoBehaviour
 
     public static string p4Buyer13 = "Buyer1: Mr. Clockenspiel, we all feel that it wouldn't be right tearing this place down.";
     public static string p4BeauSad = "Beauregard: But gentleman! Think of the potential!";
-    public static string p4Buyer14 = "Our mind is decided, Good day Mr. Clockenspiel.";
+    public static string p4Buyer14 = "Buyer1: Our mind is decided, Good day Mr. Clockenspiel.";
 
     public static string p4Buyer15 = "Buyer1: Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
     public static string p4BeauHappy = "Beauregard: Absolutely, gentlemen! We can do that right now.";
