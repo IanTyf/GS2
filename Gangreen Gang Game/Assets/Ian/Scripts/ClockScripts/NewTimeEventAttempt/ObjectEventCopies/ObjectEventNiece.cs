@@ -69,6 +69,11 @@ public class ObjectEventNiece : MonoBehaviour
         TimeAction talkToBeau = new TimeAction("talkToBeau", "TalkToBeau", startTalkingConds);
         allActions.Add(talkToBeau);
 
+        ActionCondition[] selfTalkConds = { acm.P3nieceSelfTalk };
+        TimeAction selfTalk = new TimeAction("selfTalk", "SelfTalk", selfTalkConds);
+        allActions.Add(selfTalk);
+
+
         // initial listening actions
         currentTimeAction = initialTA;
     }

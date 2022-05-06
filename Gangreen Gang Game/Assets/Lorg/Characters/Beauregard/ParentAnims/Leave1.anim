@@ -701,6 +701,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.75
+    functionName: setAC
+    data: P3nieceSelfTalk
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 5.1833334
     functionName: playChildAnim
     data: Beauregard_Child, Walk, 0

@@ -50,6 +50,7 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P3beauCheckWatchLate;
     public ActionCondition P3beauCheckWatchWrong;
     public ActionCondition P3beauLeave;
+    public ActionCondition P3nieceSelfTalk;
 
 
     void Awake()
@@ -87,6 +88,7 @@ public class ActionConditionsManager : MonoBehaviour
         P3beauCheckWatchLate = new ActionCondition("P3beauCheckWatchLate", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
         P3beauCheckWatchWrong = new ActionCondition("P3beauCheckWatchWrong", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
         P3beauLeave = new ActionCondition("P3beauLeave", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P3nieceSelfTalk = new ActionCondition("P3nieceSelfTalk", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
 
 
@@ -117,6 +119,7 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P3beauCheckWatchLate);
         allActionConditions.Add(P3beauCheckWatchWrong);
         allActionConditions.Add(P3beauLeave);
+        allActionConditions.Add(P3nieceSelfTalk);
     }
 
     void Start()

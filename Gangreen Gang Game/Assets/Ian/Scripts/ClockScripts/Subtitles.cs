@@ -47,6 +47,13 @@ public class Subtitles : MonoBehaviour
 
     public static string p3Beau14 = "Beauregard: I'll see you with the buyers next time.";
 
+    public static string p3NieceSelf1 = "I don't know what to do uncle.";
+    public static string p3NieceSelf2 = "You worked your butt off for this place.";
+    public static string p3NieceSelf3 = "I can't believe Beauregard would just assume that I would throw all this away.";
+    public static string p3NieceSelf4 = "But selling the shop would mean I could start newer shop.";
+    public static string p3NieceSelf5 = "If I did that I feel like I could throw some new ideas into the mix.";
+    public static string p3NieceSelf6 = "Ugh such a big decision.";
+
 
     // Start is called before the first frame update
     void Start()
@@ -159,6 +166,24 @@ public class Subtitles : MonoBehaviour
                 break;
             case 32:
                 UI_Text.Write(p3Beau16, textSpeed, true);
+                break;
+            case 33:
+                UI_Text.Write(p3NieceSelf1, textSpeed, true);
+                break;
+            case 34:
+                UI_Text.Write(p3NieceSelf2, textSpeed, true);
+                break;
+            case 35:
+                UI_Text.Write(p3NieceSelf3, textSpeed, true);
+                break;
+            case 36:
+                UI_Text.Write(p3NieceSelf4, textSpeed, true);
+                break;
+            case 37:
+                UI_Text.Write(p3NieceSelf5, textSpeed, true);
+                break;
+            case 38:
+                UI_Text.Write(p3NieceSelf6, textSpeed, true);
                 break;
         }
     }

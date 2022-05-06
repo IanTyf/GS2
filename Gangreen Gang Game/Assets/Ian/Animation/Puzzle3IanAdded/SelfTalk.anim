@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TalkToBeau
+  m_Name: SelfTalk
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -31,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 72.5
+    m_StopTime: 30.866667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -52,71 +52,57 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: showSubtitle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 33
+    messageOptions: 0
+  - time: 0
     functionName: setActionState
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: playChildAnim
-    data: Niece_Child, Talk, 1
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.4166666
+  - time: 3.0833333
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 12
+    intParameter: 34
     messageOptions: 0
-  - time: 5.45
+  - time: 7.1
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 13
+    intParameter: 35
     messageOptions: 0
-  - time: 7.233333
-    functionName: playChildAnim
-    data: Niece_Child, Talk, 0
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 19.2
+  - time: 13.733334
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 17
+    intParameter: 36
     messageOptions: 0
-  - time: 24.5
+  - time: 19.016666
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 18
+    intParameter: 37
     messageOptions: 0
-  - time: 48.383335
+  - time: 24.883333
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 22
+    intParameter: 38
     messageOptions: 0
-  - time: 68.55
-    functionName: showSubtitle
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 25
-    messageOptions: 0
-  - time: 72.5
+  - time: 30.866667
     functionName: setListeningActions
-    data: selfTalk
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
