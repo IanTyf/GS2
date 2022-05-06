@@ -87,6 +87,11 @@ public class TimeManager : MonoBehaviour
                 hour = 6;
                 minute = 0f;
             }
+            if (day == 0 && hour > 15)
+            {
+                hour = 15;
+                minute = 59f;
+            }
 
 
             // reset the deltaMinute variable

@@ -72,6 +72,11 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P4BuyerNotBuy;
     public ActionCondition P4BeauShakeHand;
 
+    // intro and ending stuff
+    public ActionCondition Intro;
+    public ActionCondition GoodEnding;
+    public ActionCondition BadEnding;
+
 
     void Awake()
     {
@@ -129,6 +134,10 @@ public class ActionConditionsManager : MonoBehaviour
         P4BuyerNotBuy = new ActionCondition("P4buyerNotBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
         P4BeauShakeHand = new ActionCondition("P4beauShakeHand", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
+        Intro = new ActionCondition("Intro", new Vector3(0, 6, 0), new Vector3(0, 6, 5));
+        GoodEnding = new ActionCondition("GoodEnding", new Vector3(0, 6, 0), new Vector3(1, 0, 0));
+        BadEnding = new ActionCondition("BadEnding", new Vector3(0, 6, 0), new Vector3(1, 0, 0));
+
 
         allActionConditions.Add(P1goToAlarmClock);
         allActionConditions.Add(P1ringAlarmClockEarly);
@@ -173,6 +182,10 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P4BuyerBuy);
         allActionConditions.Add(P4BuyerNotBuy);
         allActionConditions.Add(P4BeauShakeHand);
+
+        allActionConditions.Add(Intro);
+        allActionConditions.Add(GoodEnding);
+        allActionConditions.Add(BadEnding);
     }
 
     void Start()
@@ -387,6 +400,12 @@ public class ActionConditionsManager : MonoBehaviour
                         setReady(P4BuyerBuy);
                     }
                 }
+            }
+
+            // Intro
+            if (Intro.withinTimeWindow(currentM) && Intro.state != CondState.Ready)
+            {
+                setReady(Intro);
             }
 
 
