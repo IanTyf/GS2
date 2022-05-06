@@ -86,9 +86,16 @@ AnimationClip:
     floatParameter: 0
     intParameter: 30
     messageOptions: 0
+  - time: 12.016666
+    functionName: setAC
+    data: P3beauLeave
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 12.166667
     functionName: setListeningActions
-    data: 
+    data: leave
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -63,6 +63,10 @@ public class ObjectEventBeau : MonoBehaviour
         TimeAction checkWatchWrong = new TimeAction("checkWatchWrong", "CheckWatchWrong", checkWatchWrongConds);
         allActions.Add(checkWatchWrong);
 
+        ActionCondition[] leaveConds = { acm.P3beauLeave };
+        TimeAction leave = new TimeAction("leave", "Leave1", leaveConds);
+        allActions.Add(leave);
+
         // initial listening actions
         currentTimeAction = initialTA;
     }
