@@ -68,6 +68,10 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P4BuyerOneWants;
     public ActionCondition P4BuyerTwoWants;
 
+    public ActionCondition P4BuyerBuy;
+    public ActionCondition P4BuyerNotBuy;
+    public ActionCondition P4BeauShakeHand;
+
 
     void Awake()
     {
@@ -118,10 +122,12 @@ public class ActionConditionsManager : MonoBehaviour
         P4BeauGreets = new ActionCondition("P4beauGreets", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
         P4BeauFinishes = new ActionCondition("P4beauFinishes", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
-        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
-        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 14, 30), new Vector3(0, 15, 29));
+        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 14, 30), new Vector3(1, 15, 29));
 
-
+        P4BuyerBuy = new ActionCondition("P4buyerBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
+        P4BuyerNotBuy = new ActionCondition("P4buyerNotBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
+        P4BeauShakeHand = new ActionCondition("P4beauShakeHand", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -164,6 +170,9 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P4BeauFinishes);
         allActionConditions.Add(P4BuyerOneWants);
         allActionConditions.Add(P4BuyerTwoWants);
+        allActionConditions.Add(P4BuyerBuy);
+        allActionConditions.Add(P4BuyerNotBuy);
+        allActionConditions.Add(P4BeauShakeHand);
     }
 
     void Start()
@@ -349,6 +358,34 @@ public class ActionConditionsManager : MonoBehaviour
                 if (isRinging && Services.clockManager.currentClock.name == "deskClock")
                 {
                     setReady(P4BuyerTwoWants);
+                }
+            }
+
+            // P4BuyerNotBuy
+            if (P4BuyerNotBuy.withinTimeWindow(currentM) && P4BuyerNotBuy.state != CondState.Ready)
+            {
+                if (P4BuyerOneWants.state == CondState.Ready)
+                {
+                    if (P3beauCheckWatchLate.state == CondState.Ready || P4BuyerTwoWants.state == CondState.Ready)
+                    {
+                        setReady(P4BuyerNotBuy);
+                    }
+                }
+            }
+
+            // P4BuyerBuy
+            if (P4BuyerBuy.withinTimeWindow(currentM) && P4BuyerBuy.state != CondState.Ready)
+            {
+                if (P4BuyerOneWants.state != CondState.Ready)
+                {
+                    setReady(P4BuyerBuy);
+                }
+                else
+                {
+                    if (P3beauCheckWatchLate.state != CondState.Ready && P4BuyerTwoWants.state != CondState.Ready)
+                    {
+                        setReady(P4BuyerBuy);
+                    }
                 }
             }
 

@@ -204,7 +204,7 @@ AnimationClip:
     messageOptions: 0
   - time: 5.4666667
     functionName: setListeningActions
-    data: 
+    data: shakeHand
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

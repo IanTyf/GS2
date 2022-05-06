@@ -46,6 +46,14 @@ public class ObjectEventBuyerOne : MonoBehaviour
         TimeAction like = new TimeAction("like", "Buyer1Likes", likeConds);
         allActions.Add(like);
 
+        ActionCondition[] noBuyConds = { acm.P4BuyerNotBuy };
+        TimeAction noBuy = new TimeAction("noBuy", "NoDeal", noBuyConds);
+        allActions.Add(noBuy);
+
+        ActionCondition[] buyConds = { acm.P4BuyerBuy };
+        TimeAction buy = new TimeAction("buy", "Deal", buyConds);
+        allActions.Add(buy);
+
         // initial listening actions
         currentTimeAction = initialTA;
     }

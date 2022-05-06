@@ -72,6 +72,10 @@ public class ObjectEventBeau : MonoBehaviour
         TimeAction greetBuyers = new TimeAction("greetBuyers", "BeauToBuyer1", greetBuyersConds);
         allActions.Add(greetBuyers);
 
+        ActionCondition[] shakeHandConds = { acm.P4BeauShakeHand };
+        TimeAction shakeHand = new TimeAction("shakeHand", "Deal", shakeHandConds);
+        allActions.Add(shakeHand);
+
 
         // initial listening actions
         currentTimeAction = initialTA;

@@ -860,7 +860,7 @@ AnimationClip:
     messageOptions: 0
   - time: 13.183333
     functionName: setListeningActions
-    data: like
+    data: like, buy
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
