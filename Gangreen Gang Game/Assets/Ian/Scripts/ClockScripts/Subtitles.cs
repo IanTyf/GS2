@@ -54,6 +54,18 @@ public class Subtitles : MonoBehaviour
     public static string p3NieceSelf5 = "If I did that I feel like I could throw some new ideas into the mix.";
     public static string p3NieceSelf6 = "Ugh such a big decision.";
 
+    public static string p4NieceHi = "Niece: Hello?";
+    public static string p4BeauBackWithBuyers = "Beauregard: I'll make this quick, I'm coming back with buyers.";
+    public static string p4NieceBye = "Niece: Oh Alright, guess I'll see you soon.";
+    public static string p4NieceExciting = "Niece: I guess I'm doing this. This is oddly exciting.";
+
+    public static string p4Beau1 = "Beauregard: I hope you're happy.";
+    public static string p4Niece1 = "Niece: Come again?";
+    public static string p4Beau2 = "Beauregard: The time on my watch desynced. I was late to my meetings.";
+    public static string p4Beau3 = "Beauregard: Probably from all the broken clocks in there.";
+    public static string p4Beau4 = "Beauregard: I lost buyers because of you.";
+    public static string p4Beau5 = "Beauregard: Anyway, I'll be back down with them soon.";
+
 
     // Start is called before the first frame update
     void Start()
@@ -184,6 +196,36 @@ public class Subtitles : MonoBehaviour
                 break;
             case 38:
                 UI_Text.Write(p3NieceSelf6, textSpeed, true);
+                break;
+            case 39:
+                UI_Text.Write(p4NieceHi, textSpeed, true);
+                break;
+            case 40:
+                UI_Text.Write(p4BeauBackWithBuyers, textSpeed, true);
+                break;
+            case 41:
+                UI_Text.Write(p4NieceBye, textSpeed, true);
+                break;
+            case 42:
+                UI_Text.Write(p4NieceExciting, textSpeed, true);
+                break;
+            case 43:
+                UI_Text.Write(p4Beau1, textSpeed, true);
+                break;
+            case 44:
+                UI_Text.Write(p4Niece1, textSpeed, true);
+                break;
+            case 45:
+                UI_Text.Write(p4Beau2, textSpeed, true);
+                break;
+            case 46:
+                UI_Text.Write(p4Beau3, textSpeed, true);
+                break;
+            case 47:
+                UI_Text.Write(p4Beau4, textSpeed, true);
+                break;
+            case 48:
+                UI_Text.Write(p4Beau5, textSpeed, true);
                 break;
         }
     }

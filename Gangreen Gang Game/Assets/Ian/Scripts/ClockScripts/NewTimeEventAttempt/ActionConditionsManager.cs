@@ -52,6 +52,10 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P3beauLeave;
     public ActionCondition P3nieceSelfTalk;
 
+    // puzzle #4
+    public ActionCondition P4beauCallNormal;
+    public ActionCondition P4beauCallMad;
+
 
     void Awake()
     {
@@ -90,6 +94,10 @@ public class ActionConditionsManager : MonoBehaviour
         P3beauLeave = new ActionCondition("P3beauLeave", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P3nieceSelfTalk = new ActionCondition("P3nieceSelfTalk", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
+        // puzzle #4
+        P4beauCallNormal = new ActionCondition("P4beauCallNormal", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
+        P4beauCallMad = new ActionCondition("P4beauCallMad", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
+
 
 
         allActionConditions.Add(P1goToAlarmClock);
@@ -120,6 +128,9 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P3beauCheckWatchWrong);
         allActionConditions.Add(P3beauLeave);
         allActionConditions.Add(P3nieceSelfTalk);
+
+        allActionConditions.Add(P4beauCallNormal);
+        allActionConditions.Add(P4beauCallMad);
     }
 
     void Start()
@@ -245,6 +256,17 @@ public class ActionConditionsManager : MonoBehaviour
                 }
             }
 
+            // P4beauCallNormal
+            if (P4beauCallNormal.withinTimeWindow(currentM) && P4beauCallNormal.state != CondState.Ready && P3beauCheckWatchLate.state != CondState.Ready)
+            {
+                setReady(P4beauCallNormal);
+            }
+
+            // P4beauCallMad
+            if (P4beauCallMad.withinTimeWindow(currentM) && P4beauCallMad.state != CondState.Ready && P3beauCheckWatchLate.state == CondState.Ready)
+            {
+                setReady(P4beauCallMad);
+            }
 
             isRinging = false;
         }
