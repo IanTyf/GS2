@@ -253,6 +253,38 @@ public class ObjectEventCustomer : MonoBehaviour
         Subtitles.playSubtitles(id);
     }
 
+    public void PushPlayerOutSecondFloor()
+    {
+        if (Services.timeManager.skipping)
+        {
+            Services.actionConditionsManager.beauWatch.cannotPossess = false;
+            return;
+        }
+
+        if (Services.clockManager.currentClock.name == "wristWatch")
+        {
+            Services.clockManager.returnToPreviousClock();
+        }
+
+        Services.actionConditionsManager.beauWatch.cannotPossess = true;
+    }
+
+    public void PushPlayerOutFirstFloor()
+    {
+        if (Services.timeManager.skipping)
+        {
+            Services.actionConditionsManager.beauWatch.cannotPossess = false;
+            return;
+        }
+
+        if (Services.clockManager.currentClock.name == "pocketWatch")
+        {
+            Services.clockManager.returnToPreviousClock();
+        }
+
+        Services.actionConditionsManager.beauWatch.cannotPossess = true;
+    }
+
     /*
     public void playChildAnim(string str)
     {

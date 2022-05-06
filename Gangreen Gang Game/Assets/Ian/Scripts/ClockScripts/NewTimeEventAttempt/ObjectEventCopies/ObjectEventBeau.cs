@@ -177,6 +177,28 @@ public class ObjectEventBeau : MonoBehaviour
         anim.Play(clipName, 0, norm);
     }
 
+    public void PushPlayerOut()
+    {
+        if (Services.timeManager.skipping)
+        {
+            Services.actionConditionsManager.beauWatch.cannotPossess = false;
+            return;
+        }
+
+        if (Services.clockManager.currentClock.name == "beauWatch")
+        {
+            Services.clockManager.returnToPreviousClock();
+        }
+
+        Services.actionConditionsManager.beauWatch.cannotPossess = true;
+    }
+
+    public void CanPossess()
+    {
+        if (Services.timeManager.skipping) Services.actionConditionsManager.beauWatch.cannotPossess = true;
+        else Services.actionConditionsManager.beauWatch.cannotPossess = false;
+    }
+
     // called at the end of each animation
     // update the currently listening actions list, only do so when going forward
     // push the current action to the history list

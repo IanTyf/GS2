@@ -25,6 +25,8 @@ public class Clock : MonoBehaviour
 
     public bool stopped;
 
+    public bool cannotPossess;
+
     public List<AudioSource> tickSounds = new List<AudioSource>();
 
     public List<GameObject> hiddenObjs = new List<GameObject>();

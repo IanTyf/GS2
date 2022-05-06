@@ -7,6 +7,8 @@ public class ClockManager : MonoBehaviour
     public List<GameObject> clocks = new List<GameObject>();
     public GameObject currentClock;
 
+    public GameObject previousClock;
+
     public Vector2 inputDir;
     public GameObject highlightedClock;
 
@@ -98,6 +100,7 @@ public class ClockManager : MonoBehaviour
         if (!highlightedClock.activeSelf) return;
         if (!highlight) return;
         if (zooming) return;
+        if (highlightedClock.GetComponent<Clock>().cannotPossess) return;
 
         float zoomDist = (highlightedClock.transform.position - currentClock.transform.position).magnitude;
         //Debug.Log(zoomDist);
@@ -112,6 +115,7 @@ public class ClockManager : MonoBehaviour
     {
         //if (i >= clocks.Count) return;
         //GameObject newClock = clocks[i];
+        previousClock = currentClock;
         currentClock.GetComponent<Clock>().possessed = false;
         currentClock.GetComponent<Clock>().showHidden();
         currentClock.transform.GetChild(0).localPosition = tempLocalPos;
@@ -133,6 +137,16 @@ public class ClockManager : MonoBehaviour
         zoomSpeed = 10;
         tempLocalPos = Vector3.zero;
 
+    }
+
+    public void returnToPreviousClock()
+    {
+        if (previousClock == null) return;
+        if (zooming) return;
+
+        highlightedClock = previousClock;
+        highlight = true;
+        GoToHighlightedClock();
     }
 
     // takes a vec2 and shoot a ray from the currently hightlighted clock and move to another one

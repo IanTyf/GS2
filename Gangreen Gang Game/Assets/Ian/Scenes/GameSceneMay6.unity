@@ -3491,6 +3491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clocks: []
   currentClock: {fileID: 5278464838624852512}
+  previousClock: {fileID: 0}
   inputDir: {x: 0, y: 0}
   highlightedClock: {fileID: 0}
   highlight: 0
@@ -8333,6 +8334,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -10427,6 +10429,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -12601,6 +12604,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -14238,6 +14242,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -14322,6 +14327,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -15002,6 +15008,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -17031,7 +17038,7 @@ MonoBehaviour:
   skipping: 0
   rewindSpeed: 10
   fastForwarding: 0
-  fastForwardSpeed: 40
+  fastForwardSpeed: 10
   directionalLight: {fileID: 649216705}
 --- !u!1 &1776262037
 GameObject:
@@ -18116,6 +18123,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -24980,6 +24988,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 1
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
@@ -26553,6 +26562,7 @@ MonoBehaviour:
   hourOffset: 0
   possessed: 0
   stopped: 0
+  cannotPossess: 0
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
