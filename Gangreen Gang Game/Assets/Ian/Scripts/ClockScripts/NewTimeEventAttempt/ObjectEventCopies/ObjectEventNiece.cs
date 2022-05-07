@@ -65,6 +65,25 @@ public class ObjectEventNiece : MonoBehaviour
         allActions.Add(byeCustomer);
 
 
+        // puzzle #3
+        ActionCondition[] startTalkingConds = { acm.P3NieceStartTalking };
+        TimeAction talkToBeau = new TimeAction("talkToBeau", "TalkToBeau", startTalkingConds);
+        allActions.Add(talkToBeau);
+
+        ActionCondition[] selfTalkConds = { acm.P3nieceSelfTalk };
+        TimeAction selfTalk = new TimeAction("selfTalk", "SelfTalk", selfTalkConds);
+        allActions.Add(selfTalk);
+
+
+        // puzzle #4
+        ActionCondition[] normalCallConds = { acm.P4beauCallNormal };
+        TimeAction normalCall = new TimeAction("normalCall", "CallNormal", normalCallConds);
+        allActions.Add(normalCall);
+
+        ActionCondition[] madCallConds = { acm.P4beauCallMad };
+        TimeAction madCall = new TimeAction("madCall", "CallMad", madCallConds);
+        allActions.Add(madCall);
+
 
         // initial listening actions
         currentTimeAction = initialTA;
@@ -98,6 +117,7 @@ public class ObjectEventNiece : MonoBehaviour
                         actionState = ActionState.Playing;
                         currentTimeAction = endOfStack;
                         actionHistory.RemoveAt(actionHistory.Count - 1);
+                        //listeningHistory.RemoveAt(listeningHistory.Count - 1);
                     }
                 }
             }

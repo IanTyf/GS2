@@ -25,9 +25,15 @@ public class Clock : MonoBehaviour
 
     public bool stopped;
 
+    public bool cannotPossess;
+
     public List<AudioSource> tickSounds = new List<AudioSource>();
 
     public List<GameObject> hiddenObjs = new List<GameObject>();
+
+    public float rumbleTime;
+    public float rumbleLowFreq;
+    public float rumbleHighFreq;
 
     private void Start()
     {
@@ -94,12 +100,20 @@ public class Clock : MonoBehaviour
 
                         if (myMinute >= 60)
                         {
-                            myHour += myMinute / 60;
-                            myMinute %= 60;
+                            //myHour += myMinute / 60;
+                            //myMinute %= 60;
+                            myHour++;
+                            myMinute = myMinute - 60;
                         }
                         if (myHour >= 24)
                         {
                             myHour %= 24;
+                        }
+
+                        if (myMinute < 0)
+                        {
+                            myMinute += 60;
+                            myHour--;
                         }
 
                         // update the minute and hour hands according to current time and offsets
@@ -151,6 +165,12 @@ public class Clock : MonoBehaviour
                 if (myHour >= 24)
                 {
                     myHour %= 24;
+                }
+
+                if (myMinute < 0)
+                {
+                    myMinute += 60;
+                    myHour--;
                 }
 
                 // update the minute and hour hands according to current time and offsets

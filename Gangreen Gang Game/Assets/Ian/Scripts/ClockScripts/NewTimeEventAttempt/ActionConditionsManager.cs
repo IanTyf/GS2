@@ -6,6 +6,8 @@ public enum CondState { NotSet, Ready, Greyed };
 
 public class ActionConditionsManager : MonoBehaviour
 {
+    public Clock beauWatch;
+
     private TimeManager tm;
     private ClockManager cm;
 
@@ -40,6 +42,41 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2soldRightClock;
     public ActionCondition P2soldWrongClock;
 
+    // puzzle #3
+    public ActionCondition P3beauWalksIn;
+    public ActionCondition P3beauStartTalking;
+    public ActionCondition P3NieceStartTalking;
+    public ActionCondition P3beauCheckWatchNormal;
+    public ActionCondition P3beauCheckWatchLate;
+    public ActionCondition P3beauCheckWatchWrong;
+    public ActionCondition P3beauLeave;
+    public ActionCondition P3nieceSelfTalk;
+
+    // puzzle #4
+    public ActionCondition P4beauCallNormal;
+    public ActionCondition P4beauCallMad;
+
+    public ActionCondition P4beauWalksIn;
+    public ActionCondition P4BuyerOneWalksIn;
+    public ActionCondition P4BuyerTwoWalksIn;
+
+    public ActionCondition P4BuyerOneFinished;
+    public ActionCondition P4BuyerTwoFinished;
+    public ActionCondition P4BeauGreets;
+
+    public ActionCondition P4BeauFinishes;
+    public ActionCondition P4BuyerOneWants;
+    public ActionCondition P4BuyerTwoWants;
+
+    public ActionCondition P4BuyerBuy;
+    public ActionCondition P4BuyerNotBuy;
+    public ActionCondition P4BeauShakeHand;
+
+    // intro and ending stuff
+    public ActionCondition Intro;
+    public ActionCondition GoodEnding;
+    public ActionCondition BadEnding;
+
 
     void Awake()
     {
@@ -68,6 +105,39 @@ public class ActionConditionsManager : MonoBehaviour
         P2soldRightClock = new ActionCondition("P2soldRightClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2soldWrongClock = new ActionCondition("P2soldWrongClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
+        // puzzle #3
+        P3beauWalksIn = new ActionCondition("P3beauWalksIn", new Vector3(0, 10, 30), new Vector3(1, 0, 0));
+        P3beauStartTalking = new ActionCondition("P3beauStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P3NieceStartTalking = new ActionCondition("P3nieceStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P3beauCheckWatchNormal = new ActionCondition("P3beauCheckWatchNormal", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
+        P3beauCheckWatchLate = new ActionCondition("P3beauCheckWatchLate", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
+        P3beauCheckWatchWrong = new ActionCondition("P3beauCheckWatchWrong", new Vector3(0, 12, 0), new Vector3(0, 12, 5));
+        P3beauLeave = new ActionCondition("P3beauLeave", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P3nieceSelfTalk = new ActionCondition("P3nieceSelfTalk", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+
+        // puzzle #4
+        P4beauCallNormal = new ActionCondition("P4beauCallNormal", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
+        P4beauCallMad = new ActionCondition("P4beauCallMad", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
+        P4beauWalksIn = new ActionCondition("P4beauWalksIn", new Vector3(0, 14, 19), new Vector3(0, 14, 24));
+        P4BuyerOneWalksIn = new ActionCondition("P4buyerOneWalksIn", new Vector3(0, 14, 20), new Vector3(0, 14, 25));
+        P4BuyerTwoWalksIn = new ActionCondition("P4buyerTwoWalksIn", new Vector3(0, 14, 21), new Vector3(0, 14, 26));
+
+        P4BuyerOneFinished = new ActionCondition("P4buyerOneFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BuyerTwoFinished = new ActionCondition("P4buyerTwoFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BeauGreets = new ActionCondition("P4beauGreets", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+
+        P4BeauFinishes = new ActionCondition("P4beauFinishes", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 14, 30), new Vector3(0, 15, 29));
+        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 14, 30), new Vector3(1, 15, 29));
+
+        P4BuyerBuy = new ActionCondition("P4buyerBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
+        P4BuyerNotBuy = new ActionCondition("P4buyerNotBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
+        P4BeauShakeHand = new ActionCondition("P4beauShakeHand", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
+
+        Intro = new ActionCondition("Intro", new Vector3(0, 6, 0), new Vector3(0, 6, 5));
+        GoodEnding = new ActionCondition("GoodEnding", new Vector3(0, 6, 0), new Vector3(1, 0, 0));
+        BadEnding = new ActionCondition("BadEnding", new Vector3(0, 6, 0), new Vector3(1, 0, 0));
+
 
         allActionConditions.Add(P1goToAlarmClock);
         allActionConditions.Add(P1ringAlarmClockEarly);
@@ -88,6 +158,34 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2customerLeave);
         allActionConditions.Add(P2soldRightClock);
         allActionConditions.Add(P2soldWrongClock);
+
+        allActionConditions.Add(P3beauWalksIn);
+        allActionConditions.Add(P3beauStartTalking);
+        allActionConditions.Add(P3NieceStartTalking);
+        allActionConditions.Add(P3beauCheckWatchNormal);
+        allActionConditions.Add(P3beauCheckWatchLate);
+        allActionConditions.Add(P3beauCheckWatchWrong);
+        allActionConditions.Add(P3beauLeave);
+        allActionConditions.Add(P3nieceSelfTalk);
+
+        allActionConditions.Add(P4beauCallNormal);
+        allActionConditions.Add(P4beauCallMad);
+        allActionConditions.Add(P4beauWalksIn);
+        allActionConditions.Add(P4BuyerOneWalksIn);
+        allActionConditions.Add(P4BuyerTwoWalksIn);
+        allActionConditions.Add(P4BuyerOneFinished);
+        allActionConditions.Add(P4BuyerTwoFinished);
+        allActionConditions.Add(P4BeauGreets);
+        allActionConditions.Add(P4BeauFinishes);
+        allActionConditions.Add(P4BuyerOneWants);
+        allActionConditions.Add(P4BuyerTwoWants);
+        allActionConditions.Add(P4BuyerBuy);
+        allActionConditions.Add(P4BuyerNotBuy);
+        allActionConditions.Add(P4BeauShakeHand);
+
+        allActionConditions.Add(Intro);
+        allActionConditions.Add(GoodEnding);
+        allActionConditions.Add(BadEnding);
     }
 
     void Start()
@@ -177,6 +275,140 @@ public class ActionConditionsManager : MonoBehaviour
                 setReady(P2failed);
             }
 
+            // P3beauWalksIn
+            if (P3beauWalksIn.withinTimeWindow(currentM) && P3beauWalksIn.state != CondState.Ready)
+            {
+                setReady(P3beauWalksIn);
+            }
+
+            // P3beauCheckWatchNormal
+            if (P3beauCheckWatchNormal.withinTimeWindow(currentM) && P3beauCheckWatchNormal.state != CondState.Ready)
+            {
+                int mDiff = minutesFromRealTime();
+                if (mDiff > -31 && mDiff < 1) 
+                {
+                    setReady(P3beauCheckWatchNormal);
+                }
+            }
+
+            // P3beauCheckWatchLate
+            if (P3beauCheckWatchLate.withinTimeWindow(currentM) && P3beauCheckWatchLate.state != CondState.Ready)
+            {
+                int mDiff = minutesFromRealTime();
+                if (mDiff > 0 && mDiff < 31)
+                {
+                    setReady(P3beauCheckWatchLate);
+                }
+            }
+
+            // P3beauCheckWatchWrong
+            if (P3beauCheckWatchWrong.withinTimeWindow(currentM) && P3beauCheckWatchWrong.state != CondState.Ready)
+            {
+                int mDiff = minutesFromRealTime();
+                if (mDiff > 30 || mDiff < -30)
+                {
+                    setReady(P3beauCheckWatchWrong);
+                }
+            }
+
+            // P4beauCallNormal
+            if (P4beauCallNormal.withinTimeWindow(currentM) && P4beauCallNormal.state != CondState.Ready && P3beauCheckWatchLate.state != CondState.Ready)
+            {
+                setReady(P4beauCallNormal);
+            }
+
+            // P4beauCallMad
+            if (P4beauCallMad.withinTimeWindow(currentM) && P4beauCallMad.state != CondState.Ready && P3beauCheckWatchLate.state == CondState.Ready)
+            {
+                setReady(P4beauCallMad);
+            }
+
+            // P4beauWalksIn
+            if (P4beauWalksIn.withinTimeWindow(currentM) && P4beauWalksIn.state != CondState.Ready)
+            {
+                setReady(P4beauWalksIn);
+            }
+
+            // P4buyerOneWalksIn
+            if (P4BuyerOneWalksIn.withinTimeWindow(currentM) && P4BuyerOneWalksIn.state != CondState.Ready)
+            {
+                setReady(P4BuyerOneWalksIn);
+            }
+
+            // P4buyerTwoWalksIn
+            if (P4BuyerTwoWalksIn.withinTimeWindow(currentM) && P4BuyerTwoWalksIn.state != CondState.Ready)
+            {
+                if (P3beauCheckWatchLate.state != CondState.Ready)
+                {
+                    setReady(P4BuyerTwoWalksIn);
+                }
+            }
+
+            // P4beauGreets
+            if (P4BeauGreets.withinTimeWindow(currentM) && P4BeauGreets.state != CondState.Ready)
+            {
+                if (P4BuyerOneFinished.state == CondState.Ready)
+                {
+                    if (P3beauCheckWatchLate.state == CondState.Ready || P4BuyerTwoFinished.state == CondState.Ready)
+                    {
+                        setReady(P4BeauGreets);
+                    }
+                }
+            }
+
+            // P4buyerOneWants
+            if (P4BuyerOneWants.withinTimeWindow(currentM) && P4BuyerOneWants.state != CondState.Ready)
+            {
+                if (isRinging && Services.clockManager.currentClock.name == "grandfatherClock")
+                {
+                    setReady(P4BuyerOneWants);
+                }
+            }
+
+            // P4buyerTwoWants
+            if (P4BuyerTwoWants.withinTimeWindow(currentM) && P4BuyerTwoWants.state != CondState.Ready && P4BuyerTwoWalksIn.state == CondState.Ready)
+            {
+                if (isRinging && Services.clockManager.currentClock.name == "deskClock")
+                {
+                    setReady(P4BuyerTwoWants);
+                }
+            }
+
+            // P4BuyerNotBuy
+            if (P4BuyerNotBuy.withinTimeWindow(currentM) && P4BuyerNotBuy.state != CondState.Ready)
+            {
+                if (P4BuyerOneWants.state == CondState.Ready)
+                {
+                    if (P3beauCheckWatchLate.state == CondState.Ready || P4BuyerTwoWants.state == CondState.Ready)
+                    {
+                        setReady(P4BuyerNotBuy);
+                    }
+                }
+            }
+
+            // P4BuyerBuy
+            if (P4BuyerBuy.withinTimeWindow(currentM) && P4BuyerBuy.state != CondState.Ready)
+            {
+                if (P4BuyerOneWants.state != CondState.Ready)
+                {
+                    setReady(P4BuyerBuy);
+                }
+                else
+                {
+                    if (P3beauCheckWatchLate.state != CondState.Ready && P4BuyerTwoWants.state != CondState.Ready)
+                    {
+                        setReady(P4BuyerBuy);
+                    }
+                }
+            }
+
+            // Intro
+            if (Intro.withinTimeWindow(currentM) && Intro.state != CondState.Ready)
+            {
+                setReady(Intro);
+            }
+
+
             isRinging = false;
         }
 
@@ -248,6 +480,20 @@ public class ActionConditionsManager : MonoBehaviour
     private float minutes(Vector3 t)
     {
         return t.x * 24 * 60 + t.y * 60 + t.z;
+    }
+
+    // if positive, watch is late; if negative, watch is early
+    private int minutesFromRealTime()
+    {
+        if (beauWatch == null) return 0;
+        int hr = beauWatch.myHour;
+        int mi = beauWatch.myMinute;
+        int realHr = Services.timeManager.hour;
+        int realMinute = (int)Services.timeManager.minute;
+        int mDiff = realMinute - mi;
+        mDiff += (realHr - hr) * 60;
+        Debug.Log("watch is " + mDiff + " minutes late");
+        return mDiff;
     }
 }
 

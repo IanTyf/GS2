@@ -88,7 +88,7 @@ AnimationClip:
     messageOptions: 0
   - time: 8.516666
     functionName: setListeningActions
-    data: 
+    data: talkToBeau
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

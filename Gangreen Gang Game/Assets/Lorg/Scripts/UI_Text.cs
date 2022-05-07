@@ -20,6 +20,11 @@ public class UI_Text : MonoBehaviour
 
     public static void Write(string txt, float timePerChar, bool invisibleChars)
     {
+        //if (Services.timeManager.fastForwarding)
+            //TypeWriter.AddWriter_Static(UI_Text.speechText, txt, timePerChar / Services.timeManager.fastForwardSpeed, invisibleChars);
+        //else
+        //{
         TypeWriter.AddWriter_Static(UI_Text.speechText, txt, timePerChar, invisibleChars);
+        //}
     }
 }
