@@ -35,7 +35,7 @@ public class ObjectEventBuyerOne : MonoBehaviour
 
         // add all the action events of this object, one action event per anim clip
         // initial idle state
-        TimeAction initialTA = new TimeAction("init", "BuyerInit");
+        TimeAction initialTA = new TimeAction("init", "Buyer1Init");
 
         // puzzle #4
         ActionCondition[] walksInConds = { acm.P4BuyerOneWalksIn };

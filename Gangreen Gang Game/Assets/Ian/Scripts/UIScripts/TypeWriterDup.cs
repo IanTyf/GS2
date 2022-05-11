@@ -8,6 +8,8 @@ public class TypeWriterDup : MonoBehaviour
     private static TypeWriterDup instance;
     public List<TypeWriterSingle> typeWriterSingleList;
 
+    public List<TimedSubtitle> subtitleHistory = new List<TimedSubtitle>();
+
     private void Awake()
     {
         instance = this;
@@ -46,6 +48,19 @@ public class TypeWriterDup : MonoBehaviour
 
     }
 
+    private void AddWriterRev(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters, bool notDestroy)
+    {
+        // only add a new subtitle if the previous one is finished
+        if ((typeWriterSingleList.Count == 0) || (typeWriterSingleList.Count == 1 && typeWriterSingleList[0].finished))
+        {
+            typeWriterSingleList.Clear();
+            TypeWriterSingle tsw = new TypeWriterSingle(uiText, textToWrite, timePerCharacter, invisibleCharacters, notDestroy);
+            tsw.characterIndex = textToWrite.Length;
+            typeWriterSingleList.Add(tsw);
+        }
+
+    }
+
     private void Update()
     {
         for (int i = 0; i < typeWriterSingleList.Count; i++)
@@ -53,6 +68,7 @@ public class TypeWriterDup : MonoBehaviour
             bool destroyInstance = typeWriterSingleList[i].Update();
             if (destroyInstance && !typeWriterSingleList[i].notDestroy)
             {
+                Debug.Log("removed");
                 typeWriterSingleList.RemoveAt(i);
                 i--;
             }
@@ -60,20 +76,39 @@ public class TypeWriterDup : MonoBehaviour
 
         if (Services.timeManager.skipping)
         {
+            /*
             // force remove the current subtitle
             if (typeWriterSingleList.Count > 0)
             {
                 typeWriterSingleList[0].uiText.text = "";
                 typeWriterSingleList.Clear();
             }
+            */
+            if (subtitleHistory.Count > 0)
+            {
+                TimedSubtitle lastTS = subtitleHistory[subtitleHistory.Count - 1];
+                Vector3 currentTime = new Vector3(Services.timeManager.day, Services.timeManager.hour, Services.timeManager.minute);
+                if (minutes(lastTS.completionTime) > minutes(currentTime))
+                {
+                    // replay this subtitle from the back
+                    AddWriterRev(UI_TextDup.speechText, lastTS.text, lastTS.timePerChar, true, lastTS.notDestroy);
+                    // pop it from history
+                    subtitleHistory.RemoveAt(subtitleHistory.Count - 1);
+                }
+            }
         }
+    }
+
+    private float minutes(Vector3 t)
+    {
+        return t.x * 24 * 60 + t.y * 60 + t.z;
     }
 
     public class TypeWriterSingle
     {
         public Text uiText;
         private string textToWrite;
-        private int characterIndex;
+        public int characterIndex;
         private float timePerCharacter;
         private float timer;
         private bool invisibleCharacters;
@@ -102,21 +137,38 @@ public class TypeWriterDup : MonoBehaviour
             characterIndex = 0;
 
             this.finished = false;
-            this.notDestroy = true;
+            this.notDestroy = notDestroy;
         }
         //returns true when complete
         public bool Update()
         {
             if (uiText != null)
             {
-                timer -= Time.deltaTime;
+                if (Services.timeManager.skipping) timer -= Time.deltaTime * Services.timeManager.rewindSpeed;
+                else timer -= Time.deltaTime;
+
                 while (timer <= 0f)
                 {
-                    if (!Services.timeManager.fastForwarding) timer += timePerCharacter;
+                    if (!Services.timeManager.fastForwarding)
+                    {
+                        timer += timePerCharacter;
+                    }
                     else timer += timePerCharacter / Services.timeManager.fastForwardSpeed;
-                    characterIndex++;
 
-                    // this should never get called
+                    if (Services.timeManager.skipping)
+                    {
+                        this.finished = false;
+                        characterIndex--;
+                    }
+                    else characterIndex++;
+
+                    if (characterIndex < 0)
+                    {
+                        this.notDestroy = false; // force destroy if we rewind past beginning
+                        return true; // this should destroy this
+                    }
+
+                    
                     if (characterIndex > textToWrite.Length)
                     {
                         //Entire string displayed
@@ -132,20 +184,23 @@ public class TypeWriterDup : MonoBehaviour
 
 
                     // when writing ends, keeps writing empty space
-                    if (characterIndex == textToWrite.Length && !this.notDestroy)
+                    if (characterIndex == textToWrite.Length)
                     {
-                        if (Services.timeManager.fastForwarding) timer += 1 / Services.timeManager.fastForwardSpeed;
-                        else timer += 1f;
-                        textToWrite = " ";
-                        characterIndex = 0;
-                        this.finished = true;
-                    }
+                        if (!this.finished)
+                        {
+                            this.finished = true;
+                            Vector3 currentTime = new Vector3(Services.timeManager.day, Services.timeManager.hour, Services.timeManager.minute);
+                            TimedSubtitle newTS = new TimedSubtitle(textToWrite, currentTime, timePerCharacter, notDestroy);
+                            instance.subtitleHistory.Add(newTS);
 
-                    // this should never get called
-                    if (characterIndex > textToWrite.Length)
-                    {
-                        //Entire string displayed
-                        return true;
+                            if (!this.notDestroy)
+                            {
+                                if (Services.timeManager.fastForwarding) timer += 1 / Services.timeManager.fastForwardSpeed;
+                                else timer += 1f;
+                                textToWrite = " ";
+                                characterIndex = 0;
+                            }
+                        }
                     }
 
                     // pause a bit for every comma and period

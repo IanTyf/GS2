@@ -285,7 +285,7 @@ public class ActionConditionsManager : MonoBehaviour
             if (P3beauCheckWatchNormal.withinTimeWindow(currentM) && P3beauCheckWatchNormal.state != CondState.Ready)
             {
                 int mDiff = minutesFromRealTime();
-                if (mDiff > -31 && mDiff < 1) 
+                if (mDiff > -31 && mDiff < 2) 
                 {
                     setReady(P3beauCheckWatchNormal);
                 }
@@ -295,7 +295,7 @@ public class ActionConditionsManager : MonoBehaviour
             if (P3beauCheckWatchLate.withinTimeWindow(currentM) && P3beauCheckWatchLate.state != CondState.Ready)
             {
                 int mDiff = minutesFromRealTime();
-                if (mDiff > 0 && mDiff < 31)
+                if (mDiff > 1 && mDiff < 31)
                 {
                     setReady(P3beauCheckWatchLate);
                 }

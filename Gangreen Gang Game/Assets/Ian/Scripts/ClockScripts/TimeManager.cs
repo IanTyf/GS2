@@ -87,10 +87,10 @@ public class TimeManager : MonoBehaviour
                 hour = 6;
                 minute = 0f;
             }
-            if (day == 0 && hour > 15)
+            if (day == 0 && hour > 15 && minute > 20f)
             {
-                hour = 15;
-                minute = 59f;
+                hour = 16;
+                minute = 20f;
             }
 
 

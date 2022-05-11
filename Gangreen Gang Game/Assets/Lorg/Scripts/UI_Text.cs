@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI_Text : MonoBehaviour
 {
-    private static Text speechText;
+    public static Text speechText;
 
     private void Awake()
     {

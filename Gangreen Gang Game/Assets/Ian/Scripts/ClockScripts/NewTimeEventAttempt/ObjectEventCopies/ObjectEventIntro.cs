@@ -253,7 +253,7 @@ public class ObjectEventIntro : MonoBehaviour
             "you've been her little assistant.\n\nBut that doesn't mean the revival of The Second Hand is without threat - Beauregard Clockenspiel is looking to " +
             "buy the shop and redevelop the land. And if he secures enough buyer's he might create an offer that your niece can't refuse.";
 
-        UI_TextDup.Write(txt, 0.04f, true);
+        UI_TextDup.Write(txt, 0.04f, true, false);
     }
 
     public void showGoodEnding()
