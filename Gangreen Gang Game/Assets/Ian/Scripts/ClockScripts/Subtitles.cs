@@ -6,35 +6,35 @@ public class Subtitles : MonoBehaviour
 {
     public static float textSpeed = 0.06f;
 
-    public static string p1Early = "Niece: *Yawn* Stupid clock, I still have some time to sleep.";
-    public static string p1OnTime = "Niece: Time to get to Work.";
-    public static string p1Late = "Niece: Oh shoot I'm late! I gotta get down stairs!";
+    public static string p1Early = "Claire: *Yawn* Stupid clock, I still have some time to sleep.";
+    public static string p1OnTime = "Claire: Time to get to Work.";
+    public static string p1Late = "Claire: Oh shoot I'm late! I gotta get down stairs!";
 
-    public static string p2NieceGreet = "Niece: Hi there! how can I help you?";
+    public static string p2NieceGreet = "Claire: Hi there! how can I help you?";
     public static string p2CustomerAsk = "Customer: Yes! I am looking for a clock!";
 
     public static string p2NotTheRightClock = "Customer: That's.. not what I want.";
 
-    public static string p2MoreClockUpstairs = "Niece: There are also clocks upstairs.";
+    public static string p2MoreClockUpstairs = "Claire: There are also clocks upstairs.";
     public static string p2decideToBuy = "Customer: This one! I love it!";
     public static string p2failedBuy = "Customer: I think I'm just going to go with this one.";
-    public static string p2NieceSayBye = "Niece: Alright sounds good. Thank you for coming!";
+    public static string p2NieceSayBye = "Claire: Alright sounds good. Thank you for coming!";
 
     public static string p3Beau1 = "???: Hello Cousin.";
-    public static string p3Niece1 = "Niece: Oh! Beauregard. It's been a while.";
-    public static string p3Niece2 = "Niece: How have you been?";
+    public static string p3Niece1 = "Claire: Oh! Beauregard. It's been a while.";
+    public static string p3Niece2 = "Claire: How have you been?";
     public static string p3Beau2 = "Beauregard: Good.";
     public static string p3Beau3 = "Beauregard: I won't be here too long, I have a meeting to get to.";
     public static string p3Beau4 = "Beauregard: I see you've livened up this relic.";
-    public static string p3Niece3 = "Niece: Well Uncle Frank poured his heart and soul into this place.";
-    public static string p3Niece4 = "Niece: Couldn't just let it die.";
+    public static string p3Niece3 = "Claire: Well Uncle Frank poured his heart and soul into this place.";
+    public static string p3Niece4 = "Claire: Couldn't just let it die.";
     public static string p3Beau5 = "Beauregard: That's well and good, but Uncle Franklin is from my side of the family.";
     public static string p3Beau6 = "Beauregard: As such, ownership of the store should rightfully fall to me.";
     public static string p3Beau7 = "Beauregard: I've got plans to sell the store. My meeting is to secure buyers.";
-    public static string p3Niece5 = "Niece: You didn't want the store after Uncle Franklin died.";
+    public static string p3Niece5 = "Claire: You didn't want the store after Uncle Franklin died.";
     public static string p3Beau8 = "Beauregard: There wasn't money to be made in the store after he died. No one wanted a crusty, old shop.";
     public static string p3Beau9 = "Beauregard: And now the value of the property has gone up recently.";
-    public static string p3Niece6 = "Niece: You're sick. Doesn't matter though, The store belongs to me.";
+    public static string p3Niece6 = "Claire: You're sick. Doesn't matter though, The store belongs to me.";
     public static string p3Beau10 = "Beauregard: Don't worry I'll make sure you get an offer you can't refuse.";
 
     public static string p3Beau11 = "Beauregard: Oh! Looks like I have some time before my meeting. You'll have to excuse me.";
@@ -47,20 +47,20 @@ public class Subtitles : MonoBehaviour
 
     public static string p3Beau14 = "Beauregard: I'll see you with the buyers next time.";
 
-    public static string p3NieceSelf1 = "I don't know what to do uncle.";
-    public static string p3NieceSelf2 = "You worked your butt off for this place.";
-    public static string p3NieceSelf3 = "I can't believe Beauregard would just assume that I would throw all this away.";
-    public static string p3NieceSelf4 = "But selling the shop would mean I could start newer shop.";
-    public static string p3NieceSelf5 = "If I did that I feel like I could throw some new ideas into the mix.";
-    public static string p3NieceSelf6 = "Ugh such a big decision.";
+    public static string p3NieceSelf1 = "(I don't know what to do uncle.)";
+    public static string p3NieceSelf2 = "(You worked your butt off for this place.)";
+    public static string p3NieceSelf3 = "(I can't believe Beauregard would just assume that I would throw all this away.)";
+    public static string p3NieceSelf4 = "(But selling the shop would mean I could start a newer shop.)";
+    public static string p3NieceSelf5 = "(If I did that I feel like I could throw some new ideas into the mix.)";
+    public static string p3NieceSelf6 = "(Ugh such a big decision.)";
 
-    public static string p4NieceHi = "Niece: Hello?";
+    public static string p4NieceHi = "Claire: Hello?";
     public static string p4BeauBackWithBuyers = "Beauregard: I'll make this quick, I'm coming back with buyers.";
-    public static string p4NieceBye = "Niece: Oh Alright, guess I'll see you soon.";
-    public static string p4NieceExciting = "Niece: I guess I'm doing this. This is oddly exciting.";
+    public static string p4NieceBye = "Claire: Oh Alright, guess I'll see you soon.";
+    public static string p4NieceExciting = "Claire: I guess I'm doing this. This is oddly exciting.";
 
     public static string p4Beau1 = "Beauregard: I hope you're happy.";
-    public static string p4Niece1 = "Niece: Come again?";
+    public static string p4Niece1 = "Claire: Come again?";
     public static string p4Beau2 = "Beauregard: The time on my watch desynced. I was late to my meetings.";
     public static string p4Beau3 = "Beauregard: Probably from all the broken clocks in there.";
     public static string p4Beau4 = "Beauregard: I lost buyers because of you.";
@@ -79,9 +79,9 @@ public class Subtitles : MonoBehaviour
 
     public static string p4Buyer15 = "Buyer1: Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
     public static string p4BeauHappy = "Beauregard: Absolutely, gentlemen! We can do that right now.";
-    public static string p4NieceEnd = "Niece: Alright, Lets hear your price.";
+    public static string p4NieceEnd = "Claire: Alright, Lets hear your price.";
 
-    public static string p2NieceAdded = "Niece: Right, well feel free to take a look around. There are also clocks upstairs!";
+    public static string p2NieceAdded = "Claire: Right, well feel free to take a look around. There are also clocks upstairs!";
 
     // Start is called before the first frame update
     void Start()

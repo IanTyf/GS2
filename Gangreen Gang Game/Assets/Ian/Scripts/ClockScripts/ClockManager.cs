@@ -219,6 +219,8 @@ public class ClockManager : MonoBehaviour
             if (targetClock != null) break;
         }
 
+        if (visibleClocks.Count == 1) targetClock = visibleClocks[0];
+
         // if we find a new clock to switch to
         if (targetClock != null)
         {
