@@ -145,7 +145,11 @@ public class TypeWriterDup : MonoBehaviour
             if (uiText != null)
             {
                 if (Services.timeManager.skipping) timer -= Time.deltaTime * Services.timeManager.rewindSpeed;
-                else timer -= Time.deltaTime;
+                else
+                {
+                    if (Services.timeManager.fastForwarding) timer -= Time.deltaTime * Services.timeManager.fastForwardSpeed;
+                    else timer -= Time.deltaTime;
+                }
 
                 while (timer <= 0f)
                 {
@@ -153,7 +157,7 @@ public class TypeWriterDup : MonoBehaviour
                     {
                         timer += timePerCharacter;
                     }
-                    else timer += timePerCharacter / Services.timeManager.fastForwardSpeed;
+                    else timer += timePerCharacter;
 
                     if (Services.timeManager.skipping)
                     {

@@ -17038,7 +17038,7 @@ MonoBehaviour:
   skipping: 0
   rewindSpeed: 10
   fastForwarding: 0
-  fastForwardSpeed: 50
+  fastForwardSpeed: 10
   directionalLight: {fileID: 649216705}
 --- !u!1 &1776262037
 GameObject:
