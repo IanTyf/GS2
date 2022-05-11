@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     //public Clock currentClock;
+    public bool disableControl;
 
     private PlayerInput playerInput;
 
@@ -26,6 +27,8 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         Services.inputManager = this;
+
+        disableControl = false;
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -88,24 +91,32 @@ public class InputManager : MonoBehaviour
     private void onTick(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         Services.clockManager.currentClock.GetComponent<Clock>().RotateMinuteHand(6);
     }
 
     private void onStop(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         Services.clockManager.currentClock.GetComponent<Clock>().StopMinuteHand();
     }
 
     private void onResume(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         Services.clockManager.currentClock.GetComponent<Clock>().ResumeMinuteHand();
     }
 
     private void onRingLeft(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         // ring left
         //Services.timeEventManager.isRinging = true;
         Services.actionConditionsManager.isRinging = true;
@@ -115,6 +126,8 @@ public class InputManager : MonoBehaviour
     private void onRingRight(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         // ring right
         //Services.timeEventManager.isRinging = true;
         Services.actionConditionsManager.isRinging = true;
@@ -123,8 +136,8 @@ public class InputManager : MonoBehaviour
 
     private void onSkip(InputAction.CallbackContext ctx)
     {
-        if (Services.timeManager.skipping) return;
-        Services.timeManager.skipping = true;
+        //if (Services.timeManager.skipping) return;
+        //Services.timeManager.skipping = true;
     }
     
     private void Skip(InputAction.CallbackContext ctx)
@@ -151,6 +164,8 @@ public class InputManager : MonoBehaviour
     {
         //Debug.Log(ctx.ReadValue<Vector2>());
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         Services.clockManager.handleInput(ctx.ReadValue<Vector2>());
     }
 
@@ -163,6 +178,8 @@ public class InputManager : MonoBehaviour
     private void GoToClock(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
+        if (disableControl) return;
         Services.clockManager.GoToHighlightedClock();
     }
 

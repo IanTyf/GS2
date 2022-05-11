@@ -277,6 +277,12 @@ public class ObjectEventIntro : MonoBehaviour
         UI_TextDup.Write(txt, 0.04f, true, true);
     }
 
+    public void toggleInput()
+    {
+        if (tm.skipping) Services.inputManager.disableControl = false;
+        else Services.inputManager.disableControl = true;
+    }
+
     /*
     public void playChildAnim(string str)
     {
