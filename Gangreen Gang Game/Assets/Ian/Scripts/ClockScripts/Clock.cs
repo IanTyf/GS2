@@ -40,6 +40,7 @@ public class Clock : MonoBehaviour
         Services.clockManager.clocks.Add(this.gameObject);
 
         if (!possessed) transform.GetChild(0).gameObject.SetActive(false);
+        else SetHandsTransparent(0.3f);
 
         tm = Services.timeManager;
         myMinute = (int)tm.minute;
@@ -195,6 +196,20 @@ public class Clock : MonoBehaviour
         RotateHand(minuteHand, degree * 12);
     }
     */
+
+    public void SetHandsTransparent(float alpha)
+    {
+        Material oldMinMat = minuteHand.GetComponentInChildren<MeshRenderer>().material;
+        Material newMinMat = new Material(oldMinMat);
+        newMinMat.color = new Color(newMinMat.color.r, newMinMat.color.g, newMinMat.color.b, alpha);
+        minuteHand.GetComponentInChildren<MeshRenderer>().material = newMinMat;
+
+        Material oldHrMat = hourHand.GetComponentInChildren<MeshRenderer>().material;
+        Material newHrMat = new Material(oldHrMat);
+        newHrMat.color = new Color(newHrMat.color.r, newHrMat.color.g, newHrMat.color.b, alpha);
+        hourHand.GetComponentInChildren<MeshRenderer>().material = newHrMat;
+    }
+
     public void RotateMinuteHand(int degree)
     {
         //RotateHand(minuteHand, degree);

@@ -118,6 +118,7 @@ public class ClockManager : MonoBehaviour
         previousClock = currentClock;
         currentClock.GetComponent<Clock>().possessed = false;
         currentClock.GetComponent<Clock>().showHidden();
+        currentClock.GetComponent<Clock>().SetHandsTransparent(1.0f);
         currentClock.transform.GetChild(0).localPosition = tempLocalPos;
         currentClock.transform.GetChild(0).gameObject.SetActive(false);
         revertHighlight(newClock);
@@ -125,6 +126,7 @@ public class ClockManager : MonoBehaviour
         currentClock = newClock;
         currentClock.GetComponent<Clock>().possessed = true;
         currentClock.GetComponent<Clock>().hide();
+        currentClock.GetComponent<Clock>().SetHandsTransparent(0.3f);
         currentClock.transform.GetChild(0).gameObject.SetActive(true);
 
         // update the ring sounds in audio manager
