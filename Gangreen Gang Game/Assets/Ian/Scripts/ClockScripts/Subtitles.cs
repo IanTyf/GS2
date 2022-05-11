@@ -81,6 +81,7 @@ public class Subtitles : MonoBehaviour
     public static string p4BeauHappy = "Beauregard: Absolutely, gentlemen! We can do that right now.";
     public static string p4NieceEnd = "Niece: Alright, Lets hear your price.";
 
+    public static string p2NieceAdded = "Niece: Right, well feel free to take a look around. There are also clocks upstairs!";
 
     // Start is called before the first frame update
     void Start()
@@ -274,6 +275,9 @@ public class Subtitles : MonoBehaviour
                 break;
             case 59:
                 UI_Text.Write(p4NieceEnd, textSpeed, true);
+                break;
+            case 60:
+                UI_Text.Write(p2NieceAdded, textSpeed, true);
                 break;
         }
     }
