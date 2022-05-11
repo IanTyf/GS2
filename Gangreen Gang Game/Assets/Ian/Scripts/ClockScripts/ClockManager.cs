@@ -241,7 +241,8 @@ public class ClockManager : MonoBehaviour
 
     private bool IsInView(GameObject toCheck, Camera cam)
     {
-        Vector3 pointOnScreen = cam.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
+        //Vector3 pointOnScreen = cam.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
+        Vector3 pointOnScreen = cam.WorldToScreenPoint(toCheck.transform.GetChild(toCheck.transform.childCount - 1).GetComponent<MeshRenderer>().bounds.center);
 
         //Is in front
         if (pointOnScreen.z < 0)
