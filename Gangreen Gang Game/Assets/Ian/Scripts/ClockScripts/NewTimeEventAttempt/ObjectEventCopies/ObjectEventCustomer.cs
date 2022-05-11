@@ -257,7 +257,7 @@ public class ObjectEventCustomer : MonoBehaviour
     {
         if (Services.timeManager.skipping)
         {
-            Services.actionConditionsManager.beauWatch.cannotPossess = false;
+            //Services.actionConditionsManager.beauWatch.cannotPossess = false;
             return;
         }
 
@@ -266,14 +266,14 @@ public class ObjectEventCustomer : MonoBehaviour
             Services.clockManager.returnToPreviousClock();
         }
 
-        Services.actionConditionsManager.beauWatch.cannotPossess = true;
+        //Services.actionConditionsManager.beauWatch.cannotPossess = true;
     }
 
     public void PushPlayerOutFirstFloor()
     {
         if (Services.timeManager.skipping)
         {
-            Services.actionConditionsManager.beauWatch.cannotPossess = false;
+            //Services.actionConditionsManager.beauWatch.cannotPossess = false;
             return;
         }
 
@@ -282,7 +282,7 @@ public class ObjectEventCustomer : MonoBehaviour
             Services.clockManager.returnToPreviousClock();
         }
 
-        Services.actionConditionsManager.beauWatch.cannotPossess = true;
+        //Services.actionConditionsManager.beauWatch.cannotPossess = true;
     }
 
     /*
