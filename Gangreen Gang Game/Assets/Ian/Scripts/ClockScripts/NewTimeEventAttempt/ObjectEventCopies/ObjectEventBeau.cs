@@ -179,15 +179,18 @@ public class ObjectEventBeau : MonoBehaviour
 
     public void PushPlayerOut()
     {
+        if (Services.clockManager.currentClock.name == "beauWatch")
+        {
+            Services.clockManager.returnToPreviousClock();
+        }
+    }
+
+    public void DisablePossess()
+    {
         if (Services.timeManager.skipping)
         {
             Services.actionConditionsManager.beauWatch.cannotPossess = false;
             return;
-        }
-
-        if (Services.clockManager.currentClock.name == "beauWatch")
-        {
-            Services.clockManager.returnToPreviousClock();
         }
 
         Services.actionConditionsManager.beauWatch.cannotPossess = true;

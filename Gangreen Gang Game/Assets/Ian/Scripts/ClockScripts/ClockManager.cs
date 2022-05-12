@@ -146,11 +146,14 @@ public class ClockManager : MonoBehaviour
         if (previousClock == null) return;
         if (zooming) return;
 
+        //revertHighlight(highlightedClock);
+        savedColor = Color.white;
         highlightedClock = previousClock;
         highlight = true;
         GoToHighlightedClock();
+        //revertHighlight(currentClock);
     }
-
+    
     // takes a vec2 and shoot a ray from the currently hightlighted clock and move to another one
     // based on similar concept with ray-marching
     public void handleInput(Vector2 dir)
@@ -313,7 +316,7 @@ public class ClockManager : MonoBehaviour
     private void revertHighlight(GameObject clock)
     {
         if (clock == null) return;
-
+        if (savedColor == Color.white) return;
         //clock.transform.localScale = Vector3.one * 1;
         //clock.transform.localScale = clock.transform.localScale / 2;
 
