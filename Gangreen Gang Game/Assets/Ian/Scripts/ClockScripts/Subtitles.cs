@@ -13,7 +13,7 @@ public class Subtitles : MonoBehaviour
     public static string p2NieceGreet = "Claire: Hi there! how can I help you?";
     public static string p2CustomerAsk = "Customer: Yes! I am looking for a clock!";
 
-    public static string p2NotTheRightClock = "Customer: That's.. not what I want.";
+    public static string p2NotTheRightClock = "Customer: Hmm, this one is not bad.";
 
     public static string p2MoreClockUpstairs = "Claire: There are also clocks upstairs.";
     public static string p2decideToBuy = "Customer: This one! I love it!";
@@ -82,6 +82,11 @@ public class Subtitles : MonoBehaviour
     public static string p4NieceEnd = "Claire: Alright, Lets hear your price.";
 
     public static string p2NieceAdded = "Claire: Right, well feel free to take a look around. There are also clocks upstairs!";
+
+    public static string grandfatherClockReaction = "Customer: This is a bit too big. Do you have something smaller?";
+    public static string mantelClockReaction = "Customer: I think this is too fancy for me.";
+    public static string cornerClockReaction = "Customer: I'm not really liking the angles. Do you have something more round?";
+    public static string deskClockReaction = "Customer: I think I want something with more portability.";
 
     // Start is called before the first frame update
     void Start()
@@ -278,6 +283,18 @@ public class Subtitles : MonoBehaviour
                 break;
             case 60:
                 UI_Text.Write(p2NieceAdded, textSpeed, true);
+                break;
+            case 61:
+                UI_Text.Write(grandfatherClockReaction, textSpeed, true);
+                break;
+            case 62:
+                UI_Text.Write(mantelClockReaction, textSpeed, true);
+                break;
+            case 63:
+                UI_Text.Write(cornerClockReaction, textSpeed, true);
+                break;
+            case 64:
+                UI_Text.Write(deskClockReaction, textSpeed, true);
                 break;
         }
     }

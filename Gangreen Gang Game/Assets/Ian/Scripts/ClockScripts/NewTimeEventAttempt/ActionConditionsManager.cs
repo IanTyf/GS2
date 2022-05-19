@@ -42,6 +42,11 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2soldRightClock;
     public ActionCondition P2soldWrongClock;
 
+    public ActionCondition P2grandfatherClock;
+    public ActionCondition P2mantelClock;
+    public ActionCondition P2cornerClock;
+    public ActionCondition P2deskClock;
+
     // puzzle #3
     public ActionCondition P3beauWalksIn;
     public ActionCondition P3beauStartTalking;
@@ -105,6 +110,11 @@ public class ActionConditionsManager : MonoBehaviour
         P2soldRightClock = new ActionCondition("P2soldRightClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P2soldWrongClock = new ActionCondition("P2soldWrongClock", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
+        P2grandfatherClock = new ActionCondition("P2grandfatherClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+        P2mantelClock = new ActionCondition("P2mantelClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+        P2cornerClock = new ActionCondition("P2cornerClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+        P2deskClock = new ActionCondition("P2deskClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+
         // puzzle #3
         P3beauWalksIn = new ActionCondition("P3beauWalksIn", new Vector3(0, 10, 30), new Vector3(1, 0, 0));
         P3beauStartTalking = new ActionCondition("P3beauStartTalking", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
@@ -158,6 +168,11 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2customerLeave);
         allActionConditions.Add(P2soldRightClock);
         allActionConditions.Add(P2soldWrongClock);
+        allActionConditions.Add(P2grandfatherClock);
+        allActionConditions.Add(P2mantelClock);
+        allActionConditions.Add(P2cornerClock);
+        allActionConditions.Add(P2deskClock);
+
 
         allActionConditions.Add(P3beauWalksIn);
         allActionConditions.Add(P3beauStartTalking);
@@ -201,6 +216,10 @@ public class ActionConditionsManager : MonoBehaviour
         // reset some repeatable action conditions
         P1ringAlarmClockEarly.state = CondState.NotSet;
         P2wrongClock.state = CondState.NotSet;
+        P2grandfatherClock.state = CondState.NotSet;
+        P2mantelClock.state = CondState.NotSet;
+        P2cornerClock.state = CondState.NotSet;
+        P2deskClock.state = CondState.NotSet;
 
 
         // when forwarding, check and set all the action conditions
@@ -257,7 +276,7 @@ public class ActionConditionsManager : MonoBehaviour
 
             // P2wrongClock
             if (P2wrongClock.withinTimeWindow(currentM) && P2wrongClock.state != CondState.Ready
-                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name != "wristWatch" && cm.currentClock.name != "pocketWatch")
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "pocketWatch")
             {
                 setReady(P2wrongClock);
             }
@@ -273,6 +292,34 @@ public class ActionConditionsManager : MonoBehaviour
             if (P2failed.withinTimeWindow(currentM) && P2failed.state != CondState.Ready && P2ringClocksUpstair.state != CondState.Ready)
             {
                 setReady(P2failed);
+            }
+
+            // P2grandfatherClock
+            if (P2grandfatherClock.withinTimeWindow(currentM) && P2grandfatherClock.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "grandfatherClock")
+            {
+                setReady(P2grandfatherClock);
+            }
+
+            // P2mantelClock
+            if (P2mantelClock.withinTimeWindow(currentM) && P2mantelClock.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "mantelClock")
+            {
+                setReady(P2mantelClock);
+            }
+
+            // P2cornerClock
+            if (P2cornerClock.withinTimeWindow(currentM) && P2cornerClock.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "cornerClock")
+            {
+                setReady(P2cornerClock);
+            }
+
+            // P2deskClock
+            if (P2deskClock.withinTimeWindow(currentM) && P2deskClock.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "deskClock")
+            {
+                setReady(P2deskClock);
             }
 
             // P3beauWalksIn

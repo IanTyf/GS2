@@ -8350,8 +8350,8 @@ MonoBehaviour:
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.4
-  rumbleLowFreq: 0.5
-  rumbleHighFreq: 0.7
+  rumbleLowFreq: 0.2
+  rumbleHighFreq: 0.3
 --- !u!1 &1009903369
 GameObject:
   m_ObjectHideFlags: 0
@@ -15028,8 +15028,8 @@ MonoBehaviour:
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.1
-  rumbleLowFreq: 0.1
-  rumbleHighFreq: 0.2
+  rumbleLowFreq: 0.2
+  rumbleHighFreq: 0.3
 --- !u!1 &1479060073
 GameObject:
   m_ObjectHideFlags: 0
@@ -18145,7 +18145,7 @@ MonoBehaviour:
   hiddenObjs: []
   rumbleTime: 0.5
   rumbleLowFreq: 0.2
-  rumbleHighFreq: 0.3
+  rumbleHighFreq: 0.4
 --- !u!1 &2002600003
 GameObject:
   m_ObjectHideFlags: 0
@@ -25254,8 +25254,8 @@ MonoBehaviour:
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.5
-  rumbleLowFreq: 0.3
-  rumbleHighFreq: 0.5
+  rumbleLowFreq: 0.2
+  rumbleHighFreq: 0.4
 --- !u!4 &5278464838838090816
 Transform:
   m_ObjectHideFlags: 0
@@ -26876,8 +26876,8 @@ MonoBehaviour:
   tickSounds: []
   hiddenObjs: []
   rumbleTime: 0.2
-  rumbleLowFreq: 0.1
-  rumbleHighFreq: 0.3
+  rumbleLowFreq: 0.2
+  rumbleHighFreq: 0.4
 --- !u!4 &7188144233864353716
 Transform:
   m_ObjectHideFlags: 0

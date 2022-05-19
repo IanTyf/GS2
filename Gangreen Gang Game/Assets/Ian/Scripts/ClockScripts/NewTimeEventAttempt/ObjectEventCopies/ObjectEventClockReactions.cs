@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectEventCustomer : MonoBehaviour
+public class ObjectEventClockReactions : MonoBehaviour
 {
     public List<TimeAction> allActions = new List<TimeAction>();
 
@@ -35,48 +35,46 @@ public class ObjectEventCustomer : MonoBehaviour
 
         // add all the action events of this object, one action event per anim clip
         // initial idle state
-        TimeAction initialTA = new TimeAction("init", "CustomerOutsideIdle");
+        TimeAction initialTA = new TimeAction("init", "BeauOutsideIdle");
 
-        // puzzle #2
-        ActionCondition[] walkInConds = { acm.P2customerWalksIn };
-        TimeAction walkIn = new TimeAction("walkIn", "WalkIn", walkInConds);
+        // puzzle #3
+        ActionCondition[] walkInConds = { acm.P3beauWalksIn };
+        TimeAction walkIn = new TimeAction("walkIn", "WalkIn1", walkInConds);
         allActions.Add(walkIn);
 
-        ActionCondition[] askForClockConds = { acm.P2customerAskForClock };
-        TimeAction askForClock = new TimeAction("askForClock", "Talk", askForClockConds);
-        allActions.Add(askForClock);
+        ActionCondition[] startTalkingConds = { acm.P3beauStartTalking };
+        TimeAction startTalking = new TimeAction("startTalking", "TalkToNiece1", startTalkingConds);
+        allActions.Add(startTalking);
 
-        ActionCondition[] wrongClockConds = { acm.P2wrongClock };
-        TimeAction wrongClock = new TimeAction("wrongClock", "NotWhatIWant", wrongClockConds);
-        allActions.Add(wrongClock);
+        ActionCondition[] checkWatchConds = { acm.P3beauCheckWatchNormal };
+        TimeAction checkWatch = new TimeAction("checkWatch", "CheckWatch", checkWatchConds);
+        allActions.Add(checkWatch);
 
-        ActionCondition[] grandfatherClockConds = { acm.P2grandfatherClock };
-        TimeAction grandfatherClock = new TimeAction("grandfatherClock", "GrandfatherClockReaction", grandfatherClockConds);
-        allActions.Add(grandfatherClock);
+        ActionCondition[] checkWatchLateConds = { acm.P3beauCheckWatchLate };
+        TimeAction checkWatchLate = new TimeAction("checkWatchLate", "CheckWatchLate", checkWatchLateConds);
+        allActions.Add(checkWatchLate);
 
-        ActionCondition[] mantelClockConds = { acm.P2mantelClock };
-        TimeAction mantelClock = new TimeAction("mantelClock", "MantelClockReaction", mantelClockConds);
-        allActions.Add(mantelClock);
+        ActionCondition[] checkWatchWrongConds = { acm.P3beauCheckWatchWrong };
+        TimeAction checkWatchWrong = new TimeAction("checkWatchWrong", "CheckWatchWrong", checkWatchWrongConds);
+        allActions.Add(checkWatchWrong);
 
-        ActionCondition[] cornerClockConds = { acm.P2cornerClock };
-        TimeAction cornerClock = new TimeAction("cornerClock", "CornerClockReaction", cornerClockConds);
-        allActions.Add(cornerClock);
+        ActionCondition[] leaveConds = { acm.P3beauLeave };
+        TimeAction leave = new TimeAction("leave", "Leave1", leaveConds);
+        allActions.Add(leave);
 
-        ActionCondition[] deskClockConds = { acm.P2deskClock };
-        TimeAction deskClock = new TimeAction("deskClock", "DeskClockReaction", deskClockConds);
-        allActions.Add(deskClock);
 
-        ActionCondition[] failedToBuyConds = { acm.P2failed };
-        TimeAction failedToBuy = new TimeAction("failedToBuy", "FailPuzzle", failedToBuyConds);
-        allActions.Add(failedToBuy);
+        // puzzle #4
+        ActionCondition[] walkInWithBuyersConds = { acm.P4beauWalksIn };
+        TimeAction walkInWithBuyers = new TimeAction("walkInWithBuyers", "WalkIn2", walkInWithBuyersConds);
+        allActions.Add(walkInWithBuyers);
 
-        ActionCondition[] goUpstairsConds = { acm.P2ringClocksUpstair };
-        TimeAction goUpstairs = new TimeAction("goUpstairs", "GoUpstairs", goUpstairsConds);
-        allActions.Add(goUpstairs);
+        ActionCondition[] greetBuyersConds = { acm.P4BeauGreets };
+        TimeAction greetBuyers = new TimeAction("greetBuyers", "BeauToBuyer1", greetBuyersConds);
+        allActions.Add(greetBuyers);
 
-        ActionCondition[] leaveShopConds = { acm.P2customerLeave };
-        TimeAction leaveShop = new TimeAction("leaveShop", "Leave", leaveShopConds);
-        allActions.Add(leaveShop);
+        ActionCondition[] shakeHandConds = { acm.P4BeauShakeHand };
+        TimeAction shakeHand = new TimeAction("shakeHand", "Deal", shakeHandConds);
+        allActions.Add(shakeHand);
 
 
         // initial listening actions
@@ -179,6 +177,31 @@ public class ObjectEventCustomer : MonoBehaviour
         anim.Play(clipName, 0, norm);
     }
 
+    public void PushPlayerOut()
+    {
+        if (Services.clockManager.currentClock.name == "beauWatch")
+        {
+            Services.clockManager.returnToPreviousClock();
+        }
+    }
+
+    public void DisablePossess()
+    {
+        if (Services.timeManager.skipping)
+        {
+            Services.actionConditionsManager.beauWatch.cannotPossess = false;
+            return;
+        }
+
+        Services.actionConditionsManager.beauWatch.cannotPossess = true;
+    }
+
+    public void CanPossess()
+    {
+        if (Services.timeManager.skipping) Services.actionConditionsManager.beauWatch.cannotPossess = true;
+        else Services.actionConditionsManager.beauWatch.cannotPossess = false;
+    }
+
     // called at the end of each animation
     // update the currently listening actions list, only do so when going forward
     // push the current action to the history list
@@ -221,11 +244,8 @@ public class ObjectEventCustomer : MonoBehaviour
         }
         if (!oldActions.Equals(""))
         {
-            if (listeningHistory.Count == 0 || (listeningHistory.Count > 0 && !oldActions.Equals(listeningHistory[listeningHistory.Count - 1])))
-            {
-                listeningHistory.Add(oldActions);
-                Debug.Log("added " + oldActions + " to listening history");
-            }
+            listeningHistory.Add(oldActions);
+            Debug.Log("added " + oldActions + " to listening history");
         }
 
 
@@ -255,15 +275,6 @@ public class ObjectEventCustomer : MonoBehaviour
         currentTimeAction = null;
     }
 
-    public void resetActionState()
-    {
-        if (tm.skipping)
-        {
-            actionState = ActionState.Playing;
-        }
-        else actionState = ActionState.Listening;
-    }
-
     public void setActionState()
     {
         if (tm.skipping)
@@ -279,38 +290,6 @@ public class ObjectEventCustomer : MonoBehaviour
         if (tm.skipping) return;
 
         Subtitles.playSubtitles(id);
-    }
-
-    public void PushPlayerOutSecondFloor()
-    {
-        if (Services.timeManager.skipping)
-        {
-            //Services.actionConditionsManager.beauWatch.cannotPossess = false;
-            return;
-        }
-
-        if (Services.clockManager.currentClock.name == "wristWatch")
-        {
-            Services.clockManager.returnToPreviousClock();
-        }
-
-        //Services.actionConditionsManager.beauWatch.cannotPossess = true;
-    }
-
-    public void PushPlayerOutFirstFloor()
-    {
-        if (Services.timeManager.skipping)
-        {
-            //Services.actionConditionsManager.beauWatch.cannotPossess = false;
-            return;
-        }
-
-        if (Services.clockManager.currentClock.name == "pocketWatch")
-        {
-            Services.clockManager.returnToPreviousClock();
-        }
-
-        //Services.actionConditionsManager.beauWatch.cannotPossess = true;
     }
 
     /*
