@@ -55,7 +55,7 @@ public class Subtitles : MonoBehaviour
     public static string p3NieceSelf6 = "(Ugh such a big decision.)";
 
     public static string p4NieceHi = "Claire: Hello?";
-    public static string p4BeauBackWithBuyers = "Beauregard: I'll make this quick, I'm coming back with buyers.";
+    public static string p4BeauBackWithBuyers = "Beauregard: I'll make this quick, I'm coming back with buyers around two.";
     public static string p4NieceBye = "Claire: Oh Alright, guess I'll see you soon.";
     public static string p4NieceExciting = "Claire: I guess I'm doing this. This is oddly exciting.";
 

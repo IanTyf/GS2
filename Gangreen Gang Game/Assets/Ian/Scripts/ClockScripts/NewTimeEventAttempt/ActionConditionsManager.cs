@@ -116,22 +116,22 @@ public class ActionConditionsManager : MonoBehaviour
         P3nieceSelfTalk = new ActionCondition("P3nieceSelfTalk", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
         // puzzle #4
-        P4beauCallNormal = new ActionCondition("P4beauCallNormal", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
-        P4beauCallMad = new ActionCondition("P4beauCallMad", new Vector3(0, 13, 30), new Vector3(0, 13, 35));
-        P4beauWalksIn = new ActionCondition("P4beauWalksIn", new Vector3(0, 14, 19), new Vector3(0, 14, 24));
-        P4BuyerOneWalksIn = new ActionCondition("P4buyerOneWalksIn", new Vector3(0, 14, 20), new Vector3(0, 14, 25));
-        P4BuyerTwoWalksIn = new ActionCondition("P4buyerTwoWalksIn", new Vector3(0, 14, 21), new Vector3(0, 14, 26));
+        P4beauCallNormal = new ActionCondition("P4beauCallNormal", new Vector3(0, 13, 00), new Vector3(0, 13, 05));
+        P4beauCallMad = new ActionCondition("P4beauCallMad", new Vector3(0, 13, 00), new Vector3(0, 13, 05));
+        P4beauWalksIn = new ActionCondition("P4beauWalksIn", new Vector3(0, 14, 00), new Vector3(0, 14, 05));
+        P4BuyerOneWalksIn = new ActionCondition("P4buyerOneWalksIn", new Vector3(0, 14, 01), new Vector3(0, 14, 06));
+        P4BuyerTwoWalksIn = new ActionCondition("P4buyerTwoWalksIn", new Vector3(0, 14, 02), new Vector3(0, 14, 07));
 
         P4BuyerOneFinished = new ActionCondition("P4buyerOneFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P4BuyerTwoFinished = new ActionCondition("P4buyerTwoFinished", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
         P4BeauGreets = new ActionCondition("P4beauGreets", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
         P4BeauFinishes = new ActionCondition("P4beauFinishes", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
-        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 14, 30), new Vector3(0, 15, 29));
-        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 14, 30), new Vector3(1, 15, 29));
+        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 14, 10), new Vector3(0, 15, 09));
+        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 14, 10), new Vector3(0, 15, 09));
 
-        P4BuyerBuy = new ActionCondition("P4buyerBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
-        P4BuyerNotBuy = new ActionCondition("P4buyerNotBuy", new Vector3(0, 15, 30), new Vector3(1, 0, 0));
+        P4BuyerBuy = new ActionCondition("P4buyerBuy", new Vector3(0, 15, 10), new Vector3(1, 0, 0));
+        P4BuyerNotBuy = new ActionCondition("P4buyerNotBuy", new Vector3(0, 15, 10), new Vector3(1, 0, 0));
         P4BeauShakeHand = new ActionCondition("P4beauShakeHand", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
         Intro = new ActionCondition("Intro", new Vector3(0, 6, 0), new Vector3(0, 6, 5));
