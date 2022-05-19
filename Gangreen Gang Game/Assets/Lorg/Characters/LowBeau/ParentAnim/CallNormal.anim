@@ -28,7 +28,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 20.966667
+        time: 23.366667
         value: {x: -1.697, y: 2.969, z: -2.325}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -63,7 +63,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 20.966667
+    m_StopTime: 23.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -92,7 +92,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 20.966667
+        time: 23.366667
         value: -1.697
         inSlope: 0
         outSlope: 0
@@ -120,7 +120,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 20.966667
+        time: 23.366667
         value: 2.969
         inSlope: 0
         outSlope: 0
@@ -148,7 +148,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 20.966667
+        time: 23.366667
         value: -2.325
         inSlope: 0
         outSlope: 0
@@ -175,76 +175,83 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
+    functionName: playPhoneRing
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.0166667
     functionName: playChildAnim
     data: Niece_Child, StartCall, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 3.5166667
     functionName: playChildAnim
     data: Niece_Child, CallToIdle, 0
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.4166667
+  - time: 5.4333334
     functionName: playChildAnim
     data: Niece_Child, KeepCall, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.9
+  - time: 5.9166665
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 39
     messageOptions: 0
-  - time: 3.35
+  - time: 6.366667
     functionName: playChildAnim
     data: Niece_Child, StartCall, 0
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.45
+  - time: 7.4666667
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 40
     messageOptions: 0
-  - time: 9.666667
+  - time: 12.683333
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 41
     messageOptions: 0
-  - time: 13.766666
+  - time: 16.783333
     functionName: playChildAnim
     data: Niece_Child, EndCall, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 16.15
+  - time: 19.166666
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 42
     messageOptions: 0
-  - time: 17.15
+  - time: 20.166666
     functionName: playChildAnim
     data: Niece_Child, CallToIdle, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 20.733334
+  - time: 23.75
     functionName: setListeningActions
     data: 
     objectReferenceParameter: {fileID: 0}

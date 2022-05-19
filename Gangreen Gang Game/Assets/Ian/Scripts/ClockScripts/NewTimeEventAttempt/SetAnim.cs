@@ -5,6 +5,7 @@ using UnityEngine;
 public class SetAnim : MonoBehaviour
 {
     public string lastPlayedChildClip;
+    public AudioSource phoneRing;
 
     public List<GameObject> disabledObjects = new List<GameObject>();
 
@@ -89,6 +90,15 @@ public class SetAnim : MonoBehaviour
     {
         if (Services.timeManager.skipping) Services.actionConditionsManager.setActionConditionByName(name.Trim(), false);
         else Services.actionConditionsManager.setActionConditionByName(name.Trim());
+    }
+
+    public void playPhoneRing()
+    {
+        if (phoneRing != null)
+        {
+            if (Services.timeManager.skipping || Services.timeManager.fastForwarding) return;
+            phoneRing.PlayOneShot(phoneRing.clip);
+        }
     }
 
     public void playChildAnim(string str)
