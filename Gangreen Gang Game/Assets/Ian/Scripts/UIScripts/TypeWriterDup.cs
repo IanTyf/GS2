@@ -199,7 +199,7 @@ public class TypeWriterDup : MonoBehaviour
 
                             if (!this.notDestroy)
                             {
-                                if (Services.timeManager.fastForwarding) timer += 1 / Services.timeManager.fastForwardSpeed;
+                                if (Services.timeManager.fastForwarding) timer += 1;
                                 else timer += 1f;
                                 textToWrite = " ";
                                 characterIndex = 0;
@@ -212,12 +212,17 @@ public class TypeWriterDup : MonoBehaviour
                     {
                         if (textToWrite[characterIndex - 1].Equals(','))
                         {
-                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 4 / Services.timeManager.fastForwardSpeed;
+                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 4;
                             else timer += timePerCharacter * 4;
                         }
                         if (textToWrite[characterIndex - 1].Equals('.'))
                         {
-                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 6 / Services.timeManager.fastForwardSpeed;
+                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 6;
+                            else timer += timePerCharacter * 6;
+                        }
+                        if (textToWrite[characterIndex - 1].Equals('\n'))
+                        {
+                            if (Services.timeManager.fastForwarding) timer += timePerCharacter * 6;
                             else timer += timePerCharacter * 6;
                         }
                     }
