@@ -7,7 +7,7 @@ public class Subtitles : MonoBehaviour
     public static float textSpeed = 0.06f;
 
     public static string p1Early = "Claire: *Yawn* Stupid clock, I still have some time to sleep.";
-    public static string p1OnTime = "Claire: Time to get to Work.";
+    public static string p1OnTime = "Claire: Time to get to work.";
     public static string p1Late = "Claire: Oh shoot I'm late! I gotta get down stairs!";
 
     public static string p2NieceGreet = "Claire: Hi there! how can I help you?";
