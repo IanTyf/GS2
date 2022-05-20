@@ -66,18 +66,18 @@ public class Subtitles : MonoBehaviour
     public static string p4Beau4 = "Beauregard: I lost buyers because of you.";
     public static string p4Beau5 = "Beauregard: Anyway, I'll be back down with them soon.";
 
-    public static string p4Buyer11 = "Buyer 1: I must say Mr. Clockenspiel, this lot has potential.";
-    public static string p4Buyer21 = "Buyer 2: I agree. Lots of light and location is great.";
-    public static string p4Buyer22 = "Buyer 2: All we need is to clear up all these old clocks and it's perfect.";
+    public static string p4Buyer11 = "Buyer One: I must say Mr. Clockenspiel, this lot has potential.";
+    public static string p4Buyer21 = "Buyer Two: I agree. Lots of light and location is great.";
+    public static string p4Buyer22 = "Beauregard: All we need is to clear up all these old clocks and it's perfect.";
 
-    public static string p4Buyer12 = "Buyer 1: My papa used to have a clock like this.";
-    public static string p4Buyer23 = "Buyer 2: This is the type of clock I had in my room.";
+    public static string p4Buyer12 = "Buyer One: My papa used to have a clock like this.";
+    public static string p4Buyer23 = "Buyer Two: This is the type of clock I had in my room.";
 
-    public static string p4Buyer13 = "Buyer 1: Mr. Clockenspiel, we all feel that it wouldn't be right tearing this place down.";
+    public static string p4Buyer13 = "Buyer One: Mr. Clockenspiel, we all feel that it wouldn't be right tearing this place down.";
     public static string p4BeauSad = "Beauregard: But gentleman! Think of the potential!";
-    public static string p4Buyer14 = "Buyer 1: Our mind is decided, Good day Mr. Clockenspiel.";
+    public static string p4Buyer14 = "Buyer One: Our mind is decided, Good day Mr. Clockenspiel.";
     
-    public static string p4Buyer15 = "Buyer 1: Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
+    public static string p4Buyer15 = "Buyer One: Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
     public static string p4BeauHappy = "Beauregard: Absolutely, gentlemen! We can do that right now.";
     public static string p4NieceEnd = "Claire: Alright, Lets hear your price.";
 
