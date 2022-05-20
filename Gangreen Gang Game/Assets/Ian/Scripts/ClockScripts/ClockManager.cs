@@ -147,7 +147,7 @@ public class ClockManager : MonoBehaviour
         if (zooming) return;
 
         //revertHighlight(highlightedClock);
-        savedColor = Color.white;
+        savedColor = Color.cyan;
         highlightedClock = previousClock;
         highlight = true;
         GoToHighlightedClock();
@@ -309,14 +309,14 @@ public class ClockManager : MonoBehaviour
 
         Material mat = clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material;
         savedColor = mat.color;
-        Color newCol = new Color(mat.color.r + 0.4f, mat.color.g + 0.4f, mat.color.b + 0.4f);
+        Color newCol = new Color(mat.color.r + 0.6f, mat.color.g + 0.6f, mat.color.b + 0.6f);
         clock.transform.GetChild(clock.transform.childCount - 1).gameObject.GetComponent<MeshRenderer>().material.color = newCol;
     }
 
     private void revertHighlight(GameObject clock)
     {
         if (clock == null) return;
-        if (savedColor == Color.white) return;
+        if (savedColor == Color.cyan) return;
         //clock.transform.localScale = Vector3.one * 1;
         //clock.transform.localScale = clock.transform.localScale / 2;
 
