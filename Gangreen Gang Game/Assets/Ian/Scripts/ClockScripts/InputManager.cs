@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -231,7 +232,8 @@ public class InputManager : MonoBehaviour
 
     private void onToggleUI(InputAction.CallbackContext ctx)
     {
-        Services.taskUIManager.ToggleUI();
+        //Services.taskUIManager.ToggleUI();
+        SceneManager.LoadScene("MainMenu_Finale");
     }
 
     private void onSwitchTask(InputAction.CallbackContext ctx)

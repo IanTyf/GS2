@@ -181,7 +181,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.0833333
+  - time: 3.1833334
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}

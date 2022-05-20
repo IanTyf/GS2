@@ -314,15 +314,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: playChildAnim
-    data: Beauregard_Child, Talk, 1
+    functionName: setActionState
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: setActionState
-    data: 
+    functionName: playChildAnim
+    data: Beauregard_Child, Talk, 1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -362,56 +362,56 @@ AnimationClip:
     floatParameter: 0
     intParameter: 15
     messageOptions: 0
-  - time: 16.983334
+  - time: 17.3
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 16
     messageOptions: 0
-  - time: 29.816668
+  - time: 29.85
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 19
     messageOptions: 0
-  - time: 36.583332
+  - time: 36.616665
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 20
     messageOptions: 0
-  - time: 42.766666
+  - time: 42.8
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 21
     messageOptions: 0
-  - time: 55.7
+  - time: 55.733334
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 23
     messageOptions: 0
-  - time: 63.833332
+  - time: 63.866665
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 24
     messageOptions: 0
-  - time: 76.45
+  - time: 76.48333
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 26
     messageOptions: 0
-  - time: 84.166664
+  - time: 84.2
     functionName: setListeningActions
     data: checkWatch, checkWatchLate, checkWatchWrong
     objectReferenceParameter: {fileID: 0}

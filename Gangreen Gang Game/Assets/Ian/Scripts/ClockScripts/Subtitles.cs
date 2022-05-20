@@ -34,7 +34,7 @@ public class Subtitles : MonoBehaviour
     public static string p3Niece5 = "Claire: You didn't want the store after Uncle Franklin died.";
     public static string p3Beau8 = "Beauregard: There wasn't money to be made in the store after he died. No one wanted a crusty, old shop.";
     public static string p3Beau9 = "Beauregard: And now the value of the property has gone up recently.";
-    public static string p3Niece6 = "Claire: You're sick. Doesn't matter though, The store belongs to me.";
+    public static string p3Niece6 = "Claire: You're sick. Doesn't matter though. The store belongs to me.";
     public static string p3Beau10 = "Beauregard: Don't worry I'll make sure you get an offer you can't refuse.";
 
     public static string p3Beau11 = "Beauregard: Oh! Looks like I have some time before my meeting. You'll have to excuse me.";
@@ -47,12 +47,12 @@ public class Subtitles : MonoBehaviour
 
     public static string p3Beau14 = "Beauregard: I'll see you with the buyers next time.";
 
-    public static string p3NieceSelf1 = "(I don't know what to do uncle.)";
-    public static string p3NieceSelf2 = "(You worked your butt off for this place.)";
-    public static string p3NieceSelf3 = "(I can't believe Beauregard would just assume that I would throw all this away.)";
-    public static string p3NieceSelf4 = "(But selling the shop would mean I could start a newer shop.)";
-    public static string p3NieceSelf5 = "(If I did that I feel like I could throw some new ideas into the mix.)";
-    public static string p3NieceSelf6 = "(Ugh such a big decision.)";
+    public static string p3NieceSelf1 = "Niece: I don't know what to do uncle.";
+    public static string p3NieceSelf2 = "Niece: You worked your butt off for this place.";
+    public static string p3NieceSelf3 = "Niece: I can't believe Beauregard would just assume that I would throw all this away.";
+    public static string p3NieceSelf4 = "Niece: But selling the shop would mean I could start a newer shop.";
+    public static string p3NieceSelf5 = "Niece: If I did that I feel like I could throw some new ideas into the mix.";
+    public static string p3NieceSelf6 = "Niece: Ugh such a big decision.";
 
     public static string p4NieceHi = "Claire: Hello?";
     public static string p4BeauBackWithBuyers = "Beauregard: I'll make this quick, I'm coming back with buyers around two.";

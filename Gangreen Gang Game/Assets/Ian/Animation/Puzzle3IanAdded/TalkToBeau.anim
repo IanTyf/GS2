@@ -28,7 +28,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 72.9
+        time: 74.2
         value: {x: -1.697, y: 2.969, z: -2.325}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -63,7 +63,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 72.9
+    m_StopTime: 74.2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -92,7 +92,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 72.9
+        time: 74.2
         value: -1.697
         inSlope: 0
         outSlope: 0
@@ -120,7 +120,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 72.9
+        time: 74.2
         value: 2.969
         inSlope: 0
         outSlope: 0
@@ -148,7 +148,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 72.9
+        time: 74.2
         value: -2.325
         inSlope: 0
         outSlope: 0
@@ -202,35 +202,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 19.2
+  - time: 19.483334
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 17
     messageOptions: 0
-  - time: 24.5
+  - time: 24.783333
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 18
     messageOptions: 0
-  - time: 48.383335
+  - time: 48.666668
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 22
     messageOptions: 0
-  - time: 68.55
+  - time: 68.833336
     functionName: showSubtitle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 25
     messageOptions: 0
-  - time: 72.5
+  - time: 72.78333
     functionName: setListeningActions
     data: selfTalk
     objectReferenceParameter: {fileID: 0}
