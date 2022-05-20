@@ -12,7 +12,7 @@ public class TimeEventManager : MonoBehaviour
     public List<TimeEvent> dynamicTimeEvents = new List<TimeEvent>(); // events that are added in real-time based on player decisions; should be removed when rewind past the start time
     public List<TimeEvent> allTimeEvents = new List<TimeEvent>();
 
-    public TimeEventDB timeEventDB;
+    //public TimeEventDB timeEventDB;
 
     //public GameObject testObj;
     //public GameObject testObj2;
@@ -42,7 +42,7 @@ public class TimeEventManager : MonoBehaviour
     void Start()
     {
         tm = Services.timeManager;
-
+        /*
         if (timeEventDB != null)
         {
             InitialTimeEventSetup[] initialEvents = timeEventDB.initialEvents;
@@ -54,7 +54,7 @@ public class TimeEventManager : MonoBehaviour
                     initialEvent.actor, initialEvent.nameOfAnimationClip);
             }
         }
-
+        */
         // VERY IMPORTANT STEPS BELOW
 
         // add all the initial events that will play no matter what

@@ -248,10 +248,10 @@ public class ObjectEventIntro : MonoBehaviour
             "The Second Hand has been passed down to members of the Clockenspiel family. When it was passed to you, you put your heart and soul into this shop. " +
             "You knew the workings of each and every clock like the back of your hand. You brought The Second Hand to her prime!\n\nBut now you're dead." +
             "\n\nAfter you're passing you're spirit didn't move on, instead it lingered, tethered to the shop you loved so much. As time passed you watched in " +
-            "sadness as the shop slowly withered away. Until one day your niece reopened the shop.\n\nIt wasn't easy. But she managed to spruce the place up. " +
-            "The hardest part was getting her to aknowledge that you're spirit lived on. It took some doing... and some very haunted clock ringing. But ever since then, " +
+            "sadness as the shop slowly withered away. Until one day your niece Claire reopened the shop.\n\nIt wasn't easy. But she managed to spruce the place up. " +
+            "The hardest part was getting her to acknowledge that your spirit lived on. It took some doing... and some very haunted clock ringing. But ever since then, " +
             "you've been her little assistant.\n\nBut that doesn't mean the revival of The Second Hand is without threat - Beauregard Clockenspiel is looking to " +
-            "buy the shop and redevelop the land. And if he secures enough buyer's he might create an offer that your niece can't refuse.";
+            "buy the shop and redevelop the land. And if he secures enough buyers he might create an offer that Claire can't refuse.";
 
         UI_TextDup.Write(txt, 0.04f, true, false);
     }

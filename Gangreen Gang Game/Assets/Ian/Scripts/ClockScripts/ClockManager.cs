@@ -146,11 +146,14 @@ public class ClockManager : MonoBehaviour
         if (previousClock == null) return;
         if (zooming) return;
 
+        //revertHighlight(highlightedClock);
+        savedColor = Color.white;
         highlightedClock = previousClock;
         highlight = true;
         GoToHighlightedClock();
+        //revertHighlight(currentClock);
     }
-
+    
     // takes a vec2 and shoot a ray from the currently hightlighted clock and move to another one
     // based on similar concept with ray-marching
     public void handleInput(Vector2 dir)
@@ -219,6 +222,8 @@ public class ClockManager : MonoBehaviour
             if (targetClock != null) break;
         }
 
+        if (visibleClocks.Count == 1) targetClock = visibleClocks[0];
+
         // if we find a new clock to switch to
         if (targetClock != null)
         {
@@ -239,7 +244,8 @@ public class ClockManager : MonoBehaviour
 
     private bool IsInView(GameObject toCheck, Camera cam)
     {
-        Vector3 pointOnScreen = cam.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
+        //Vector3 pointOnScreen = cam.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
+        Vector3 pointOnScreen = cam.WorldToScreenPoint(toCheck.transform.GetChild(toCheck.transform.childCount - 1).GetComponent<MeshRenderer>().bounds.center);
 
         //Is in front
         if (pointOnScreen.z < 0)
@@ -310,7 +316,7 @@ public class ClockManager : MonoBehaviour
     private void revertHighlight(GameObject clock)
     {
         if (clock == null) return;
-
+        if (savedColor == Color.white) return;
         //clock.transform.localScale = Vector3.one * 1;
         //clock.transform.localScale = clock.transform.localScale / 2;
 
