@@ -66,18 +66,18 @@ public class Subtitles : MonoBehaviour
     public static string p4Beau4 = "Beauregard: I lost buyers because of you.";
     public static string p4Beau5 = "Beauregard: Anyway, I'll be back down with them soon.";
 
-    public static string p4Buyer11 = "Buyer1: I must say Mr. Clockenspiel, this lot has potential.";
-    public static string p4Buyer21 = "Buyer2: I agree. Lots of light and location is great.";
-    public static string p4Buyer22 = "Buyer2: All we need is to clear up all these old clocks and it's perfect.";
+    public static string p4Buyer11 = "Buyer 1: I must say Mr. Clockenspiel, this lot has potential.";
+    public static string p4Buyer21 = "Buyer 2: I agree. Lots of light and location is great.";
+    public static string p4Buyer22 = "Buyer 2: All we need is to clear up all these old clocks and it's perfect.";
 
-    public static string p4Buyer12 = "Buyer1: My papa used to have a clock like this.";
-    public static string p4Buyer23 = "Buyer2: This is the type of clock I had in my room.";
+    public static string p4Buyer12 = "Buyer 1: My papa used to have a clock like this.";
+    public static string p4Buyer23 = "Buyer 2: This is the type of clock I had in my room.";
 
-    public static string p4Buyer13 = "Buyer1: Mr. Clockenspiel, we all feel that it wouldn't be right tearing this place down.";
+    public static string p4Buyer13 = "Buyer 1: Mr. Clockenspiel, we all feel that it wouldn't be right tearing this place down.";
     public static string p4BeauSad = "Beauregard: But gentleman! Think of the potential!";
-    public static string p4Buyer14 = "Buyer1: Our mind is decided, Good day Mr. Clockenspiel.";
-
-    public static string p4Buyer15 = "Buyer1: Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
+    public static string p4Buyer14 = "Buyer 1: Our mind is decided, Good day Mr. Clockenspiel.";
+    
+    public static string p4Buyer15 = "Buyer 1: Mr. Clockenspiel, this place definitely has what we're looking for. When do we sign?";
     public static string p4BeauHappy = "Beauregard: Absolutely, gentlemen! We can do that right now.";
     public static string p4NieceEnd = "Claire: Alright, Lets hear your price.";
 
@@ -87,6 +87,7 @@ public class Subtitles : MonoBehaviour
     public static string mantelClockReaction = "Customer: I think this is too fancy for me.";
     public static string cornerClockReaction = "Customer: I'm not really liking the angles. Do you have something more round?";
     public static string deskClockReaction = "Customer: I think I want something with more portability.";
+    public static string triangleClockReaction = "Customer: I think this is too fancy for me.";
 
     // Start is called before the first frame update
     void Start()
@@ -295,6 +296,9 @@ public class Subtitles : MonoBehaviour
                 break;
             case 64:
                 UI_Text.Write(deskClockReaction, textSpeed, true);
+                break;
+            case 65:
+                UI_Text.Write(triangleClockReaction, textSpeed, true);
                 break;
         }
     }

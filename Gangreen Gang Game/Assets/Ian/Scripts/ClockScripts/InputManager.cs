@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour
 {
     //public Clock currentClock;
     public bool disableControl;
+    public GameObject rewindIcon;
+    public GameObject fastforwardIcon;
 
     private PlayerInput playerInput;
 
@@ -187,24 +189,44 @@ public class InputManager : MonoBehaviour
     {
         if (Services.timeManager.fastForwarding) return;
         Services.timeManager.skipping = true;
+
+        rewindIcon.SetActive(true);
+        Material glitchMat = Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material;
+        glitchMat.color = new Color(1, 1, 1, 0.33f);
+        Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material = glitchMat;
     }
 
     private void onStopRewind(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.fastForwarding) return;
         Services.timeManager.skipping = false;
+
+        rewindIcon.SetActive(false);
+        Material glitchMat = Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material;
+        glitchMat.color = new Color(1, 1, 1, 0f);
+        Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material = glitchMat;
     }
 
     private void onFastforward(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
         Services.timeManager.fastForwarding = true;
+
+        fastforwardIcon.SetActive(true);
+        Material glitchMat = Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material;
+        glitchMat.color = new Color(1, 1, 1, 0.33f);
+        Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material = glitchMat;
     }
 
     private void onStopFastforward(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
         Services.timeManager.fastForwarding = false;
+
+        fastforwardIcon.SetActive(false);
+        Material glitchMat = Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material;
+        glitchMat.color = new Color(1, 1, 1, 0f);
+        Services.clockManager.currentClock.transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material = glitchMat;
     }
 
     private void onToggleUI(InputAction.CallbackContext ctx)

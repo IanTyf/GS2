@@ -39,6 +39,10 @@ public class Clock : MonoBehaviour
     {
         Services.clockManager.clocks.Add(this.gameObject);
 
+        Material glitchMat = transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material;
+        glitchMat.color = new Color(1, 1, 1, 0f);
+        transform.GetChild(0).GetChild(0).gameObject.GetComponent<MeshRenderer>().material = glitchMat;
+
         if (!possessed) transform.GetChild(0).gameObject.SetActive(false);
         else SetHandsTransparent(0.3f);
 

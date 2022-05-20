@@ -66,6 +66,10 @@ public class ObjectEventCustomer : MonoBehaviour
         TimeAction deskClock = new TimeAction("deskClock", "DeskClockReaction", deskClockConds);
         allActions.Add(deskClock);
 
+        ActionCondition[] triangleClockConds = { acm.P2triangleClock };
+        TimeAction triangleClock = new TimeAction("triangleClock", "TriangleClockReaction", triangleClockConds);
+        allActions.Add(triangleClock);
+
         ActionCondition[] failedToBuyConds = { acm.P2failed };
         TimeAction failedToBuy = new TimeAction("failedToBuy", "FailPuzzle", failedToBuyConds);
         allActions.Add(failedToBuy);

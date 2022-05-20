@@ -46,6 +46,7 @@ public class ActionConditionsManager : MonoBehaviour
     public ActionCondition P2mantelClock;
     public ActionCondition P2cornerClock;
     public ActionCondition P2deskClock;
+    public ActionCondition P2triangleClock;
 
     // puzzle #3
     public ActionCondition P3beauWalksIn;
@@ -114,6 +115,7 @@ public class ActionConditionsManager : MonoBehaviour
         P2mantelClock = new ActionCondition("P2mantelClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
         P2cornerClock = new ActionCondition("P2cornerClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
         P2deskClock = new ActionCondition("P2deskClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
+        P2triangleClock = new ActionCondition("P2triangleClock", new Vector3(0, 8, 15), new Vector3(0, 9, 59));
 
         // puzzle #3
         P3beauWalksIn = new ActionCondition("P3beauWalksIn", new Vector3(0, 10, 30), new Vector3(1, 0, 0));
@@ -137,8 +139,8 @@ public class ActionConditionsManager : MonoBehaviour
         P4BeauGreets = new ActionCondition("P4beauGreets", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
 
         P4BeauFinishes = new ActionCondition("P4beauFinishes", new Vector3(0, 7, 0), new Vector3(1, 0, 0));
-        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 14, 10), new Vector3(0, 15, 09));
-        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 14, 10), new Vector3(0, 15, 09));
+        P4BuyerOneWants = new ActionCondition("P4buyerOneWants", new Vector3(0, 14, 25), new Vector3(0, 15, 09));
+        P4BuyerTwoWants = new ActionCondition("P4buyerTwoWants", new Vector3(0, 14, 25), new Vector3(0, 15, 09));
 
         P4BuyerBuy = new ActionCondition("P4buyerBuy", new Vector3(0, 15, 10), new Vector3(1, 0, 0));
         P4BuyerNotBuy = new ActionCondition("P4buyerNotBuy", new Vector3(0, 15, 10), new Vector3(1, 0, 0));
@@ -172,6 +174,7 @@ public class ActionConditionsManager : MonoBehaviour
         allActionConditions.Add(P2mantelClock);
         allActionConditions.Add(P2cornerClock);
         allActionConditions.Add(P2deskClock);
+        allActionConditions.Add(P2triangleClock);
 
 
         allActionConditions.Add(P3beauWalksIn);
@@ -220,6 +223,7 @@ public class ActionConditionsManager : MonoBehaviour
         P2mantelClock.state = CondState.NotSet;
         P2cornerClock.state = CondState.NotSet;
         P2deskClock.state = CondState.NotSet;
+        P2triangleClock.state = CondState.NotSet;
 
 
         // when forwarding, check and set all the action conditions
@@ -320,6 +324,13 @@ public class ActionConditionsManager : MonoBehaviour
                 && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "deskClock")
             {
                 setReady(P2deskClock);
+            }
+
+            // P2triangleClock
+            if (P2triangleClock.withinTimeWindow(currentM) && P2triangleClock.state != CondState.Ready
+                && P2customerAsked.state == CondState.Ready && isRinging && cm.currentClock.name == "startClock")
+            {
+                setReady(P2triangleClock);
             }
 
             // P3beauWalksIn
