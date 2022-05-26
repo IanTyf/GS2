@@ -29,12 +29,27 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        //DontDestroyOnLoad(this);
+
         Services.inputManager = this;
 
         disableControl = false;
 
         playerInput = GetComponent<PlayerInput>();
+        //getGamepad();
+        //Gamepad gp = getGamepad();
+        //Debug.Log(gp.name);
+    }
 
+    private void Start()
+    {
+        //Debug.Log("finding icons");
+        //rewindIcon = GameObject.Find("Rewind");
+        //fastforwardIcon = GameObject.Find("Fastforward");
+    }
+
+    private void OnEnable()
+    {
         ringLeftAction = playerInput.actions["RingLeft"];
         ringLeftAction.started += onRingLeft;
 
@@ -80,10 +95,42 @@ public class InputManager : MonoBehaviour
 
         switchTask = playerInput.actions["SwitchTask"];
         switchTask.performed += onSwitchTask;
+    }
 
-        //getGamepad();
-        //Gamepad gp = getGamepad();
-        //Debug.Log(gp.name);
+    private void OnDisable()
+    {
+        ringLeftAction.started -= onRingLeft;
+
+        ringRightAction.started -= onRingRight;
+
+        tickAction.started -= onTick;
+        //tickAction.canceled += _ => Debug.Log("release");
+
+        stopAction.started -= onStop;
+        stopAction.canceled -= onResume;
+
+        //skipAction.started += onSkip;
+        skipAction.performed -= Skip;
+        skipAction.canceled -= onSkipExit;
+
+        switchRight.started -= SwitchRight;
+
+        switchLeft.started -= SwitchLeft;
+
+        switchClock.performed -= SwitchClock;
+        switchClock.canceled -= ResetSwitchDir;
+
+        goToClock.started -= GoToClock;
+
+        rewind.started -= onRewind;
+        rewind.canceled -= onStopRewind;
+
+        fastforward.started -= onFastforward;
+        fastforward.canceled -= onStopFastforward;
+
+        toggleUI.started -= onToggleUI;
+
+        switchTask.performed -= onSwitchTask;
     }
 
     private void Update()
@@ -94,6 +141,7 @@ public class InputManager : MonoBehaviour
     private void onTick(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         Services.clockManager.currentClock.GetComponent<Clock>().RotateMinuteHand(6);
@@ -102,6 +150,7 @@ public class InputManager : MonoBehaviour
     private void onStop(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         Services.clockManager.currentClock.GetComponent<Clock>().StopMinuteHand();
@@ -110,6 +159,7 @@ public class InputManager : MonoBehaviour
     private void onResume(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         Services.clockManager.currentClock.GetComponent<Clock>().ResumeMinuteHand();
@@ -118,6 +168,7 @@ public class InputManager : MonoBehaviour
     private void onRingLeft(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         // ring left
@@ -129,6 +180,7 @@ public class InputManager : MonoBehaviour
     private void onRingRight(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         // ring right
@@ -167,6 +219,7 @@ public class InputManager : MonoBehaviour
     {
         //Debug.Log(ctx.ReadValue<Vector2>());
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         Services.clockManager.handleInput(ctx.ReadValue<Vector2>());
@@ -181,6 +234,7 @@ public class InputManager : MonoBehaviour
     private void GoToClock(InputAction.CallbackContext ctx)
     {
         if (Services.timeManager.skipping) return;
+        if (Services.timeManager.fastForwarding) return;
         if (Services.timeManager.hour == 6 && Services.timeManager.minute < 55f) return;
         if (disableControl) return;
         Services.clockManager.GoToHighlightedClock();

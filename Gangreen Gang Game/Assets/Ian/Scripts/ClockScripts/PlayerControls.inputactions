@@ -457,14 +457,14 @@
             ]
         },
         {
-            "name": "Free",
+            "name": "Menu",
             "id": "944f3458-cd1a-405a-acd6-eb0b261c0fd3",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Value",
+                    "name": "Start",
+                    "type": "Button",
                     "id": "71db9059-7b39-4c3c-a0d6-2db5542acb48",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -474,11 +474,11 @@
                 {
                     "name": "",
                     "id": "6fb3f1aa-c85d-4416-b87d-8f3789085c22",
-                    "path": "",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
